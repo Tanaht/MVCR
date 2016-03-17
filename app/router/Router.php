@@ -24,9 +24,8 @@ class Router {
 	}
 
 	public function run() {
+
 		$this->when(array(
-				"GET" => null,
-				"POST" => null,
 			),
 			array(self::VIEW => "makeHomeView")
 		)->when(array(
@@ -55,8 +54,6 @@ class Router {
  	}
 
  	private function validatePost(array $array = null) {
- 		if($array == null)
- 			return empty($_POST);
 
  		foreach ($array as $key => $value) {
  			if(isset($_POST[$key]))
@@ -68,8 +65,6 @@ class Router {
  	}
 
  	private function validateGet(array $array = null) {
- 		if($array == null)
- 			return empty($_GET);
 
  		foreach ($array as $key => $value) {
  			if(isset($_GET[$key]))
@@ -115,6 +110,7 @@ class Router {
 				$get = $this->validateGet($path["GET"]);
 		}
 		
+
 		if($get == $getRequested && $post == $postRequested){
 			return true;
 		}

@@ -83,7 +83,7 @@ class TemplateRunner {
 						}
 						else {//if filter arguments is a variable
 							if(!array_key_exists($filterArgs[$key2], $this->_mapping_data)) {
-								$this->addError('FilterArgs: Unknown $var: ' . "'" . $filterArgs[$key2] . "'");
+								$this->addError('Filter: Unknown $var: ' . "'" . $filterArgs[$key2] . "'");
 							}
 							$filterArgs[$key2] = $this->_mapping_data[$filterArgs[$key2]];
 						}
@@ -109,6 +109,7 @@ class TemplateRunner {
 
 	//compile value requested by template according to mapping data 
 	private function compile() {
+
 		foreach ($this->_bind_data_to_tpl as $key => $value) {
 			//trueKey est la clé qui doit être trouvé dans mappingData
 			$trueKey = $value['key'];
@@ -127,10 +128,11 @@ class TemplateRunner {
 			if($elements == null)
 				$data = $this->_mapping_data[$value["key"]];
 			else {
-				$currentVariable = $trueKey;
-				foreach ($elements as $key => $value) {
-					$currentVariable = $this->call($currentVariable, $value);
+				$currentVariable = $this->_mapping_data[$trueKey];
+				foreach ($elements as $key2 => $value2) {
+					$currentVariable = $this->call($currentVariable, $value2);
 				}
+				$data = $currentVariable;
 			}
 
 			if($value["filter"] != null) {
@@ -147,6 +149,10 @@ class TemplateRunner {
 	private function call($variable, $variableCall) {
 		if(is_object($variable)) {
 			//TODO: façon vraiment sale d'appeler une méthode ou une variable
+			if(method_exists($variable, $variableCall)){
+				$callable = array($variable, $variableCall);
+				return call_user_func($callable);
+			}
 			return $variable->$variableCall;
 		}
 
@@ -155,6 +161,7 @@ class TemplateRunner {
 		}
 
 		$this->addError("CompileTemplate: elements isn't either array or object : " . $variable);
+		var_export($variable);
 	}
 
 	private function addError($error) {

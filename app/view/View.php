@@ -19,7 +19,7 @@ class View {
 		$this->_router = $router;
 		$this->_moteurTpl = new TemplateRunner();
 		$this->_templateFile = "squelette.tpl";
-		$this->_hook = array("title" => "WebSite", "content" => "", "menu" => "");
+		$this->_hook = array("title" => "WebSite", "content" => "", "menu" => "", "header" => "", "footer" => "");
 	}
 
 	public function makeError404View() {
@@ -27,13 +27,11 @@ class View {
 	}
 
 	public function makeHomeView() {
-		$this->_hook["title"] = "WebSite - Home -" . $_GET['action'];
-		$this->_hook["content"] = $this->_moteurTpl->show("home.tpl");
+		$this->_hook["title"] = "WebSite - Home";
+		$this->_hook["content"] = $this->_moteurTpl->show("frg/home.tpl");
 	}
 
 	public function pageNotFound() {
-		$this->_hook["test1"] = new Object();
-		$this->_hook["test2"] = array("test1" => "arrayTest1 successfull");
 		$this->_hook["title"] = "Erreur 404";
 		$this->_hook["content"] = $this->_moteurTpl->show("frg/error/404.tpl");
 	}

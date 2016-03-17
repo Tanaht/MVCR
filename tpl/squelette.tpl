@@ -4,10 +4,9 @@
 	<title>{{title}}</title>
 </head>
 <body>
-	{{menu}}
-	{{content | currency : menu}}
-	{{ test1.test1 }}
-	{{ test2.test1 }}
-	{{ test2.test2 }}
+	{{ header }}
+	{{ menu }}
+	{{ content }}
+	{{ footer }}
 </body>
 </html>
