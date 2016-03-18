@@ -29,7 +29,7 @@ class DatabaseHelper {
 
 	public static function getBdd() {
 		if(self::$_bdd == null)
-			self::$_bdd = new BddLite();
+			self::$_bdd = new DatabaseHelper();
 		
 		return self::$_bdd;
 	}
@@ -43,12 +43,6 @@ class DatabaseHelper {
 			if(is_int($key)){
 				unset($row[$key]);
 				continue;
-			}
-			
-			$json = json_decode($row[$key]);
-			
-			if(json_last_error() == JSON_ERROR_NONE) {
-				$row[$key] = $json;
 			}
 		}
 		return $row;

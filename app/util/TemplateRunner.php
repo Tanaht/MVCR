@@ -22,14 +22,16 @@ class TemplateRunner {
 	private $_errors;
 	private $_hasError;
 
-	public function show($path, array $mapping_data = null) {
+	public function show($path) {
+		$this->_tpl = file_get_contents (Config::TPL_DIR . $path);
+		return $this->_tpl;
+	}
+
+	public function run($path, array $mapping_data) {
 		$this->_hasError = false;
 		$this->_errors = "<pre>";
 
  		$this->_tpl = file_get_contents (Config::TPL_DIR . $path);
-		
-		if($mapping_data == null)
-			return $this->_tpl;
 		
 		$this->_mapping_data = $mapping_data;
 		$this->analyzeTemplate();

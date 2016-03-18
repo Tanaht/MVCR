@@ -26,12 +26,22 @@ class Router {
 	public function run() {
 
 		$this->when(array(
+				"POST" => null,
+				"GET" => null
 			),
 			array(self::VIEW => "makeHomeView")
 		)->when(array(
 				"GET" => array("action" => "home")
 			),
 			array(self::VIEW => "makeHomeView")
+		)->when(array(
+				"GET" => array("action" => "cartes")
+			),
+			array(self::CTL => "listeCartes")
+		)->when(array(
+				"GET" => array("carte" => "$$")
+			),
+			array(self::CTL => "vueCarte")
 		)->otherwise(array(self::VIEW => "pageNotFound"));
 
 		$this->callMethods();
@@ -54,6 +64,8 @@ class Router {
  	}
 
  	private function validatePost(array $array = null) {
+ 		if($array == null) 
+ 			return empty($_POST);
 
  		foreach ($array as $key => $value) {
  			if(isset($_POST[$key]))
@@ -65,6 +77,8 @@ class Router {
  	}
 
  	private function validateGet(array $array = null) {
+ 		if($array == null)
+ 			return empty($_GET);
 
  		foreach ($array as $key => $value) {
  			if(isset($_GET[$key]))
@@ -96,20 +110,13 @@ class Router {
 
 		if( array_key_exists("POST", $path) ){
 			$postRequested = true;
-			if($path["POST"] == null)
-				$get = $this->validatePost();
-			else
-				$get = $this->validatePost($path["POST"]);
+			$post = $this->validatePost($path["POST"]);
 		}
 
 		if( array_key_exists("GET", $path) ){
 			$getRequested = true;
-			if($path["GET"] == null)
-				$get = $this->validateGet();
-			else
-				$get = $this->validateGet($path["GET"]);
+			$get = $this->validateGet($path["GET"]);
 		}
-		
 
 		if($get == $getRequested && $post == $postRequested){
 			return true;

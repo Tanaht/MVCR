@@ -4,9 +4,14 @@
 	<title>{{title}}</title>
 </head>
 <body>
-	{{ header }}
+	<div class="yu-header">
+		{{ header }}
+	</div>
 	{{ menu }}
+	{{ arianne }}
 	{{ content }}
-	{{ footer }}
+	<div class="yu-footer">
+		{{ footer }}
+	</div>
 </body>
 </html>

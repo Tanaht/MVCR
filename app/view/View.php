@@ -19,7 +19,7 @@ class View {
 		$this->_router = $router;
 		$this->_moteurTpl = new TemplateRunner();
 		$this->_templateFile = "squelette.tpl";
-		$this->_hook = array("title" => "WebSite", "content" => "", "menu" => "", "header" => "", "footer" => "");
+		$this->_hook = array("title" => "WebSite", "arianne" => "<span><a href='?action=home'>Home</a></span>", "content" => "", "menu" => "", "header" => "Le Header", "footer" => "Le Footer");
 	}
 
 	public function makeError404View() {
@@ -37,6 +37,21 @@ class View {
 	}
 
 	public function render() {
-		echo $this->_moteurTpl->show($this->_templateFile, $this->_hook);
+		echo $this->_moteurTpl->run($this->_templateFile, $this->_hook);
+	}
+
+	public function showListeCartes($cartes) {
+		$listeCartesContent = array("content" => "");
+		foreach ($cartes as $key => $value) {
+			$listeCartesContent["content"] .= $this->_moteurTpl->run("frg/carte.tpl", array("carte" => $value["carte"], "action" => "<a href='?carte=" . $value["carte"]->id_carte . "'>Détails</a>"));
+		}
+
+		$this->_hook["arianne"] = "<span><a href='?action=home'>Home</a> - <a href='?action=cartes'>Les Cartes</a></span>";
+		$this->_hook["content"] = $this->_moteurTpl->run("frg/listeCartes.tpl", $listeCartesContent);
+	}
+
+	public function showCarte($carte) {
+		$this->_hook["arianne"] = "<span><a href='?action=home'>Home</a> - <a href='?action=cartes'>Les Cartes</a> - <a href='?carte=" . $carte->id_carte ."'>" . $carte->nom . "</a></span>";
+		$this->_hook["content"] = $this->_moteurTpl->run("frg/carte.tpl", array("carte" => $carte, "action" => "<a href='?action=cartes'>Retour à la liste</a>"));
 	}
 }

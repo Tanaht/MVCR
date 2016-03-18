@@ -5,6 +5,7 @@ namespace app\controller;
 use app\router\Router;
 use app\view\View;
 use app\model\DatabaseHelper;
+use app\model\Carte;
 
 class Controller {
 	private $_router;
@@ -13,5 +14,22 @@ class Controller {
 	public function __construct(Router $router, View $view) {
 		$this->_view = $view;
 		$this->_router = $router;
+	}
+
+	public function listeCartes() {
+		$bdd = DatabaseHelper::getBdd();
+
+		$bdd->query("SELECT id_carte FROM cartes");
+
+		$cartes = $bdd->forEachRow(array($this, "constructCarte"));
+		$this->_view->showListeCartes($cartes);
+	}
+
+	public function constructCarte(&$row) {
+		$row['carte'] = new Carte($row["id_carte"]);
+	}
+
+	public function vueCarte() {
+		$this->_view->showCarte(new Carte($_GET["carte"]));
 	}
 }

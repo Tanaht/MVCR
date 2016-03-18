@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 17 Mars 2016 à 12:42
+-- Généré le :  Ven 18 Mars 2016 à 00:48
 -- Version du serveur :  5.6.26
 -- Version de PHP :  5.6.12
 
@@ -66,7 +66,14 @@ CREATE TABLE IF NOT EXISTS `cartes` (
   `attaque` varchar(6) DEFAULT NULL,
   `défense` varchar(6) DEFAULT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `cartes`
+--
+
+INSERT INTO `cartes` (`id_carte`, `id_utilisateur`, `id_attribut`, `id_type`, `id_categorie`, `id_effet`, `nom`, `niveau`, `attaque`, `défense`, `description`) VALUES
+(1, 1, 1, 14, 1, NULL, 'Magicien Sombre', 7, '200', '2100', 'Mage Suprême en termes d''attaque et de défense.');
 
 -- --------------------------------------------------------
 
@@ -170,7 +177,14 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `username` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
   `sudo` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`id_utilisateur`, `email`, `username`, `password`, `sudo`) VALUES
+(1, 'anonymous@gmail.com', 'Anonymous', '', 'admin');
 
 --
 -- Index pour les tables exportées
@@ -186,7 +200,12 @@ ALTER TABLE `attributs`
 -- Index pour la table `cartes`
 --
 ALTER TABLE `cartes`
-  ADD PRIMARY KEY (`id_carte`);
+  ADD PRIMARY KEY (`id_carte`),
+  ADD KEY `id_utilisateur` (`id_utilisateur`,`id_attribut`,`id_type`,`id_categorie`,`id_effet`),
+  ADD KEY `FK_CARTE_ATTRIBUT` (`id_attribut`),
+  ADD KEY `FK_CARTE_TYPE` (`id_type`),
+  ADD KEY `FK_CARTE_EFFET` (`id_effet`),
+  ADD KEY `FK_CARTE_CATEGORIE` (`id_categorie`);
 
 --
 -- Index pour la table `categories`
@@ -225,7 +244,7 @@ ALTER TABLE `attributs`
 -- AUTO_INCREMENT pour la table `cartes`
 --
 ALTER TABLE `cartes`
-  MODIFY `id_carte` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_carte` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `categories`
 --
@@ -245,7 +264,21 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `cartes`
+--
+ALTER TABLE `cartes`
+  ADD CONSTRAINT `FK_CARTE_ATTRIBUT` FOREIGN KEY (`id_attribut`) REFERENCES `attributs` (`id_attribut`),
+  ADD CONSTRAINT `FK_CARTE_CATEGORIE` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id_categorie`),
+  ADD CONSTRAINT `FK_CARTE_EFFET` FOREIGN KEY (`id_effet`) REFERENCES `effets` (`id_effet`),
+  ADD CONSTRAINT `FK_CARTE_TYPE` FOREIGN KEY (`id_type`) REFERENCES `types` (`id_type`),
+  ADD CONSTRAINT `FK_CARTE_UTILISATEUR` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateur`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
