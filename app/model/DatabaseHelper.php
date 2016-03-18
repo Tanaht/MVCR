@@ -1,8 +1,8 @@
 <?php
 
 namespace app\model;
-use app\config\Config;
 
+use app\config\Config;
 
 class DatabaseHelper {
 	private static $_bdd;
