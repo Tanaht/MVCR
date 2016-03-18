@@ -1,0 +1,14 @@
+$background: #E5E5E5;
+$primary: #AE622A;
+$accent: #38BA1E;
+$warn: #C81B1B;
+
+body{
+	background-color: $background; 
+}
+
+div {
+	.yu-footer, .yu-header {
+		display: block;
+	}
+}
