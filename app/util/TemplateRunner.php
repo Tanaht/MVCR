@@ -144,7 +144,7 @@ class TemplateRunner {
 			$this->_bind_data_to_tpl["data"] = $data;
 
 
-			$this->_tpl = str_replace($key ,  $data, $this->_tpl);
+			$this->_tpl = str_replace($key,  $data, $this->_tpl);
 		}
 	}
 

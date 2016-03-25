@@ -73,7 +73,16 @@ class DatabaseHelper {
 		$statement = $this->_statement;
 		$count = 0;
 		$table = array();
-		$statement = $this->_pdo->query($this->_sql);
+
+		try{
+			$statement = $this->_pdo->query($this->_sql);
+		}
+		catch(\PDOException $e){
+			echo "<pre>";
+			var_export(array("sqlQuery" => $this->_sql , "mysqlError" => $e->getMessage()));
+			echo "</pre>";
+			return null;
+		}
 		
 		foreach  ($statement as $row) {
 	        $row = $this->removeIndexKeys($row);
@@ -94,7 +103,10 @@ class DatabaseHelper {
 			$this->_statement = $this->_pdo->query($this->_sql);
 		}
 		catch(\PDOException $e){
-			return array("sqlQuery" => $this->_sql , "mysqlError" => $e->getMessage());
+			echo "<pre>";
+			var_export(array("sqlQuery" => $this->_sql , "mysqlError" => $e->getMessage()));
+			echo "</pre>";
+			return null;
 		}
 
 		if($requestType == null)

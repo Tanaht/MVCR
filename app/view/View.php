@@ -8,6 +8,7 @@ use app\model\Object;
 //$moteurTpl = new TemplateRunner();
 //echo $moteurTpl->show("test.tpl", array("title" => "Mon titre", "content" => "Mon contenu", "prix" => 5.02));
 class View {
+	private $basetitle;
 
 	private $_router;
 	private $_moteurTpl;
@@ -18,20 +19,23 @@ class View {
 	private $_templateFile;
 
 	public function __construct(Router $router) {
+		$this->basetitle = "YUDb";
 		$this->_router = $router;
 		$this->_moteurTpl = new TemplateRunner();
 		$this->_templateFile = "squelette.tpl";
 		
 		$this->_hook = array(
-			"title" => "WebSite", 
-			"arianne" => "<span><a href='?action=home'>Home</a></span>", 
-			"content" => "", 
-			"menu" => "", 
-			"script" => ""
+			"title" => $this->basetitle . "", 
+			"content" => ""
 		);
 
 		$this->_footer = array();
-		$this->_header = array("title" => "");
+		$this->_header = array(
+			"title" => "", 
+			"arianne" => array(),
+			"form" => $this->_moteurTpl->show("frg/form/inscription.tpl")
+		);
+		$this->addToArianne("?action=home", "Home");
 	}
 
 
@@ -42,19 +46,21 @@ class View {
 
 
 		//=====================CURL to W3C VALIDATOR
-		$ch = curl_init("http://validator.w3.org/nu/?out=json");
+		$url = "http://validator.w3.org/nu/?out=json";
 
 		$fp = fopen("js/validatorMessages.js", "w+");
 		fwrite($fp, "var messages = ");
 
-		curl_setopt($ch, CURLOPT_FILE, $fp);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: text/html; charset=utf-8"));
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $file);
-		curl_exec($ch);
-		curl_close($ch);
+			$ch = curl_init($url);
+			curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,10);
+			curl_setopt($ch, CURLOPT_FILE, $fp);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: text/html; charset=utf-8"));
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $file);
+			curl_exec($ch);
+			curl_close($ch);
+		
 		fclose($fp);
-		$this->_hook["script"] = "<script src='js/validatorMessages.js'></script>";
 		//=====================
 		
 		echo $this->_moteurTpl->run($this->_templateFile, $this->_hook);
@@ -69,9 +75,13 @@ class View {
 		$this->_hook["header"] = $this->_moteurTpl->run("frg/header.tpl", $this->_header);
 	}
 
+	private function addToArianne($href, $where) {
+		$this->_header["arianne"][] = array("href" => $href, "where" => $where);
+	}
+
 	//=========================================================================================
 	public function makeHomeView() {
-		$this->_hook["title"] = "WebSite - Home";
+		$this->_hook["title"] = $this->basetitle . " - Home";
 		$this->_hook["content"] = $this->_moteurTpl->show("frg/home.tpl");
 	}
 
@@ -81,18 +91,25 @@ class View {
 	}
 
 	public function showListeCartes($cartes) {
+		$this->_hook["title"] = $this->basetitle . " - Cartes";
 		$listeCartesContent = array("content" => "");
-		foreach ($cartes as $key => $value) {
-			$listeCartesContent["content"] .= $this->_moteurTpl->run("frg/carte_list_item.tpl", array("carte" => $value["carte"], "action" => "<a href='?carte=" . $value["carte"]->id . "'>Détails</a>"));
-		}
+		
 
-		$this->_hook["arianne"] = "<span><a href='?action=home'>Home</a> - <a href='?action=cartes'>Les Cartes</a></span>";
+		//utilisé pour tester ce qui se passe quand beaucoup d'élements sont affiché:
+		for($time = 0 ; $time < 1 ; $time++)
+			foreach ($cartes as $key => $value) {
+				$listeCartesContent["content"] .= $this->_moteurTpl->run("frg/carte_list_item.tpl", array("carte" => $value["carte"], "action" => "<a href='?carte=" . $value["carte"]->id . "'>Détails</a>"));
+			}
+
+		$this->addToArianne("?action=cartes", "Les Cartes");
 		$this->_hook["content"] = $this->_moteurTpl->run("frg/listeCartes.tpl", $listeCartesContent);
 	}
 
 	public function showCarte($carte) {
-		$this->_hook["arianne"] = "<span><a href='?action=home'>Home</a> - <a href='?action=cartes'>Les Cartes</a> - <a href='?carte=" . $carte->id ."'>" . $carte->nom . "</a></span>";
+		$this->addToArianne("?action=cartes", "Les Cartes");
+		$this->addToArianne("?carte=" . $carte->id, $carte->nom);
 
+		$this->_hook["title"] = $this->basetitle . " - " . $carte->nom;
 		$this->_hook["content"] = $this->_moteurTpl->run("frg/carte_detail.tpl", array("carte" => $carte));
 	}
 }

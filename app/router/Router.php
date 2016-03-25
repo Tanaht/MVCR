@@ -10,6 +10,11 @@ use app\controller\Controller;
 //echo $moteurTpl->show("test.tpl", array("title" => "Mon titre", "content" => "Mon contenu", "prix" => 5.02));
 
 class Router {
+
+	const stringParam = "##";
+	const intParam = "#int#";
+	const floatParam = "#float#";
+
 	const VIEW = "view";
 	const CTL = "controller";
 
@@ -35,11 +40,15 @@ class Router {
 			),
 			array(self::VIEW => "makeHomeView")
 		)->when(array(
+				"GET" => array("action" => "cartes", "page" => self::intParam)
+			),
+			array(self::CTL => "listeCartes")
+		)->when(array(
 				"GET" => array("action" => "cartes")
 			),
 			array(self::CTL => "listeCartes")
 		)->when(array(
-				"GET" => array("carte" => "$$")
+				"GET" => array("carte" => self::intParam)
 			),
 			array(self::CTL => "vueCarte")
 		)->otherwise(array(self::VIEW => "pageNotFound"));
@@ -68,9 +77,17 @@ class Router {
  			return empty($_POST);
 
  		foreach ($array as $key => $value) {
- 			if(isset($_POST[$key]))
- 				if($_POST[$key] == $value || $value == "$$")
+ 			if(isset($_POST[$key])) {
+ 				if($_POST[$key] == $value || $value == self::stringParam)
  					continue;
+
+ 				if($value == self::intParam && filter_var($_POST[$key], FILTER_VALIDATE_INT) != false)
+ 					continue;
+
+ 				if($value == self::floatParam && filter_var($_POST[$key], FILTER_VALIDATE_FLOAT) != false)
+ 					continue;
+
+ 			}
  			return false;
  		}
  		return true;
@@ -81,9 +98,17 @@ class Router {
  			return empty($_GET);
 
  		foreach ($array as $key => $value) {
- 			if(isset($_GET[$key]))
- 				if($_GET[$key] == $value || $value == "$$")
+ 			if(isset($_GET[$key])) {
+ 				if($_GET[$key] == $value || $value == self::stringParam)
  					continue;
+
+ 				if($value == self::intParam && filter_var($_GET[$key], FILTER_VALIDATE_INT) != false)
+ 					continue;
+
+ 				if($value == self::floatParam && filter_var($_GET[$key], FILTER_VALIDATE_FLOAT) != false)
+ 					continue;
+ 			}
+
  			return false;
  		}
  		return true;

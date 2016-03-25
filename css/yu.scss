@@ -1,14 +1,178 @@
+//Couleur du fond
 $background: #E5E5E5;
+
+//La couleur la plus courante pour indiquer un contenu
 $primary: #AE622A;
+//La couleur secondaire pour indiquer un contenu
+$secondary: #AE622A;
+//Accentuations sur les éléments avec lesquels l'utilisateur peut intéragir
 $accent: #38BA1E;
+$accentLight: #48F226;
+//Couleur qui annonce un problème et qui doit interpelé l'utilisateur
 $warn: #C81B1B;
 
-body{
-	background-color: $background; 
+$bold: 800;
+$lightBold: 600;
+
+button.btn {
+	background-color: $accent;
+	border: none;
+	padding:7px;
+	margin: 3px;
+	border-radius: 5%;
+	cursor: pointer;
+	overflow: hidden;
 }
 
-div {
-	.yu-footer, .yu-header {
-		display: block;
+button.btn:hover {
+	background-color: $accentLight;
+}
+
+button.btn-list {
+	width: 100%;
+	margin: 0px 0px 5px 0px;
+}
+
+
+ul.yu-list {
+	padding: 0px;
+	width: 100%;
+	list-style: none;
+	li.list-item {
+		padding-top: 5px;
+		padding-bottom: 5px;
+		margin: 0px;
+		width: 100%;
+	}
+}
+
+
+
+body { 
+	margin: 0px;
+	font-family:Roboto,"Helvetica Neue",sans-serif;
+	
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+	
+.yu-web-page {
+	font-weight: $bold;
+	font-size: 24px;
+}
+
+p, span, body {
+	color: rgba(0, 0, 0, 0.54);
+	font-size: 14px;
+}
+
+a {
+	color: $accent;
+	text-decoration: none;
+}
+
+a:hover {
+	color: $accentLight;
+	text-decoration: none;
+}
+.yu-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 5px 5px 5px 5px;
+	background-color: $primary;
+}
+.yu-footer {
+	align-self: start;
+	padding: 5px 5px 5px 5px;
+	background-color: $primary;
+}
+
+
+//fenêtre < 990px
+@media (max-width: 690px) {
+	.yu-content {
+		flex-direction: column;
+		div.yu-menu {
+			width: 100%;
+		}
+	}
+}
+
+//fenêtre > 990px
+@media (min-width: 690px) {
+	.yu-content {
+		flex-direction: row;
+		div.yu-menu {
+			width: 200px;
+		}
+	}
+}
+
+
+
+.yu-content {
+	flex: 1;
+	display: flex;
+	background-color: $background;
+    //box-sizing: border-box;
+    //max-height: 100%;
+	div.yu-menu {
+		margin-right: 20px;
+		box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
+		padding: 7px;
+	}
+
+	div.yu-page-container {
+		flex: 1;
+		overflow-y: auto;
+		margin-left:15px;
+		margin-right: 15px;
+	}
+
+	.yu-title {
+		color: $primary;
+		font-weight: $bold;
+		font-size: 18px;
+	}
+
+	.yu-subtitle {
+		color: $primary;
+		font-weight: $lightBold;
+		font-size: 16px;
+	}
+}
+
+ul.yu-carte-list {
+	li.yu-carte-list-item {
+		div.yu-carte-list-item-content-container {
+			display: flex;
+
+			.yu-carte-list-item-content {
+				flex: 1;
+				margin-left: 10px;
+				padding: 5px;
+
+				.yu-carte-list-item-content-header {
+					margin: 18px 0px 18px 0px;
+					.yu-title, .yu-subtitle {
+						margin: 0px;
+					}
+				}
+			}
+		
+		}
+	}
+}
+
+//fenêtre > 990px
+@media (min-width: 1090px) {
+	ul.yu-carte-list{
+		width: 70%;
+		margin-right: auto;
+		margin-left: auto;
 	}
 }

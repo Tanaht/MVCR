@@ -1,3 +1,3 @@
-<div class="yu-card-container">
+<ul class="yu-carte-list yu-list">
 	{{ content }}
-</div>
+</ul>

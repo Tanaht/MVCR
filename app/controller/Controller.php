@@ -17,6 +17,14 @@ class Controller {
 	}
 
 	public function listeCartes() {
+		$page = null;
+		if(!isset($_GET["page"])) {
+			$page = 1;
+		}
+		else {
+			$page = $_GET["page"];
+		}
+
 		$bdd = DatabaseHelper::getBdd();
 
 		$bdd->query("SELECT id_carte FROM cartes");

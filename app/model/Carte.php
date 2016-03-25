@@ -29,22 +29,32 @@ class Carte {
 		
 		if($data[0]["attaque"] != null)
 			$this->attaque = $data[0]["attaque"];
+		else
+			$this->attaque = "";
 		
 		if($data[0]["defense"] != null)
 			$this->defense = $data[0]["defense"];
+		else
+			$this->defense = "";
 		
 		$this->description = $data[0]["description"];		
 		
 		if($data[0]["niveau"] != null)
 			$this->niveau = $data[0]["niveau"];
+		else
+			$this->niveau = "";
 		
 		$this->attribut = new Attribut($data[0]["id_attribut"]);
 		
 		if($data[0]["id_categorie"] != null)
 			$this->categorie = new categorie($data[0]["id_categorie"]);
+		else
+			$this->categorie = "";
 
 		if($data[0]["id_effet"] != null)
 			$this->effet = new Effet($data[0]["id_effet"]);
+		else
+			$this->effet = "";
 
 		$bdd->query("SELECT id_type FROM carte_types");
 
