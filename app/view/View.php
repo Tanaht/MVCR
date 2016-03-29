@@ -4,9 +4,7 @@ namespace app\view;
 
 use app\util\TemplateRunner;
 use app\router\Router;
-use app\model\Object;
-//$moteurTpl = new TemplateRunner();
-//echo $moteurTpl->show("test.tpl", array("title" => "Mon titre", "content" => "Mon contenu", "prix" => 5.02));
+
 class View {
 	private $basetitle;
 

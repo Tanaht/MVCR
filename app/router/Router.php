@@ -6,9 +6,6 @@ use app\view\View;
 use app\controller\Controller;
 use app\model\User;
 
-//$moteurTpl = new TemplateRunner();
-//echo $moteurTpl->show("test.tpl", array("title" => "Mon titre", "content" => "Mon contenu", "prix" => 5.02));
-
 class Router {
 
 	const stringParam = "##";
@@ -29,12 +26,21 @@ class Router {
 		$this->_controller = new Controller($this, $this->_view);
 	}
 
+	/**
+		@see Router::when(array $path, array $call)
+		Le routage se fait grâce à la méthode privée when qui est inspiré du routage d'angularJS.
+
+		Le routeur à deux fonctions principales, qui se ressemble, mais reste très différente
+			Trouver la bonne méthode à appeler en fonction des paramètres de routage (POST, GET) 
+				et du type d'utilisateur (SUDO => "USER, MEMBER, ADMIN")
+			Effectuer une première validation de formulaire: "stringParam, intParam, floatParam, arrayParam" 
+				en fonction des clés des tableaux POST et GET
+
+	*/
 	public function run() {
 		/*echo "<pre>";
 		var_export($_POST);
 		echo "</pre>";*/
-
-
 		$this->when(array(
 				"POST" => null,
 				"GET" => null
@@ -160,6 +166,16 @@ class Router {
  	}
 
 
+ 	/*
+		$path: La route à vérifier. Idéalement, la route devrait se présenté sous-forme d'url.
+			Il s'agit d'une liste de couple (clé/valeur)
+				clé possible: POST/GET/(SUDO: cas à part)
+				les clé POST et GET ont pour valeur une représentation des tableaux $_GET et $_POST, que la requête HTTP actuel doit posseder pour valider cette route.
+		$path: une liste de Callable, qui vont impacter la page html, par le biais du controller, ou de la vue, si cette route est empruntée.
+
+		return: $this (Pour enchainer les appels à when)
+
+ 	*/
  	private function when(array $path, array $call) {
  		if($this->_call != null)
  			return $this;
@@ -177,11 +193,19 @@ class Router {
  		return $this;
  	}
 
+ 	/*
+ 		Si aucune route n'a été trouvé, on définis un callable qui va impacter la vue, peu importe l'état de l'application (une page 404 par exemple)
+ 	*/
  	private function otherwise(array $call) {
  		if($this->_call == null)
  			$this->_call = $call;
  	}
 
+ 	/*
+ 		Valide ou Invalide la représentation schématique du tableau $_POST de la méthode when
+
+ 		return true ou false 
+ 	*/
  	private function validatePost(array $array = null) {
  		if($array == null) 
  			return empty($_POST);
@@ -209,6 +233,11 @@ class Router {
  		return true;
  	}
 
+ 	/*
+ 		Valide ou Invalide la représentation schématique du tableau $_GET de la méthode when
+
+ 		return true ou false 
+ 	*/
  	private function validateGet(array $array = null) {
  		if($array == null)
  			return empty($_GET);
@@ -233,6 +262,9 @@ class Router {
  		return true;
  	}
 
+ 	/*
+ 		Appels des méthodes qui vont impacter le rendu de la page html
+ 	*/
  	private function callMethods() {
 
  		if(array_key_exists(self::CTL, $this->_call)) {
@@ -246,6 +278,12 @@ class Router {
 		$this->logCall();
  	}
 
+ 	/*
+ 		Résoud une route.
+ 		@see Router::when(array $path, array $call);
+
+ 		return true ou false;
+ 	*/
  	private function resolve(array $path) {
  		$postRequested = false;
  		$post = false;
@@ -269,6 +307,11 @@ class Router {
 		return false;
  	}
 
+ 	/*
+ 		Vérifie l'authorisation de l'utilisateur (connecté ou non) par rapport à la liste des types de membres authorisée d'une route
+
+ 		TODO: implémentation trop rapide -> trouver une solution pour éviter de recourir à une méthode de la vue (forbiddenAccess) en 'dur'
+ 	*/
  	private function checkAuthorization($sudoers) {
  		$authorized = $this->_controller->checkAuthorization($sudoers);
 
@@ -281,6 +324,7 @@ class Router {
  	}
 
 
+ 	//TODO: supprimer ou afficher à la place du script
  	private function logCall() {
  		echo "<script type='text/javascript'>";
  		if(array_key_exists(self::CTL, $this->_call)) {
