@@ -2,13 +2,13 @@
 
 namespace app\util;
 
-class CurrencyFilter extends Filter {
+class EscapeFilter extends Filter {
 
 	public function __construct() {
-		parent::__construct("currency");
+		parent::__construct("escape");
 	}
 	
 	public function filter($before, array $args = null, $globals){
-		return $before . " €";
+		return htmlSpecialChars($before);
 	}
 }

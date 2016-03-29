@@ -32,7 +32,7 @@ class Controller {
 			$this->_view->makeRightHeader("form/logon.tpl");
 		}
 		else if($this->_user->_status == User::LOGOFF) {
-			$this->_view->makeRightHeader("form/logoff.tpl", array("user" => $this->_user) );
+			$this->_view->makeRightHeader("form/logoff.tpl");
 		}
 	}
 
@@ -176,5 +176,89 @@ class Controller {
 
 	public function vueCarte() {
 		$this->_view->showCarte(new Carte($_GET["carte"]));
+	}
+
+	public function deleteCarte() {
+		$carte = new Carte($_GET["carte"]);
+
+		if($carte->id == null) {
+			$this->_view->showAlert(array("type" => "warn", "title" => "Carte introuvable", "message" => "La carte n'existe pas"));
+			$this->listeMesCartes();
+			return;
+		}
+
+		if($carte->utilisateur->id != $this->_user->getId() && $this->_user->sudo != User::ADMIN) {
+			$this->_view->showAlert(array("type" => "warn", "title" => "Permission insuffisante", "message" => "Vous n'êtes pas autorisée à supprimer cette carte"));
+			$this->_view->showCarte($carte);
+			return;
+		}
+
+		if(!$carte->delete()) {
+			$this->_view->showAlert(array("type" => "warn", "title" => "Erreur", "message" => "La carte n'a pas pu être supprimé"));
+			$this->_view->showCarte($carte);
+			return;
+		}
+
+		$this->_view->showAlert(array("type" => "info", "title" => "Suppression effectuer", "message" => "La carte à été supprimé."));
+			$this->listeMesCartes();
+	}
+
+	public function updateCarteForm() {
+		$carte = new Carte($_GET["carte"]);
+
+		if($carte->id == null) {
+			$this->_view->showAlert(array("type" => "warn", "title" => "Carte introuvable", "message" => "La carte n'existe pas"));
+			$this->listeMesCartes();
+			return;
+		}
+
+		$bdd = DatabaseHelper::getBdd();
+
+		$bdd->query('SELECT id_categorie as "key", nom as "value",  0 as "selected" FROM categories');
+		$categories = $bdd->execute();
+
+		$bdd->query('SELECT id_effet as "key", nom as "value",  0 as "selected" FROM effets');
+		$effets = $bdd->execute();
+
+		$bdd->query('SELECT id_attribut as "key", nom as "value",  0 as "selected" FROM attributs');
+		$attributs = $bdd->execute();
+
+		//selected = 0 si type n'appartient pas aux types de la carte.
+		$bdd->query('SELECT id_type as "key", nom as "value",  1 as "selected" FROM types WHERE id_type in (SELECT id_type FROM carte_types WHERE id_carte = ' . $carte->id . ') UNION SELECT id_type as "key", nom as "value",  0 as "selected" FROM types WHERE id_type not in (SELECT id_type FROM carte_types WHERE id_carte = ' . $carte->id . ')');
+		$types = $bdd->execute();
+
+		$niveaux = array();
+
+		for($i=1 ; $i <= 13 ; $i++) {
+			$niveaux[] = array("key" => $i, "value" => $i, "selected" => false);
+		}
+
+		$this->_view->makeUpdateCarteForm(array("carte" => $carte, "categories" => $categories, "effets" => $effets, "attributs" => $attributs, "types" => $types, "niveaux" => $niveaux) );
+	}
+
+	public function updateCarte() {
+		$carte = new Carte($_GET["carte"]);
+
+		if($carte->id == null) {
+			$this->_view->showAlert(array("type" => "warn", "title" => "Carte introuvable", "message" => "La carte n'existe pas"));
+			$this->listeMesCartes();
+			return;
+		}
+
+		$bdd = DatabaseHelper::getBdd();
+		$bdd->beginTransaction();
+
+		if(!$carte->update($_POST["nom"], $_POST["niveau"], $_POST["attaque"], $_POST["defense"], $_POST["categorie"], $_POST["effet"], $_POST["attribut"], $_POST["types"], $_POST["description"])) {
+
+			$bdd->rollback();
+			$this->_view->showAlert(array("type" => "warn", "title" => "Erreur", "message" => "La carte n'a pas pu être modifié"));
+			$this->listeMesCartes();
+			return;
+		}
+		else {
+			$bdd->commit();
+			$this->_view->showCarte(new Carte($_GET["carte"]));
+		}
+
 	}
 }

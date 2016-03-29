@@ -8,17 +8,16 @@ class ArianneFilter extends Filter {
 		parent::__construct("constructArianne");
 	}
 	
-	public function filter($before, array $args = null){
+	public function filter($before, array $args = null, $globals){
 		$arianne = "";
 
 		foreach ($before as $key => $value) {
-			$arianne .= "<a href='" . $value["href"] . "'>" . $value["where"] . "</a>";
+			$arianne .= "<a href='" . $value["href"] . "'>" . FilterProvider::getFilter("escape")->filter($value["where"], null, null) . "</a>";
 
 			//if !last
 			if( (count($before) - 1) != $key )
 				$arianne .= " - ";
 		}
-		
 		return $arianne;
 	}
 }

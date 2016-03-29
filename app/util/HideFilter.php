@@ -1,6 +1,7 @@
 <?php
 
 namespace app\util;
+use app\model\User;
 
 class HideFilter extends Filter {
 
@@ -8,10 +9,17 @@ class HideFilter extends Filter {
 		parent::__construct("hideFor");
 	}
 	
-	public function filter($before, array $args = null){
-		if(in_array($_SESSION["sudo"], $args))
+	public function filter($before, array $args = null, $globals){
+		if(in_array($globals["user"]->sudo, $args))
 			return "";
 
+		if($globals["user"]->_status == User::LOGON)
+			return $before;
+
+		foreach ($args as $arg) {
+			if($globals["user"]->getId() == $arg)
+				return "";
+		}
 		return $before;
 	}
 }

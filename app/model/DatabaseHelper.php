@@ -44,8 +44,8 @@ class DatabaseHelper {
 				unset($row[$key]);
 				continue;
 			}
-
-			$row[$key] = htmlspecialchars($value);
+			$row[$key] = $value;
+			//$row[$key] = htmlspecialchars($value);
 		}
 		return $row;
 	}
@@ -120,15 +120,18 @@ class DatabaseHelper {
 		$this->_pdo->commit();
 	}
 
-	public function execute($selectRequest = true){
+	public function execute($selectRequest = true, $updateRequest = false){
 		if(!$selectRequest) {
 			try{
 				$this->_statement->execute();
-				return true;
 			}
 			catch(\PDOException $e){
+				echo "<pre>";
+				var_export(array("statement" => $this->_statement, "mysqlError" => $e->getMessage()));
+				echo "</pre>";
 				return false;
 			}
+			return true;
 		}
 
 
@@ -136,12 +139,14 @@ class DatabaseHelper {
 			$this->_statement = $this->_pdo->query($this->_sql);
 		}
 		catch(\PDOException $e){
-			echo "<pre>";
+			/*echo "<pre>";
 			var_export(array("sqlQuery" => $this->_sql , "mysqlError" => $e->getMessage()));
-			echo "</pre>";
+			echo "</pre>";*/
 			return false;
 		}
 		
+		if($updateRequest)
+			return true;
 		return $this->toArray();
 	}
 }

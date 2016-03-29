@@ -12,44 +12,116 @@ use app\util\FilterProvider;
 /*
 	faiblesse de cette façon de proceder: 
 		impossibilité d'utilisé la méthode htmlspecialchars à ce niveau de l'assemblage d'une page web...
+	mais ce serait idiot, on peut cependant créer un filtre pour htmlspecialChars
 */
 class TemplateRunner {
-	//V1: Une variable de ce moteur de template doit etre comme celle la: {{ mavar[.somethingElse] [| filter [: arg0Nfois]] }}
-	
-	//const REGEX = "{{\s*[A-Za-z]+[A-Za-z0-9]*([.][A-Za-z]+[A-Za-z0-9]*)*\s*([|]\s*[A-Za-z]+[A-Za-z0-9]*\s*(:\s*([A-Za-z]+[A-Za-z0-9]*|'.*')\s*)*)*}}";
-	
 	/*
-		Un moteur de template avec des expressions en Antlr aurait été vraiment plus facile à créer
-		V2: ajout des chaines de caractères en tant que variable: {{ (mavar[.somethingElse]|'maChaine de caractère') [| filter [: arg0Nfois]] }}
-		Vérifier si une chaine de caractère peut contenir un simple quote
+		url du fichier tpl
 	*/
-	//const REGEX = "{{\s*([A-Za-z]+[A-Za-z0-9]*([.][A-Za-z]+[A-Za-z0-9]*)*|'.*')\s*([|]\s*[A-Za-z]+[A-Za-z0-9]*\s*(:\s*([A-Za-z]+[A-Za-z0-9]*([.][A-Za-z]+[A-Za-z0-9]*)*|'.*')\s*)*)*}}";
-	
+	private $_current_path;
 
 	/*
-		REGEX = {{\s*([A-Za-z]+[A-Za-z0-9]*([.][A-Za-z]+[A-Za-z0-9]*)*|'.*')\s*([|]\s*[A-Za-z]+[A-Za-z0-9]*\s*(:\s*([A-Za-z]+[A-Za-z0-9]*([.][A-Za-z]+[A-Za-z0-9]*)*|'.*')\s*)*)*\s*}}
+		contenu du fichier tpl
+		qui va être compilé
+	*/
+	private $_tpl;
+	
+	/*
+		Tableau global et local
+			Le tableau global est disponible tout le temps et est prioritaire face au tableau locale.
+			Le tableau local est disponible uniquement pour la génération du template en cours.
+		liste de paire clé/valeur:
+		array(key => data);
+	*/
+	private $_globalVars;
+	private $_templateVars;
+
+	/*
+		Listes d'élements:
+		$_bind_data_to_tpl[REGEX] => array(
+			'data' => 'valeur compilé en fonction de la globalVars/templateVars',
+			'filters' => array(
+				'nom du filtre' => array(
+					0 => 'argument 1 pour le filtre'
+				)
+			)
+		)
+	*/
+	private $_bind_data_to_tpl;
+	
+	/*
+		Message d'erreur en cas de template impossible à compiler/interpreter
+	*/
+	private $_errors;
+	private $_hasError;
+
+	/*
+	Regex Entière:
+	REGEX = {{\s*([A-Za-z]+[A-Za-z0-9]*([.][A-Za-z]+[A-Za-z0-9]*)*|'[^:|]*?')\s*([|]\s*[A-Za-z]+[A-Za-z0-9]*\s*(:\s*([A-Za-z]+[A-Za-z0-9]*([.][A-Za-z]+[A-Za-z0-9]*)*|'[^:|]*?')\s*)*)*\s*}}
 	*/
 
-	//FEUILLES:
-	const STRING_REGEX = "'[^:|]*'";
+	//NOEUD
+	const REGEX = "{{\s*" . self::EXPRESSION_REGEX . "\s*" . self::FILTERS_REGEX . "\s*}}";
+
+	public function __construct() {
+		$this->_globalVars = array();
+	}
+
+	private function compileTplRegex($regex) {
+
+		$regex = trim( substr($regex, 2, strlen($regex)-4) );
+		$explodeRegex = explode("|", $regex);
+
+		return array("data" => $this->getTplExpression($explodeRegex[0]), "filters" => $this->getTplFilters($regex));
+	}
+
+
+	public function addGlobalVar($key, $value) {
+		$this->_globalVars[$key] = $value;
+	}
+
+	private function keyExist($key) {
+		if(!array_key_exists($key, $this->_globalVars))
+			return array_key_exists($key, $this->_templateVars);
+		return true;
+	}
+
+	private function getValue($key) {
+		if(!$this->keyExist($key)){
+			$this->addError('Template: Unknown variable: ' . "'" . $key . "'");
+			return "NULL";
+		}
+
+		if(!array_key_exists($key, $this->_globalVars)) {
+			return $this->_templateVars[$key];
+		}
+
+		return $this->_globalVars[$key];
+	}
+
+	//FEUILLE:
+	const STRING_REGEX = "'[^:|]*?'";
 	
 	private function isTplString($string) {
+		$string = trim($string);
 		return $string[0] == "'";
 	}
 
 	private function eatTplString($string) {
+		$string = trim($string);
 		return substr($string, 1, strlen($string) - 2);
 	}
 
-
+	//FEUILLE:
 	const WORD_REGEX = "[A-Za-z]+[A-Za-z0-9]*";
 
 	private function eatTplWord($word) {
+		$word = trim($word);
 		return $word;
 	}
 
-	//NOEUDS
-	const VAR_REGEX = "(" . self::WORD_REGEX . "[.]" . self::WORD_REGEX . ")*";
+	//NOEUD
+	const VAR_REGEX = self::WORD_REGEX . "([.]" . self::WORD_REGEX . ")*";
 
 	private function getTplVar($var) {
 		$array_var = explode(".", $var);
@@ -59,37 +131,41 @@ class TemplateRunner {
 			return $variableContainer;
 
 		for($i=1 ; $i < count($array_var) ; $i++) {
-			$variableContainer = call( $variableContainer, $this->eatTplWord($array_var[$i]) );
+			$variableContainer = $this->call( $variableContainer, $this->eatTplWord($array_var[$i]) );
 		}
 
 		return $variableContainer;
 	}
 
+	//NOEUD
 	const EXPRESSION_REGEX = "(" . self::VAR_REGEX . "|" . self::STRING_REGEX . ")";
 
 	private function getTplExpression($expression) {
 		if($this->isTplString($expression))
 			return $this->eatTplString($expression);
+
 		return $this->getTplVar($expression);
 	}
 
+	//NOEUD
 	const ARGS_REGEX = "([:]\s*" . self::EXPRESSION_REGEX . "\s*)*";
 
 	private function getTplArgs($args) {
 		$return_args = array();
 
 		$array_args = explode(":", $args);
-
+		
 		for($i=1 ; $i < count($array_args) ; $i++) {
 			$return_args[] = $this->getTplExpression($array_args[$i]);
 		}
-
+		
 		return $return_args;
 	}
 
+	//NOEUD
 	const FILTERS_REGEX = "([|]\s*" . self::WORD_REGEX . "\s*" . self::ARGS_REGEX . ")*";
 
-	private function getTplFilters($args) {
+	private function getTplFilters($filters) {
 		$return_filters = array();
 
 		$array_filters = explode("|", $filters);
@@ -97,66 +173,24 @@ class TemplateRunner {
 		for($i=1 ; $i < count($array_filters) ; $i++) {
 			$filter_args = explode(":", $array_filters[$i]);
 
-			$return_filters[$filter_args[0]] = $this->getTplArgs($filter_args); 
+			$return_filters[trim($filter_args[0])] = $this->getTplArgs($array_filters[$i]); 
 		}
 
-		return $return_args;
+		return $return_filters;
 	}
 
-	const REGEX = "{{\s*" . self::EXPRESSION_REGEX . "\s*" . self::FILTERS_REGEX . "\s*}}";
+	
+
+
 	/*
-		Il serait intéressant d'autorisé la concaténation de filtre
-		Toutes les variables possibles:
-		([A-Za-z]+[A-Za-z0-9]*([.][A-Za-z]+[A-Za-z0-9]*)*|'.*')
-
-		Une variables commence forcément par une lettre,
-		Une chaines de caractère est forcément placée entre : "'"
-			cela comprend:
-				[Attention, une chaine de caractère ne doit pas contenir de simple quote]
-				string: 'chaine de caractère'
-				variable: maVar
-				array: monTableau.maVariable
-				objet: monObjet.maMethodeOuMaVariable
-
-		créer une fonction qui prend en paramètre une variable et qui retourne les données qui correspondent:
-			la valeur de la variable, de la chaine de caractère, ou de la méthode/variable d'objet.
+		Alias pour la méthode run
+		Raison: mauvaise conception de départ.
 	*/
-	private $_tpl;
-	private $_current_path;
-	//array(key => data);
-	private $_mapping_data;
-	//array("templateKey" => array("key" => key, "filter" => FilterObject, "args" => args, "data" => data))
-	private $_bind_data_to_tpl;
-	private $_errors;
-	private $_hasError;
-	private $_globalVars;
-
-	public function __construct() {
-		$this->_globalVars = array();
-	}
-
-	public function addGlobalVar($key, $value) {
-		$this->_globalVars[$key] = $value;
-	}
-
-	public function keyExist($key) {
-		if(!array_key_exists($key, $this->_globalVars))
-			return array_key_exists($key, $this->_mapping_data);
-		return true;
-	}
-
-	public function getValue($key) {
-		if(!array_key_exists($key, $this->_globalVars))
-			return $this->_mapping_data[$key];
-		return $this->_globalVars[$key];
-	}
-
 	public function show($path) {
-		$this->_tpl = file_get_contents (Config::TPL_DIR . $path);
-		return $this->_tpl;
+		return $this->run($path);
 	}
 
-	public function run($path, array $mapping_data) {
+	public function run($path, array $templateVars = array() ) {
 		$this->_current_path = $path;
 		$this->_hasError = false;
 		$this->_errors = "<pre>";
@@ -171,13 +205,10 @@ class TemplateRunner {
 			$this->addError($e->getMessage());
 		}	
 
-		$this->_mapping_data = $mapping_data;
-		$this->analyzeTemplate();
-		/*echo "<pre>";
-		var_export($this->_bind_data_to_tpl);
-		echo "</pre>";*/
-		$this->analyzeKeys();
-		$this->linkingFilters();
+		
+		$this->_templateVars = $templateVars;
+		$this->interpretRegex();
+		$this->runFilters();
 		$this->compile();
 
 		$this->_errors .= "</pre>";
@@ -188,113 +219,41 @@ class TemplateRunner {
 		return $this->_tpl;
 	}
 
-	private function analyzeTemplate() {
+	private function interpretRegex() {
 		$this->_bind_data_to_tpl = array();
-	
+		
 		$matches = null;
 		preg_match_all ("/" . self::REGEX . "/", $this->_tpl, $matches);
+
+
 		foreach ($matches[0] as $key => $value) {
 			if(!array_key_exists($value, $this->_bind_data_to_tpl)){
-				$this->_bind_data_to_tpl[$value] = array("key" => trim(substr($value, 2, count($value) - 3)), "filter" => null, "args" => null, "data" => null);
+				$this->_bind_data_to_tpl[$value] = $this->compileTplRegex($value);
+			}
+		}
+		//exit;
+	}
+
+	private function runFilters() {
+
+		foreach ($this->_bind_data_to_tpl as $regex => $interpretTpl) {
+
+			foreach ($interpretTpl["filters"] as $filter => $args) {
+				if(FilterProvider::getFilter($filter) == null)
+					$this->addError("FilterProvider: Unknown filter: " . $filter);
+				else
+					$this->_bind_data_to_tpl[$regex]["data"] = FilterProvider::getFilter($filter)->filter($this->_bind_data_to_tpl[$regex]["data"], $args, $this->_globalVars);
 			}
 		}
 	}
 
-	/**
-		Analyse les expressions reconnu par ce moteur de template
-	*/
-	private function analyzeKeys() {
-		foreach ($this->_bind_data_to_tpl as $key => $value) {
-			if(strrchr($value["key"], "|") != false) {
-				$filterFilter = explode("|", $value["key"]);
-				$this->_bind_data_to_tpl[$key]["key"] =  trim($filterFilter[0]);
-
-
-				$filterArgs = explode(":", $filterFilter[1]);
-				$this->_bind_data_to_tpl[$key]["filter"] = trim($filterArgs[0]);
-				if(count($filterArgs) > 1) {
-					$filterArgs = array_slice($filterArgs, 1, count($filterArgs));
-
-					foreach ($filterArgs as $key2 => $value2) {
-						$filterArgs[$key2] = trim($value2);
-						//if filter arguments is a String
-						if($filterArgs[$key2][0] == "'"){
-							$filterArgs[$key2] = substr($filterArgs[$key2], 1, count($filterArgs[$key2]) - 2);
-						}
-						else {//if filter arguments is a variable
-							if(!$this->keyExist($filterArgs[$key2])) {
-								$this->addError('Filter: Unknown $var: ' . "'" . $filterArgs[$key2] . "'");
-							}
-							else
-								$filterArgs[$key2] = $this->getValue($filterArgs[$key2]);
-						}
-					}
-
-					$this->_bind_data_to_tpl[$key]["args"] = $filterArgs;
-				}
-			}
-		}
-	}
-
-	private function linkingFilters() {
-		foreach ($this->_bind_data_to_tpl as $key => $value) {
-			if($value["filter"] != null) {
-				$filterObject = FilterProvider::getFilter($value["filter"]);
-				if($filterObject == null) {
-					$this->addError("FilterProvider: Unknown Filter '" . $value["filter"] . "'");
-				}
-				$this->_bind_data_to_tpl[$key]["filter"] = $filterObject;
-			}
-		}
-	}
-
-	//compile value requested by template according to mapping data 
 	private function compile() {
-
 		foreach ($this->_bind_data_to_tpl as $key => $value) {
-			//trueKey est la clé qui doit être trouvé dans mappingData
-			$trueKey = $value['key'];
-			$elements = null;
-			$isString = false;
-			if($trueKey[0] == "'") {
-				$data = substr($trueKey, 1, strlen($trueKey) -2);
-				$isString = true;
-			}
-
-			if(!$isString && strrchr($value["key"], ".") != false ) {
-				$elements = explode(".", $value["key"]);
-				$trueKey = $elements[0];
-				$elements = array_slice($elements, 1, count($elements));
-			}
-
-			if(!$isString && !$this->keyExist($trueKey)) {
-				$this->addError("CompileTemplate: Unknown data '" . $trueKey . "'");
-				continue;
-			}
-
-			if(!$isString) {
-				if($elements == null)
-					$data = $this->getValue($value["key"]);
-				else {
-					$currentVariable = $this->getValue($trueKey);
-					foreach ($elements as $key2 => $value2) {
-						$currentVariable = $this->call($currentVariable, $value2);
-					}
-					$data = $currentVariable;
-				}
-			}
-
-			if($value["filter"] != null) {
-				$data = $value["filter"]->filter($data, $value["args"]);
-			}
-
-			$this->_bind_data_to_tpl["data"] = $data;
-
-			if(is_object($data) || is_array($data)) {
-				$data = "[WARNING: " . $this->_current_path . "]Object or Array received for " . $key . ": <pre>" . var_export($data, true) . "</pre>";
+			if(is_object($value["data"]) || is_array($value["data"])) {
+				$value["data"] = "[WARNING: " . $this->_current_path . "] Object or Array received for " . $key . ": <pre>" . var_export($value["data"], true) . "</pre>";
 			}
 			
-			$this->_tpl = str_replace($key,  $data, $this->_tpl);
+			$this->_tpl = str_replace($key,  $value["data"], $this->_tpl);
 		}
 	}
 
@@ -305,14 +264,23 @@ class TemplateRunner {
 				$callable = array($variable, $variableCall);
 				return call_user_func($callable);
 			}
+
+			if(!property_exists($variable, $variableCall)) {
+				$this->addError("CompileTemplate: property: " . $variableCall . " not found inside: " . get_class($variable));
+				return "NULL";
+			}
 			return $variable->$variableCall;
 		}
 
 		if(is_array($variable)) {
+			if(!array_key_exists($variable, $variableCall)) {
+				$this->addError("CompileTemplate: key: " . $variableCall . " not found inside array");
+				return "NULL";
+			}
 			return $variable[$variableCall];
 		}
 
-		$this->addError("CompileTemplate: elements isn't either array or object : " . $variable);
+		$this->addError("CompileTemplate: variable isn't either array or object : " . $variable . " unable to call: " . $variableCall);
 		var_export($variable);
 	}
 

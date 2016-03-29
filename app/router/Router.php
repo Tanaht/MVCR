@@ -30,9 +30,9 @@ class Router {
 	}
 
 	public function run() {
-		echo "<pre>";
+		/*echo "<pre>";
 		var_export($_POST);
-		echo "</pre>";
+		echo "</pre>";*/
 
 
 		$this->when(array(
@@ -94,6 +94,23 @@ class Router {
 			),
 			array(self::CTL => "creerCarte")
 		)->when(array(
+				"GET" => array("carte" => self::intParam),
+				"POST" => array(
+					"update" => "card",
+					"nom" => self::stringParam,
+					"niveau" => self::intParam,
+					"categorie" => self::intParam,
+					"effet" => self::intParam,
+					"attribut" => self::intParam,
+					"types" => self::arrayParam,
+					"description" => self::stringParam,
+					"attaque" => self::stringParam,
+					"defense" => self::stringParam
+				),
+				"SUDO" => array(User::ADMIN, User::MEMBER)
+			),
+			array(self::CTL => "updateCarte")
+		)->when(array(
 				"GET" => array("action" => "cartes")
 			),
 			array(self::CTL => "listeCartes")
@@ -105,12 +122,12 @@ class Router {
 				"GET" => array("carte" => self::intParam, "carteAction" => "update"),
 				"SUDO" => array(User::MEMBER, User::ADMIN)
 			),
-			array(self::CTL => "vueCarte")
+			array(self::CTL => "updateCarteForm")
 		)->when(array(
 				"GET" => array("carte" => self::intParam, "carteAction" => "delete"),
 				"SUDO" => array(User::MEMBER, User::ADMIN)
 			),
-			array(self::CTL => "vueCarte")
+			array(self::CTL => "deleteCarte")
 		)->when(array(
 				"GET" => array("inscription" => "")
 			),

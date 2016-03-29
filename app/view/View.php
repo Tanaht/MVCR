@@ -79,16 +79,20 @@ class View {
 		$this->_header["arianne"][] = array("href" => $href, "where" => $where);
 	}
 
-	public function makeRightHeader($template, $map = null) {
-		if($map == null)
-			$this->_header["form"] = $this->_moteurTpl->show("frg/" . $template);
-		else
-			$this->_header["form"] = $this->_moteurTpl->run("frg/" . $template, $map);
+	public function makeRightHeader($template) {
+		$this->_header["form"] = $this->_moteurTpl->show("frg/" . $template);
 	}
 	//=========================================================================================
 
 	public function showAlert($alertMessage) {
 		$this->_hook["content"] .= $this->_moteurTpl->run("frg/error/alert.tpl", $alertMessage);
+	}
+
+	public function makeUpdateCarteForm($carte) {
+		$this->_hook["title"] = $this->basetitle . " - Modifier une carte";
+		$this->addToArianne("?action=mescartes", "Mes cartes");
+		$this->addToArianne("#", "Modifier une carte");
+		$this->_hook["content"] .= $this->_moteurTpl->run("frg/form/updateCarteForm.tpl", $carte);
 	}
 
 	public function showNewUserForm() {

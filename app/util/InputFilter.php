@@ -11,7 +11,7 @@ class InputFilter extends Filter {
 	/**
 		$before doit être une array qui contient plusieurs élements de cette sorte: array("key" => "", "value" => "")
 	*/
-	public function filter($before, array $args = null){
+	public function filter($before, array $args = null, $globals){
 		$html = "";
 		$type = $args[0];
 		$name = $args[1];
@@ -28,8 +28,8 @@ class InputFilter extends Filter {
 				foreach ($before as $key => $value) {
 					$selected = "";
 					if($value["selected"] == true)
-						$selected = "checked";
-					$html .= '<label><input name="' . $name . '" type="' . $type . '"  value="' . $value["key"]  . '" ' . $option . ' > ' . $value["value"] . '</label>';
+						$selected = "checked='checked'";
+					$html .= '<label><input name="' . $name . '" type="' . $type . '"  value="' . $value["key"]  . '" ' . $selected . ' ' . $option . ' > ' . $value["value"] . '</label>';
 				}
 				break;
 			case "select":

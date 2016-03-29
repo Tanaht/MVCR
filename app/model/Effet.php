@@ -4,6 +4,7 @@ namespace app\model;
 
 class Effet {
 	
+	public $id;
 	public $nom;
 
 	public function __construct($id) {
@@ -13,5 +14,6 @@ class Effet {
 		$data = $bdd->execute();
 
 		$this->nom = $data[0]["nom"];
+		$this->id = $data[0]["id_effet"];
 	}
 }

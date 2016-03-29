@@ -9,7 +9,7 @@ abstract class Filter {
 		$this->_name = $name;
 	}
 	//Must return $value after treatment
-	public abstract function filter($value, array $args = null);
+	public abstract function filter($value, array $args = null, $globals);
 
 	public function getName() {
 		return $this->_name;
