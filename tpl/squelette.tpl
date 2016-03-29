@@ -16,13 +16,17 @@
 		<div class="yu-menu">
 			<form method="GET" action="index.php">
 				<ul class="yu-list">
-					<li class="list-item"><button class="btn btn-list" name="action" value="home">Home</button></li>
-					<li class="list-item"><button class="btn btn-list" name="action" value="cartes">Cartes</button></li>
+					<li class="yu-list-item"><button class="btn btn-list" name="action" value="home">Home</button></li>
+					{{ '<li class="yu-list-item"><button class="btn btn-list" name="action" value="mescartes">Mes Cartes</button></li>' | hideFor : 'USER'}}
+					{{ '<li class="yu-list-item"><button class="btn btn-list" name="action" value="create">Créer une carte</button></li>' | hideFor : 'USER'}}
+					<li class="yu-list-item"><button class="btn btn-list" name="action" value="cartes">Cartes</button></li>
 				</ul>
 			</form>
 		</div>
 		<div class="yu-page-container">
-			{{ content }}
+			<div class="yu-page">
+				{{ content }}
+			</div>
 		</div>
 	</div>
 	

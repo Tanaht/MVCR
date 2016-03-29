@@ -1,18 +1,45 @@
 //Couleur du fond
-$background: #E5E5E5;
+$background: #D0D0D0;
+$backgroundLight: #E5E5E5;
 
+$color-text: #000000;
 //La couleur la plus courante pour indiquer un contenu
 $primary: #AE622A;
 //La couleur secondaire pour indiquer un contenu
 $secondary: #AE622A;
+
 //Accentuations sur les éléments avec lesquels l'utilisateur peut intéragir
 $accent: #38BA1E;
+
 $accentLight: #48F226;
+
 //Couleur qui annonce un problème et qui doit interpelé l'utilisateur
 $warn: #C81B1B;
 
+//deux types de graisse.
 $bold: 800;
 $lightBold: 600;
+
+
+
+//CSS module alert
+.yu-alert {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 4px 4px 0px 4px;
+	&.yu-warn {
+		border: 1px solid $warn;
+		box-shadow: 5px 5px 15px 5px rgba($warn, 0.1);
+		border-radius: 5px;
+	}
+
+	&.yu-info {
+		border: 1px solid $secondary; 
+		box-shadow: 5px 5px 15px 5px rgba($secondary, 0.1);
+		border-radius: 5px;
+	}
+}
+
 
 button.btn {
 	background-color: $accent;
@@ -22,10 +49,34 @@ button.btn {
 	border-radius: 5%;
 	cursor: pointer;
 	overflow: hidden;
-}
 
-button.btn:hover {
-	background-color: $accentLight;
+	&.btn-primary {
+		background-color: rgba($primary, 0.7);
+
+		&:hover {
+			background-color: rgba($primary, 0.5);
+		}
+	}
+
+	&.btn-secondary {
+		background-color: rgba($secondary, 0.7);
+
+		&:hover {
+			background-color: rgba($secondary, 0.5);
+		}
+	}
+
+	&.btn-warn {
+		background-color: rgba($warn, 0.7);
+
+		&:hover {
+			background-color: rgba($warn, 0.5);
+		}
+	}
+
+	&:hover {
+		background-color: $accentLight;
+	}
 }
 
 button.btn-list {
@@ -36,13 +87,9 @@ button.btn-list {
 
 ul.yu-list {
 	padding: 0px;
-	width: 100%;
 	list-style: none;
-	li.list-item {
-		padding-top: 5px;
-		padding-bottom: 5px;
-		margin: 0px;
-		width: 100%;
+	li.yu-list-item {
+		margin: 5px 0px 5px 0px;
 	}
 }
 
@@ -56,15 +103,84 @@ body {
 	flex-direction: column;
 	height: 100vh;
 }
-	
-.yu-web-page {
-	font-weight: $bold;
-	font-size: 24px;
-}
 
 p, span, body {
-	color: rgba(0, 0, 0, 0.54);
-	font-size: 14px;
+	color: rgba($color-text, 0.54);
+}
+
+h1, h2, h3, h4, p, span, em {
+	&.yu-align-right {
+		text-align: right;
+	}
+
+	&.yu-align-left {
+		text-align: left;
+	}
+
+	&.yu-align-justify {
+		text-align: right;
+	}
+
+	&.yu-warn {
+		color: $warn;
+	}
+
+	&.yu-info {
+		color: $secondary;
+	}
+}
+
+
+//fenêtre > 690
+@media (min-width: 690px) {
+	.yu-web-page {
+		font-weight: $bold;
+		font-size: 24px;
+	}
+
+	.yu-title {
+		font-weight: $bold;
+		font-size: 18px;
+	}
+
+	.yu-subtitle {
+		font-weight: $lightBold;
+		font-size: 16px;
+	}
+
+	.yu-subtext {
+		font-size: 12px;
+	}
+
+	p, span, body {
+		font-size: 14px;
+	}
+}
+
+//fenêtre < 690
+@media (max-width: 690px) {
+	.yu-web-page {
+		font-weight: $bold;
+		font-size: 20px;
+	}
+
+	.yu-title {
+		font-weight: $bold;
+		font-size: 14px;
+	}
+
+	.yu-subtitle {
+		font-weight: $lightBold;
+		font-size: 12px;
+	}
+
+	.yu-subtext {
+		font-size: 8px;
+	}
+
+	p, span, body {
+		font-size: 10px;
+	}
 }
 
 a {
@@ -77,27 +193,32 @@ a:hover {
 	text-decoration: none;
 }
 .yu-header {
+	padding: 5px 5px 5px 5px;
+	background-color: $primary;
 	display: flex;
-	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-between;
-	align-items: center;
 
-	padding: 5px 5px 5px 5px;
-	background-color: $primary;
+	.yu-left-header {
+		z-index: 2;
+		flex: 2;
+		white-space: nowrap;
+	}
 }
+
 .yu-footer {
-	align-self: start;
 	padding: 5px 5px 5px 5px;
 	background-color: $primary;
 }
 
 
-//fenêtre < 990px
+//fenêtre < 690
 @media (max-width: 690px) {
 	.yu-content {
 		flex-direction: column;
 		div.yu-menu {
 			width: 100%;
+			box-sizing: border-box;
 		}
 	}
 }
@@ -108,71 +229,180 @@ a:hover {
 		flex-direction: row;
 		div.yu-menu {
 			width: 200px;
+			box-sizing: border-box;
 		}
 	}
 }
-
 
 
 .yu-content {
 	flex: 1;
 	display: flex;
 	background-color: $background;
-    //box-sizing: border-box;
-    //max-height: 100%;
+	overflow: hidden;
 	div.yu-menu {
 		margin-right: 20px;
-		box-shadow: 5px 10px 15px 5px rgba(0,0,0,.1);
+		box-shadow: 5px 10px 15px 5px rgba(0, 0, 0, 0.1);
 		padding: 7px;
 	}
 
 	div.yu-page-container {
 		flex: 1;
-		overflow-y: auto;
-		margin-left:15px;
-		margin-right: 15px;
+		overflow-x: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-left: 15px;
+		padding-right: 15px;
+
+		.yu-page {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			align-content: space-around;
+		}
+		//fenêtre > 990
+		@media (min-width: 990px) {
+			.yu-page {
+				width: 70%;
+			}
+		}	
+
+		//fenêtre < 990
+		@media (max-width: 990px) {
+			.yu-page {
+				width: 100%;
+			}
+		}	
 	}
 
 	.yu-title {
 		color: $primary;
-		font-weight: $bold;
-		font-size: 18px;
 	}
 
 	.yu-subtitle {
 		color: $primary;
-		font-weight: $lightBold;
-		font-size: 16px;
 	}
 }
 
-ul.yu-carte-list {
-	li.yu-carte-list-item {
-		div.yu-carte-list-item-content-container {
-			display: flex;
+.yu-padding {
+	padding: 2px;
+	&.yu-small {
+		padding: 5px;
+	}
 
-			.yu-carte-list-item-content {
-				flex: 1;
-				margin-left: 10px;
-				padding: 5px;
+	&.yu-large {
+		padding: 15px;
+	}
 
-				.yu-carte-list-item-content-header {
-					margin: 18px 0px 18px 0px;
-					.yu-title, .yu-subtitle {
-						margin: 0px;
-					}
-				}
+	&.yu-medium {
+		padding: 10px;
+	}
+}
+
+
+.yu-padding-v {
+	padding: 2px 0px 2px 0px;
+	&.yu-small {
+		padding: 5px 0px 5px 0px;
+	}
+
+	&.yu-large {
+		padding: 15px 0px 15px 0px;
+	}
+
+	&.yu-medium {
+		padding: 10px 0px 10px 0px;
+	}
+}
+
+.yu-padding-h {
+	padding: 0px 2px 0px 2px;
+	&.yu-small {
+		padding: 0px 5px 0px 5px;
+	}
+
+	&.yu-large {
+		padding: 0px 15px 0px 15px;
+	}
+
+	&.yu-medium {
+		padding: 0px 10px 0px 10px;
+	}
+}
+
+.yu-layout-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.yu-layout-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.yu-grow {
+	flex: 1;
+}
+
+.yu-block {
+	background-color: $backgroundLight;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
+	.yu-block-title {
+		font-weight: 900;
+	}
+}
+
+.yu-input-container {
+	label {
+		color: $accent;
+	}
+
+	label:hover {
+		color: $accentLight;
+	}
+
+	input, select, textarea {
+		cursor: pointer;
+		width:100%;
+		margin: 5px;
+		padding: 5px;
+		border: 1px solid $accent;
+		//box-shadow: 5px 5px 15px 5px rgba($accent, 0.1);
+		border-radius: 5px;
+	}
+
+	textarea {
+		resize: vertical;
+	}
+
+	input, select, textarea:hover {
+		border: 1px solid $accentLight;
+		//box-shadow: 5px 5px 15px 5px rgba($accentLight, 0.1);
+		border-radius: 5px;
+	}
+
+	fieldset {
+		border: 1px solid $accent;
+		border-radius: 5px;
+		legend {
+			color: $accent;
+		}
+
+		label {
+			//white-space: nowrap;
+			margin-right: 5px;
+			input {
+				width: auto;
 			}
-		
 		}
 	}
 }
 
-//fenêtre > 990px
-@media (min-width: 1090px) {
-	ul.yu-carte-list{
-		width: 70%;
-		margin-right: auto;
-		margin-left: auto;
-	}
+.yu-container {
+	//display: flex;
+	//flex-direction:row;
 }

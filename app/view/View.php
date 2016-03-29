@@ -11,7 +11,7 @@ class View {
 	private $basetitle;
 
 	private $_router;
-	private $_moteurTpl;
+	public $_moteurTpl;
 	//un hook est un crochet dans le template qui permet d'y inserer du texte ou un autre template
 	private $_hook;
 	private $_footer;
@@ -33,7 +33,7 @@ class View {
 		$this->_header = array(
 			"title" => "", 
 			"arianne" => array(),
-			"form" => $this->_moteurTpl->show("frg/form/inscription.tpl")
+			"form" => ""
 		);
 		$this->addToArianne("?action=home", "Home");
 	}
@@ -79,15 +79,43 @@ class View {
 		$this->_header["arianne"][] = array("href" => $href, "where" => $where);
 	}
 
+	public function makeRightHeader($template, $map = null) {
+		if($map == null)
+			$this->_header["form"] = $this->_moteurTpl->show("frg/" . $template);
+		else
+			$this->_header["form"] = $this->_moteurTpl->run("frg/" . $template, $map);
+	}
 	//=========================================================================================
+
+	public function showAlert($alertMessage) {
+		$this->_hook["content"] .= $this->_moteurTpl->run("frg/error/alert.tpl", $alertMessage);
+	}
+
+	public function showNewUserForm() {
+		$this->addToArianne("#", "Inscription");
+		$this->_hook["title"] = $this->basetitle . " - S'inscrire";
+		$this->_hook["content"] .= $this->_moteurTpl->show("frg/form/inscription.tpl");
+	}
+
+	public function makeCarteForm($data) {
+		$this->_hook["title"] = $this->basetitle . " - Créer une carte";
+		$this->addToArianne("#", "Créer une carte");
+		$this->_hook["content"] .= $this->_moteurTpl->run("frg/form/carteForm.tpl", $data);
+	}
+
 	public function makeHomeView() {
 		$this->_hook["title"] = $this->basetitle . " - Home";
-		$this->_hook["content"] = $this->_moteurTpl->show("frg/home.tpl");
+		$this->_hook["content"] .= $this->_moteurTpl->show("frg/home.tpl");
 	}
 
 	public function pageNotFound() {
 		$this->_hook["title"] = "Erreur 404";
-		$this->_hook["content"] = $this->_moteurTpl->show("frg/error/404.tpl");
+		$this->_hook["content"] .= $this->_moteurTpl->show("frg/error/404.tpl");
+	}
+
+	public function forbiddenAccess() {
+		$this->_hook["title"] = "Accès refusé";
+		$this->_hook["content"] .= $this->_moteurTpl->show("frg/error/forbiddenAccess.tpl");
 	}
 
 	public function showListeCartes($cartes) {
@@ -101,8 +129,9 @@ class View {
 				$listeCartesContent["content"] .= $this->_moteurTpl->run("frg/carte_list_item.tpl", array("carte" => $value["carte"], "action" => "<a href='?carte=" . $value["carte"]->id . "'>Détails</a>"));
 			}
 
+			$listeCartesContent["title"] = "Liste des cartes";
 		$this->addToArianne("?action=cartes", "Les Cartes");
-		$this->_hook["content"] = $this->_moteurTpl->run("frg/listeCartes.tpl", $listeCartesContent);
+		$this->_hook["content"] .= $this->_moteurTpl->run("frg/listeCartes.tpl", $listeCartesContent);
 	}
 
 	public function showCarte($carte) {
@@ -110,6 +139,6 @@ class View {
 		$this->addToArianne("?carte=" . $carte->id, $carte->nom);
 
 		$this->_hook["title"] = $this->basetitle . " - " . $carte->nom;
-		$this->_hook["content"] = $this->_moteurTpl->run("frg/carte_detail.tpl", array("carte" => $carte));
+		$this->_hook["content"] .= $this->_moteurTpl->run("frg/carte_detail.tpl", array("carte" => $carte));
 	}
 }

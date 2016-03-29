@@ -8,5 +8,7 @@ class Config {
 	const DB_HOST = "localhost";
 	const DB_NAME = "ffdatabase";
 	const DB_USER = "ffuser";
-	const DB_PWD = "GfsBhr66rwdsScRd";	
+	const DB_PWD = "GfsBhr66rwdsScRd";
+
+	const ASSETS_DIRECTORY = "assets/";
 }

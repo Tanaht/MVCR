@@ -25,13 +25,13 @@ else{
 	for(var i=0 ; i < messages.length ; i++) {
 		var m = messages[i];
 		if(m.type == "error") {
-			console.error(htmlValidatorPrefix + "[" + m.firstLine + ":" + m.firstColumn + "][" + m.lastLine + ":" + m.lastColumn + "]" + m.message);
+			console.error(htmlValidatorPrefix + "At lines: [" + (m.firstLine != undefined ? m.firstLine : m.lastLine) + ":" + m.firstColumn + "][" + m.lastLine + ":" + m.lastColumn + "] => \n" + m.extract + "\ninfo: " + m.message);
 		}
 		else if(m.type.indexOf("warn") != -1){
-			console.warn(htmlValidatorPrefix + "[" + m.firstLine + ":" + m.firstColumn + "][" + m.lastLine + ":" + m.lastColumn + "]" + m.message);	
+			console.warn(htmlValidatorPrefix + "At lines: [" + (m.firstLine != undefined ? m.firstLine : m.lastLine) + ":" + m.firstColumn + "][" + m.lastLine + ":" + m.lastColumn + "] => \n" + m.extract + "\ninfo: " + m.message);	
 		}
 		else {
-			console.info(htmlValidatorPrefix + "[" + m.firstLine + ":" + m.firstColumn + "][" + m.lastLine + ":" + m.lastColumn + "]" + m.message);	
+			console.info(htmlValidatorPrefix + "At lines: [" + (m.firstLine != undefined ? m.firstLine : m.lastLine) + ":" + m.firstColumn + "][" + m.lastLine + ":" + m.lastColumn + "] => \n" + m.extract + "\ninfo: " + m.message);	
 		}
 	}
 }

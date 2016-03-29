@@ -38,12 +38,14 @@ class DatabaseHelper {
 		return array("id" => $this->_pdo->lastInsertId($name));
 	}
 
-	private function removeIndexKeys($row){
+	private function removeIndexAndHtmlChars($row){
 		foreach ($row as $key => $value) {
 			if(is_int($key)){
 				unset($row[$key]);
 				continue;
 			}
+
+			$row[$key] = htmlspecialchars($value);
 		}
 		return $row;
 	}
@@ -56,7 +58,7 @@ class DatabaseHelper {
 			return $table;
 		
 		foreach  ($this->_statement as $row) {
-	        $table[$count++] = $this->removeIndexKeys($row);
+	        $table[$count++] = $this->removeIndexAndHtmlChars($row);
 	    }
 	   
 	    return $table;
@@ -85,7 +87,7 @@ class DatabaseHelper {
 		}
 		
 		foreach  ($statement as $row) {
-	        $row = $this->removeIndexKeys($row);
+	        $row = $this->removeIndexAndHtmlChars($row);
 	        call_user_func_array($callable, array(&$row));
 	    	$table[$count++] = $row;
 	    }
@@ -97,8 +99,39 @@ class DatabaseHelper {
 		$this->_sql = "";
 		$this->_sql = $query;
 	}
+	
+	public function prepare($query) {
+		$this->_statement = $this->_pdo->prepare($query);
+	}
 
-	public function execute($requestType = null){
+	public function bindParam($key, $value) {
+		$this->_statement->bindParam($key, $value);
+	}
+	
+	public function beginTransaction() {
+		$this->_pdo->beginTransaction();
+	}
+
+	public function rollback() {
+		$this->_pdo->rollback();
+	}
+
+	public function commit() {
+		$this->_pdo->commit();
+	}
+
+	public function execute($selectRequest = true){
+		if(!$selectRequest) {
+			try{
+				$this->_statement->execute();
+				return true;
+			}
+			catch(\PDOException $e){
+				return false;
+			}
+		}
+
+
 		try{
 			$this->_statement = $this->_pdo->query($this->_sql);
 		}
@@ -106,13 +139,9 @@ class DatabaseHelper {
 			echo "<pre>";
 			var_export(array("sqlQuery" => $this->_sql , "mysqlError" => $e->getMessage()));
 			echo "</pre>";
-			return null;
+			return false;
 		}
-
-		if($requestType == null)
-			return $this->toArray();
-		else{
-			return array("request" => "success");
-		}
+		
+		return $this->toArray();
 	}
 }

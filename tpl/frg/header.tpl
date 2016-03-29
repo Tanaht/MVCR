@@ -1,12 +1,7 @@
-<div class="yu-left-header">
-	<div class="yu-web-page">
-		<span>{{title}}</span>
-	</div>
-	<div class="yu-arianne">
-		{{arianne | constructArianne }}
-	</div>
+<div class="yu-left-header yu-layout-column">
+	<span class="yu-web-page">{{title}}</span>
+	<span class="yu-arianne">{{arianne | constructArianne }}</span>
 </div>
-
 <div class="yu-right-header">
 	{{form}}
 </div>

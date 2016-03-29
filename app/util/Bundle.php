@@ -3,7 +3,7 @@
 namespace app\util;
 
 /**
-	Peut-être inutile...Mais c'est joli...
+	Peut-être inutile, début d'une idée avortée.
 */
 class Bundle {
 	private $_file;
