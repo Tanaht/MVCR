@@ -32,19 +32,78 @@ class TemplateRunner {
 
 	//FEUILLES:
 	const STRING_REGEX = "'[^:|]*'";
+	
+	private function isTplString($string) {
+		return $string[0] == "'";
+	}
+
+	private function eatTplString($string) {
+		return substr($string, 1, strlen($string) - 2);
+	}
+
+
 	const WORD_REGEX = "[A-Za-z]+[A-Za-z0-9]*";
+
+	private function eatTplWord($word) {
+		return $word;
+	}
 
 	//NOEUDS
 	const VAR_REGEX = "(" . self::WORD_REGEX . "[.]" . self::WORD_REGEX . ")*";
 
+	private function getTplVar($var) {
+		$array_var = explode(".", $var);
+		$variableContainer = $this->getValue( $this->eatTplWord($array_var[0]) );
+
+		if(count($array_var) == 1)
+			return $variableContainer;
+
+		for($i=1 ; $i < count($array_var) ; $i++) {
+			$variableContainer = call( $variableContainer, $this->eatTplWord($array_var[$i]) );
+		}
+
+		return $variableContainer;
+	}
+
 	const EXPRESSION_REGEX = "(" . self::VAR_REGEX . "|" . self::STRING_REGEX . ")";
 
-	const ARGS_REGEX = "(:\s*" . self::EXPRESSION_REGEX . "\s*)*";
+	private function getTplExpression($expression) {
+		if($this->isTplString($expression))
+			return $this->eatTplString($expression);
+		return $this->getTplVar($expression);
+	}
 
-	const FILTER_REGEX = "([|]\s*" . self::WORD_REGEX . "\s*" . self::ARGS_REGEX . ")*";
+	const ARGS_REGEX = "([:]\s*" . self::EXPRESSION_REGEX . "\s*)*";
 
-	const REGEX = "{{\s*" . self::EXPRESSION_REGEX . "\s*" . self::FILTER_REGEX . "\s*}}";
+	private function getTplArgs($args) {
+		$return_args = array();
 
+		$array_args = explode(":", $args);
+
+		for($i=1 ; $i < count($array_args) ; $i++) {
+			$return_args[] = $this->getTplExpression($array_args[$i]);
+		}
+
+		return $return_args;
+	}
+
+	const FILTERS_REGEX = "([|]\s*" . self::WORD_REGEX . "\s*" . self::ARGS_REGEX . ")*";
+
+	private function getTplFilters($args) {
+		$return_filters = array();
+
+		$array_filters = explode("|", $filters);
+
+		for($i=1 ; $i < count($array_filters) ; $i++) {
+			$filter_args = explode(":", $array_filters[$i]);
+
+			$return_filters[$filter_args[0]] = $this->getTplArgs($filter_args); 
+		}
+
+		return $return_args;
+	}
+
+	const REGEX = "{{\s*" . self::EXPRESSION_REGEX . "\s*" . self::FILTERS_REGEX . "\s*}}";
 	/*
 		Il serait intéressant d'autorisé la concaténation de filtre
 		Toutes les variables possibles:
