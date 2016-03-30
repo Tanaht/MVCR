@@ -32,3 +32,26 @@ foreach ($filters as $key => $value) {
 
 $router = new Router();
 $router->run();
+
+
+/*
+$search = searchString
+
+SELECT c.* FROM cartes c JOIN utilisateurs user USING(id_utilisateur) WHERE user.nom like "%$search%"
+UNION
+SELECT c.* FROM cartes c WHERE attaque like "%search%"
+UNION
+SELECT c.* FROM cartes c WHERE defense like "%search%"
+UNION
+SELECT c.* FROM cartes c WHERE description like "%search%"
+UNION
+SELECT c.* FROM cartes c WHERE niveau like "%search%"
+UNION
+SELECT c.* FROM cartes c WHERE c.id_carte in (SELECT c.id_carte FROM cartes c JOIN carte_types ct using(c.id_carte) JOIN type t using(ct.id_type) WHERE t.nom like "%$search%")
+UNION
+SELECT c.* FROM cartes c JOIN categories cat USING(id_categorie) WHERE cat.nom like "%$search%"
+UNION
+SELECT c.* FROM cartes c JOIN effets ef USING(id_effet) WHERE ef.nom like "%$search%"
+UNION
+SELECT c.* FROM cartes c JOIN attributs attr USING(id_attribut) WHERE attr.nom like "%$search%"
+*/
