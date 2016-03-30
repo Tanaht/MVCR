@@ -10,20 +10,20 @@ class IsEmptyFilter extends Filter {
 	
 	public function filter($before, array $args = null, $globals){
 		$emptyEqual = $args[0];
-		$equalTo = $args[1];
-		$errorReturn = $args[2];
+		$valueToCompare = $args[1];
+		$errorMessage = $args[2];
 		
-		if($emptyEqual) {
-			if($before == $equalTo)
-				return $errorReturn;
-			else
-				return $before;
+		if($valueToCompare == "this")
+			$valueToCompare = $before;
+		
+		if($emptyEqual == "true" && empty($valueToCompare)) {
+			return $errorMessage;
 		}
-		else {
-			if($before == $equalTo)
-				return $before;
-			else
-				return $errorReturn;
+		
+		if($EmptyEqual == "false" && !empty($valueToCompare)) {
+			return $errorMessage;
 		}
+		
+		return $before;
 	}
 }
