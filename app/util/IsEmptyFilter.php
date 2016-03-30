@@ -12,6 +12,18 @@ class IsEmptyFilter extends Filter {
 		$emptyEqual = $args[0];
 		$equalTo = $args[1];
 		$errorReturn = $args[2];
-		return $before . " €";
+		
+		if($emptyEqual) {
+			if($before == $equalTo)
+				return $errorReturn;
+			else
+				return $before;
+		}
+		else {
+			if($before == $equalTo)
+				return $before;
+			else
+				return $errorReturn;
+		}
 	}
 }
