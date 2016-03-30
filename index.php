@@ -14,6 +14,7 @@ use app\util\HideFilter;
 use app\util\ShowFilter;
 use app\util\SelectedKeyFilter;
 use app\util\EscapeFilter;
+use app\util\IsEmptyFilter;
 
 //Register Filters
 $filters[] = new CurrencyFilter();
@@ -23,6 +24,7 @@ $filters[] = new HideFilter();
 $filters[] = new ShowFilter();
 $filters[] = new SelectedKeyFilter();
 $filters[] = new EscapeFilter();
+$filters[] = new IsEmptyFilter();
 
 foreach ($filters as $key => $value) {
 	FilterProvider::addFilter($value->getName(), $value);
