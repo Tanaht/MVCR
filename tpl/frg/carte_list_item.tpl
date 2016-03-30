@@ -4,6 +4,7 @@
 		<div class="yu-layout-column">
 			<span class="yu-title">{{ carte.nom  | escape }}</span>	
 			<span class="yu-subtitle">{{ carte.attaque  | escape }} {{ carte.defense  | escape }}</span>
+			<span>Créer par {{ carte.utilisateur.username }} ({{ carte.utilisateur.email }}) le {{ carte.utilisateur.dateCreation }}</span>
 		</div>
 		<p>{{ carte.description  | escape }}</p>
 	</div>
