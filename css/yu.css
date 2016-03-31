@@ -59,7 +59,7 @@ h1.yu-align-right, h2.yu-align-right, h3.yu-align-right, h4.yu-align-right, p.yu
 h1.yu-align-left, h2.yu-align-left, h3.yu-align-left, h4.yu-align-left, p.yu-align-left, span.yu-align-left, em.yu-align-left {
   text-align: left; }
 h1.yu-align-justify, h2.yu-align-justify, h3.yu-align-justify, h4.yu-align-justify, p.yu-align-justify, span.yu-align-justify, em.yu-align-justify {
-  text-align: right; }
+  text-align: justify; }
 h1.yu-warn, h2.yu-warn, h3.yu-warn, h4.yu-warn, p.yu-warn, span.yu-warn, em.yu-warn {
   color: #C81B1B; }
 h1.yu-info, h2.yu-info, h3.yu-info, h4.yu-info, p.yu-info, span.yu-info, em.yu-info {

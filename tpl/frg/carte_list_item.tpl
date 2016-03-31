@@ -6,7 +6,7 @@
 			<span class="yu-subtitle">{{ carte.attaque  | escape }} {{ carte.defense  | escape }}</span>
 			<span>Créer par {{ carte.utilisateur.username }} ({{ carte.utilisateur.email }}) le {{ carte.utilisateur.dateCreation }}</span>
 		</div>
-		<p>{{ carte.description  | escape }}</p>
+		<p class="yu-align-justify">{{ carte.description  | escape }}</p>
 	</div>
 	<form method="GET" action="index.php" class="yu-layout-column">
 		<input type="hidden" name="carte" value="{{ carte.id }}"/>
