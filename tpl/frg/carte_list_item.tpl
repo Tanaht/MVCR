@@ -2,9 +2,9 @@
 	<img class="" src="assets/cartes/{{ carte.id }}_thumb.jpg" width="138" height="200" alt="{{carte.nom | escape }}"/>
 	<div class="yu-padding yu-large yu-grow">
 		<div class="yu-layout-column">
+			<span class="yu-subtext yu-hide">Créer par {{ carte.utilisateur.username }} (<a href="mailto:{{ carte.utilisateur.email }}">{{ carte.utilisateur.email }}</a>) le {{ carte.dateCreation }}</span>
 			<span class="yu-title">{{ carte.nom  | escape }}</span>	
 			<span class="yu-subtitle">{{ carte.attaque  | escape }} {{ carte.defense  | escape }}</span>
-			<span>Créer par {{ carte.utilisateur.username }} ({{ carte.utilisateur.email }}) le {{ carte.utilisateur.dateCreation }}</span>
 		</div>
 		<p class="yu-align-justify">{{ carte.description  | escape }}</p>
 	</div>

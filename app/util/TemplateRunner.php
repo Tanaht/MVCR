@@ -33,6 +33,7 @@ class TemplateRunner {
 		liste de paire clé/valeur:
 		array(key => data);
 	*/
+	private $_filtersGlobalVars;
 	private $_globalVars;
 	private $_templateVars;
 
@@ -65,6 +66,11 @@ class TemplateRunner {
 
 	public function __construct() {
 		$this->_globalVars = array();
+		$this->_filtersGlobalVars = array();
+		
+		foreach (FilterProvider::getFilters() as $filter) {
+			$this->_filtersGlobalVars[$filter->getName()] = $filter->getFilterGlobalVars();
+		}
 	}
 
 	private function compileTplRegex($regex) {
@@ -86,7 +92,10 @@ class TemplateRunner {
 		return true;
 	}
 
-	private function getValue($key) {
+	private function getValue($key, $filterGlobalVars) {
+		if(array_key_exists($key, $filterGlobalVars))
+			return $filterGlobalVars[$key];
+
 		if(!$this->keyExist($key)){
 			$this->addError('Template: Unknown variable: ' . "'" . $key . "'");
 			return "NULL";
@@ -123,9 +132,9 @@ class TemplateRunner {
 	//NOEUD
 	const VAR_REGEX = self::WORD_REGEX . "([.]" . self::WORD_REGEX . ")*";
 
-	private function getTplVar($var) {
+	private function getTplVar($var, $filterGlobalVars) {
 		$array_var = explode(".", $var);
-		$variableContainer = $this->getValue( $this->eatTplWord($array_var[0]) );
+		$variableContainer = $this->getValue( $this->eatTplWord($array_var[0]), $filterGlobalVars);
 
 		if(count($array_var) == 1)
 			return $variableContainer;
@@ -140,11 +149,11 @@ class TemplateRunner {
 	//NOEUD
 	const EXPRESSION_REGEX = "(" . self::VAR_REGEX . "|" . self::STRING_REGEX . ")";
 
-	private function getTplExpression($expression) {
+	private function getTplExpression($expression, $filterGlobalVars = array()) {
 		if($this->isTplString($expression))
 			return $this->eatTplString($expression);
 
-		return $this->getTplVar($expression);
+		return $this->getTplVar($expression, $filterGlobalVars);
 	}
 
 	//NOEUD
@@ -156,7 +165,7 @@ class TemplateRunner {
 		$array_args = explode(":", $args);
 		
 		for($i=1 ; $i < count($array_args) ; $i++) {
-			$return_args[] = $this->getTplExpression($array_args[$i]);
+			$return_args[] = $this->getTplExpression(trim($array_args[$i]), $this->_filtersGlobalVars[trim($array_args[0])]);
 		}
 		
 		return $return_args;

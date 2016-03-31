@@ -192,13 +192,15 @@ class Controller {
 			$this->_view->showCarte($carte);
 			return;
 		}
-
 		if(!$carte->delete()) {
 			$this->_view->showAlert(array("type" => "warn", "title" => "Erreur", "message" => "La carte n'a pas pu être supprimé"));
 			$this->_view->showCarte($carte);
 			return;
 		}
 
+		AssetsManager::remove("cartes/" . $carte->id . ".jpg");
+		AssetsManager::remove("cartes/" . $carte->id . "_thumb.jpg");
+		$carte = new Carte($carte->id);
 		$this->_view->showAlert(array("type" => "info", "title" => "Suppression effectuer", "message" => "La carte à été supprimé."));
 			$this->listeMesCartes();
 	}
@@ -233,6 +235,7 @@ class Controller {
 			$niveaux[] = array("key" => $i, "value" => $i, "selected" => false);
 		}
 
+		$carte = new Carte($carte->id);
 		$this->_view->makeUpdateCarteForm(array("carte" => $carte, "categories" => $categories, "effets" => $effets, "attributs" => $attributs, "types" => $types, "niveaux" => $niveaux) );
 	}
 

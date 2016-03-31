@@ -11,6 +11,10 @@ abstract class Filter {
 	//Must return $value after treatment
 	public abstract function filter($value, array $args = null, $globals);
 
+	public function getFilterGlobalVars() {
+		return array();
+	}
+
 	public function getName() {
 		return $this->_name;
 	}

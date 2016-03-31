@@ -16,14 +16,18 @@ class IsEmptyFilter extends Filter {
 		if($valueToCompare == "this")
 			$valueToCompare = $before;
 		
-		if($emptyEqual == "true" && empty($valueToCompare)) {
+		if($emptyEqual == true && empty($valueToCompare)) {
 			return $errorMessage;
 		}
 		
-		if($EmptyEqual == "false" && !empty($valueToCompare)) {
+		if($emptyEqual == false && !empty($valueToCompare)) {
 			return $errorMessage;
 		}
 		
 		return $before;
+	}
+
+	public function getFilterGlobalVars() {
+		return array('true' => true, 'false' => false);
 	}
 }

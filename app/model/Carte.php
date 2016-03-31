@@ -15,6 +15,7 @@ class Carte {
 	public $effet;
 	public $categorie;
 	public $utilisateur;
+	public $dateCreation;
 
 	public function __construct($id) {
 		$bdd = DatabaseHelper::getBdd();
@@ -37,6 +38,7 @@ class Carte {
 		
 		$this->attaque = $data[0]["attaque"];
 		$this->defense = $data[0]["defense"];
+		$this->dateCreation = $data[0]["dateCreation"];
 		
 		$this->description = $data[0]["description"];
 		
@@ -51,7 +53,7 @@ class Carte {
 
 		$this->effet = new Effet($data[0]["id_effet"]);
 
-		$bdd->query("SELECT id_type FROM carte_types");
+		$bdd->query("SELECT id_type FROM carte_types where id_carte=" . $this->id);
 
 		$bdd->forEachRow(array($this, "constructTypes"));
 	}
@@ -93,7 +95,6 @@ class Carte {
 	}
 
 	public function update($nom, $niveau, $attaque, $defense, $categorie, $effet, $attribut, $types, $description) {
-		var_export($_POST);
 		$bdd = DatabaseHelper::getBdd();
 		$bdd->prepare('UPDATE cartes '
 			. ' SET nom=:nom,'
@@ -119,8 +120,8 @@ class Carte {
 			return false;
 		}
 
-		echo "First update is done";
 		$bdd->query("DELETE FROM carte_types WHERE id_carte = " . $this->id);
+		
 		if(!$bdd->execute(true, true)) {
 			return false;
 		}

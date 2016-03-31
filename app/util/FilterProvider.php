@@ -26,4 +26,8 @@ class FilterProvider {
 			return self::$filters[$name];
 		return null;
 	}
+
+	public static function getFilters() {
+		return self::$filters;
+	}
 }

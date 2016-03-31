@@ -130,6 +130,18 @@ h1, h2, h3, h4, p, span, em {
 	}
 }
 
+.yu-align-right{
+	margin-left: auto;
+	margin-right: 0px;
+}
+
+.yu-hide {
+	visibility: hidden;
+}
+
+.yu-remove {
+	display: none;
+}
 
 //fenêtre > 690
 @media (min-width: 690px) {
@@ -331,6 +343,11 @@ a:hover {
 	}
 }
 
+.yu-center {
+	margin-right: auto;
+	margin-left: auto;
+}
+
 .yu-layout-column {
 	display: flex;
 	flex-direction: column;
@@ -339,6 +356,32 @@ a:hover {
 .yu-layout-row {
 	display: flex;
 	flex-direction: row;
+}
+
+//fenêtre > 690
+@media (min-width: 690px) {
+	.yu-xl-layout-column {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.yu-xl-layout-row {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+//fenêtre < 690
+@media (max-width: 690px) {
+	.yu-xs-layout-column {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.yu-xs-layout-row {
+		display: flex;
+		flex-direction: row;
+	}
 }
 
 .yu-grow {
@@ -351,6 +394,7 @@ a:hover {
 	margin-bottom: 15px;
 	padding: 10px 10px 10px 10px;
 	border-radius: 5px;
+	overflow: hidden;
 	.yu-block-title {
 		font-weight: 900;
 	}
@@ -405,4 +449,15 @@ a:hover {
 .yu-container {
 	//display: flex;
 	//flex-direction:row;
+}
+
+.yu-flex {
+	flex: 1;
+	&.yu-2 {
+		flex: 2;
+	}
+
+	&.yu-3 {
+		flex: 3;
+	}
 }

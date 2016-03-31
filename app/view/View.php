@@ -138,7 +138,7 @@ class View {
 
 	public function showCarte($carte) {
 		$this->addToArianne("?action=cartes", "Les Cartes");
-		$this->addToArianne("?carte=" . $carte->id, $carte->nom);
+		$this->addToArianne("#", $carte->nom);
 
 		$this->_hook["title"] = $this->basetitle . " - " . $carte->nom;
 		$this->_hook["content"] .= $this->_moteurTpl->run("frg/carte_detail.tpl", array("carte" => $carte));

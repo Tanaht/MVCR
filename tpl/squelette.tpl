@@ -33,8 +33,8 @@
 	<div class="yu-footer">
 		{{ footer }}
 	</div>
-
 	<script src="js/validatorMessages.js"></script>
 	<script src="js/validateDocument.js"></script>
+	<script src="js/listShowDetail.js"></script>
 </body>
 </html>
