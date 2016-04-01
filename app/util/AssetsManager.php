@@ -4,6 +4,10 @@
 	use app\config\Config;
 
 	class AssetsManager{
+		
+		public static function getAssetsFolder() {
+			return Config::ASSETS_DIRECTORY;
+		}
 
 		private static function removeAll($path){
 			foreach (glob($path . "/*") as $filename) {

@@ -38,9 +38,9 @@ class Router {
 
 	*/
 	public function run() {
-		/*echo "<pre>";
+		echo "<pre>";
 		var_export($_POST);
-		echo "</pre>";*/
+		echo "</pre>";
 		$this->when(array(
 				"POST" => null,
 				"GET" => null
@@ -87,7 +87,6 @@ class Router {
 				"POST" => array(
 					"create" => "card",
 					"nom" => self::stringParam,
-					"niveau" => self::intParam,
 					"categorie" => self::intParam,
 					"effet" => self::intParam,
 					"attribut" => self::intParam,
@@ -104,7 +103,6 @@ class Router {
 				"POST" => array(
 					"update" => "card",
 					"nom" => self::stringParam,
-					"niveau" => self::intParam,
 					"categorie" => self::intParam,
 					"effet" => self::intParam,
 					"attribut" => self::intParam,
@@ -161,7 +159,13 @@ class Router {
 			array(self::CTL => "logOffUser", self::VIEW => "makeHomeView")
 		)->otherwise(array(self::VIEW => "pageNotFound"));
 
-		$this->callMethods();
+		try{
+			$this->callMethods();
+		}
+		catch(\PDOException $e) {
+			$this->_view->showCriticalError($e->getMessage());
+		}
+
 		$this->_view->render();
  	}
 
@@ -225,9 +229,12 @@ class Router {
  					continue;
 
  			}
- 			/*else{
- 				echo $key . " is not set<br/>";
- 			}*/
+ 			else{
+ 				if($value == self::arrayParam) {
+ 					$_POST[$key] = array();
+ 					continue;
+ 				}
+ 			}
  			return false;
  		}
  		return true;
@@ -256,7 +263,12 @@ class Router {
  				if($value == self::floatParam && filter_var($_GET[$key], FILTER_VALIDATE_FLOAT) != false)
  					continue;
  			}
-
+ 			else{
+ 				if($value == self::arrayParam) {
+ 					$_GET[$key] = array();
+ 					continue;
+ 				}
+ 			}
  			return false;
  		}
  		return true;

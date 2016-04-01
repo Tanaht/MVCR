@@ -49,7 +49,7 @@ class Carte {
 
 
 		$this->attribut = new Attribut($data[0]["id_attribut"]);
-		$this->categorie = new categorie($data[0]["id_categorie"]);
+		$this->categorie = new Categorie($data[0]["id_categorie"]);
 
 		$this->effet = new Effet($data[0]["id_effet"]);
 

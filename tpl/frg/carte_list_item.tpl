@@ -1,5 +1,5 @@
 <li class="yu-layout-row yu-list-item">
-	<img class="" src="assets/cartes/{{ carte.id }}_thumb.jpg" width="138" height="200" alt="{{carte.nom | escape }}"/>
+	<img class="" src="{{ assets }}/cartes/{{ carte.id }}_thumb.jpg" width="138" height="200" alt="{{carte.nom | escape }}"/>
 	<div class="yu-padding yu-large yu-grow">
 		<div class="yu-layout-column">
 			<span class="yu-subtext yu-hide">Créer par {{ carte.utilisateur.username }} (<a href="mailto:{{ carte.utilisateur.email }}">{{ carte.utilisateur.email }}</a>) le {{ carte.dateCreation }}</span>

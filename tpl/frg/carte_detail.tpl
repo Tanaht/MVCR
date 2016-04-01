@@ -1,8 +1,8 @@
 <div class="yu-layou-column">
 	<div class="yu-xl-layout-row yu-xs-layout-column yu-block">
-		<img sizes="(max-width: 690px) 70vh, (min-width: 690px) 100vh" class="yu-center" src="assets/cartes/{{ carte.id }}.jpg"
-			srcset="assets/cartes/{{ carte.id }}_thumb.jpg 138w,
-					assets/cartes/{{ carte.id }}.jpg 342w" 
+		<img sizes="(max-width: 690px) 70vh, (min-width: 690px) 100vh" class="yu-center" src="{{ assets }}/cartes/{{ carte.id }}.jpg"
+			srcset="{{ assets }}/cartes/{{ carte.id }}_thumb.jpg 138w,
+					{{ assets }}/cartes/{{ carte.id }}.jpg 342w" 
 			width="342" height="492" alt="{{carte.nom | escape }}">
 		<div class="yu-layout-column yu-padding yu-medium">
 			<form method="GET" action="index.php" class="yu-layout-row yu-align-right">

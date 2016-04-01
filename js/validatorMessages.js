@@ -1,1 +1,1 @@
-var messages = {"messages":[]}
+var messages = 

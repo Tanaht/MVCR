@@ -3,7 +3,6 @@
 namespace app\model;
 
 use app\config\Config;
-
 class DatabaseHelper {
 	private static $_bdd;
 	private $_pdo;
@@ -12,7 +11,6 @@ class DatabaseHelper {
 
 	private function __construct(){
 		$this->_sql = "";
-		try{
 			$this->_pdo = new \PDO(
 				'mysql:host=' . Config::DB_HOST 
 				. ';dbname=' . Config::DB_NAME . ";charset=utf8",
@@ -20,11 +18,6 @@ class DatabaseHelper {
     			Config::DB_PWD,
     			array(\PDO::ATTR_ERRMODE=>\PDO::ERRMODE_EXCEPTION)
     		);
-		}
-		catch(\PDOException $e){
-			Render::convert(new Parameters(), $e->getMessage());
-			exit;
-		}
 	}
 
 	public static function getBdd() {

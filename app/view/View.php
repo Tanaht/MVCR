@@ -44,7 +44,7 @@ class View {
 
 
 		//=====================CURL to W3C VALIDATOR
-		$url = "http://validator.w3.org/nu/?out=json";
+		/*$url = "http://validator.w3.org/nu/?out=json";
 
 		$fp = fopen("js/validatorMessages.js", "w+");
 		fwrite($fp, "var messages = ");
@@ -58,7 +58,7 @@ class View {
 			curl_exec($ch);
 			curl_close($ch);
 		
-		fclose($fp);
+		fclose($fp);*/
 		//=====================
 		
 		echo $this->_moteurTpl->run($this->_templateFile, $this->_hook);
@@ -79,6 +79,17 @@ class View {
 
 	public function makeRightHeader($template) {
 		$this->_header["form"] = $this->_moteurTpl->show("frg/" . $template);
+	}
+
+	public function showCriticalError($message) {
+		$this->_footer = array();
+		$this->_header = array(
+			"title" => "", 
+			"arianne" => array(),
+			"form" => ""
+		);
+
+		$this->_hook["content"] = $this->_moteurTpl->run("frg/error/alert.tpl", array("title" => "Erreur Critique", "message"=> $message, "type" => "warn"));
 	}
 	//=========================================================================================
 

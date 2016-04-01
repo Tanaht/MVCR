@@ -20,6 +20,7 @@ class Controller {
 		$this->_user = new User();
 
 		$this->_view->_moteurTpl->addGlobalVar("user", $this->_user);
+		$this->_view->_moteurTpl->addGlobalVar("assets", AssetsManager::getAssetsFolder());
 		$this->initViewContent();
 	}
 

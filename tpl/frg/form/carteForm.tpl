@@ -19,7 +19,7 @@
 		</div>
 		<div class="yu-input-container">
 			<label for="niveau">Niveau/Rang</label>
-			{{niveaux | input : 'select' : 'niveau': 'required'}}
+			{{niveaux | input : 'select' : 'niveau'}}
 		</div>
 		<div class="yu-input-container">
 			<fieldset>
