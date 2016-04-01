@@ -6,6 +6,8 @@ use app\view\View;
 use app\controller\Controller;
 use app\model\User;
 
+//Ce Router s'inspire de la technologie de routage de AngularJS
+//Devenu inutilisable avec la V2 car les paramètres sont passé par url
 class Router extends AbstractRouter
 {
     const stringParam = '##';

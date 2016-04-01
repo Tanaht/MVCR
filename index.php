@@ -7,16 +7,16 @@ require_once './vendor/autoload.php';
 use app\router\AbstractRouter;
 use app\router\Router;
 use app\router\RouterV2;
-use app\util\FilterProvider;
-use app\util\CurrencyFilter;
-use app\util\ArianneFilter;
-use app\util\InputFilter;
-use app\util\HideFilter;
-use app\util\ShowFilter;
-use app\util\SelectedKeyFilter;
-use app\util\EscapeFilter;
-use app\util\IsEmptyFilter;
-use app\util\ToListFilter;
+use app\services\filter\FilterProvider;
+use app\services\filter\CurrencyFilter;
+use app\services\filter\ArianneFilter;
+use app\services\filter\InputFilter;
+use app\services\filter\HideFilter;
+use app\services\filter\ShowFilter;
+use app\services\filter\SelectedKeyFilter;
+use app\services\filter\EscapeFilter;
+use app\services\filter\IsEmptyFilter;
+use app\services\filter\ToListFilter;
 
 //Register Filters
 $filters[] = new CurrencyFilter();

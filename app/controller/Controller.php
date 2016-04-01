@@ -7,7 +7,7 @@ use app\view\View;
 use app\model\DatabaseHelper;
 use app\model\Carte;
 use app\model\User;
-use app\util\AssetsManager;
+use app\services\AssetsManager;
 
 class Controller
 {

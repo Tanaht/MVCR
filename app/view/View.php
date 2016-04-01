@@ -2,7 +2,7 @@
 
 namespace app\view;
 
-use app\util\TemplateRunner;
+use app\services\TemplateRunner;
 use app\router\Router;
 
 class View

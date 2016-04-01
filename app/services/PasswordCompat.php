@@ -7,7 +7,7 @@
  * @copyright 2012 The Authors
  */
 
-namespace app\util;
+namespace app\services;
 
 if (!defined('PASSWORD_BCRYPT')) {
     /*

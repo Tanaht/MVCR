@@ -1,7 +1,7 @@
 <?php
 //list : 'nom'
 
-namespace app\util;
+namespace app\services\filter;
 
 class ToListFilter extends Filter
 {

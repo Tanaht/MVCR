@@ -2,7 +2,7 @@
 
 namespace app\model;
 
-use app\util\PasswordCompat;
+use app\services\PasswordCompat;
 
 class User
 {
