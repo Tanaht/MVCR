@@ -1,12 +1,13 @@
 <?php
+
 namespace Mvcr;
 
 require_once './vendor/autoload.php';
 
-
+use app\router\AbstractRouter;
 use app\router\Router;
+use app\router\RouterV2;
 use app\util\FilterProvider;
-use app\util\Filter;
 use app\util\CurrencyFilter;
 use app\util\ArianneFilter;
 use app\util\InputFilter;
@@ -29,12 +30,12 @@ $filters[] = new IsEmptyFilter();
 $filters[] = new ToListFilter();
 
 foreach ($filters as $key => $value) {
-	FilterProvider::addFilter($value->getName(), $value);
+    FilterProvider::addFilter($value->getName(), $value);
 }
 
-$router = new Router();
-$router->run();
 
+$router = new RouterV2();
+$router->run();
 
 /*
 $search = searchString

@@ -6,346 +6,350 @@ use app\view\View;
 use app\controller\Controller;
 use app\model\User;
 
-class Router {
+class Router extends AbstractRouter
+{
+    const stringParam = '##';
+    const intParam = '#int#';
+    const floatParam = '#float#';
+    const arrayParam = '#array#';
 
-	const stringParam = "##";
-	const intParam = "#int#";
-	const floatParam = "#float#";
-	const arrayParam = "#array#";
+    const VIEW = 'view';
+    const CTL = 'controller';
 
-	const VIEW = "view";
-	const CTL = "controller";
+    /**
+     
+     */
+    public function run()
+    {
+        echo '<pre>';
+        var_export($_GET);
+        var_export($_POST);
+        echo '</pre>';
+        $this->when(array(
+                'POST' => null,
+                'GET' => null,
+            ),
+            array(self::VIEW => 'makeHomeView')
+        )->when(array(
+                'GET' => array('action' => 'home'),
+            ),
+            array(self::VIEW => 'makeHomeView')
+        )->when(array(
+                'GET' => array(
+                    'action' => 'cartes',
+                    'page' => self::intParam,
+                    /*
+                        TODO: diminuer le nombre de cartes qui s'affichent sur une seule page pour ne pas surcharger le site
+                    */
+                ),
+            ),
+            array(self::CTL => 'listeCartes')
+        )->when(array(
+                'GET' => array(
+                    'action' => 'mescartes',
+                    'page' => self::intParam,
+                    /*
+                        TODO: diminuer le nombre de cartes qui s'affichent sur une seule page pour ne pas surcharger le site
+                    */
+                ),
+                'SUDO' => array(User::MEMBER, User::ADMIN),
+            ),
+            array(self::CTL => 'listeMesCartes')
+        )->when(array(
+                'GET' => array(
+                    'action' => 'mescartes',
+                ),
+                'SUDO' => array(User::MEMBER, User::ADMIN),
+            ),
+            array(self::CTL => 'listeMesCartes')
+        )->when(array(
+                'GET' => array('action' => 'create'),
+                'SUDO' => array(User::ADMIN, User::MEMBER),
+            ),
+            array(self::CTL => 'creerCarteForm')
+        )->when(array(
+                'POST' => array(
+                    'create' => 'card',
+                    'nom' => self::stringParam,
+                    'categorie' => self::intParam,
+                    'effet' => self::intParam,
+                    'attribut' => self::intParam,
+                    'types' => self::arrayParam,
+                    'description' => self::stringParam,
+                    'attaque' => self::stringParam,
+                    'defense' => self::stringParam,
+                ),
+                'SUDO' => array(User::ADMIN, User::MEMBER),
+            ),
+            array(self::CTL => 'creerCarte')
+        )->when(array(
+                'GET' => array('carte' => self::intParam),
+                'POST' => array(
+                    'update' => 'card',
+                    'nom' => self::stringParam,
+                    'categorie' => self::intParam,
+                    'effet' => self::intParam,
+                    'attribut' => self::intParam,
+                    'types' => self::arrayParam,
+                    'description' => self::stringParam,
+                    'attaque' => self::stringParam,
+                    'defense' => self::stringParam,
+                ),
+                'SUDO' => array(User::ADMIN, User::MEMBER),
+            ),
+            array(self::CTL => 'updateCarte')
+        )->when(array(
+                'GET' => array('action' => 'cartes'),
+            ),
+            array(self::CTL => 'listeCartes')
+        )->when(array(
+                'GET' => array('carte' => self::intParam, 'carteAction' => 'more'),
+            ),
+            array(self::CTL => 'vueCarte')
+        )->when(array(
+                'GET' => array('carte' => self::intParam, 'carteAction' => 'update'),
+                'SUDO' => array(User::MEMBER, User::ADMIN),
+            ),
+            array(self::CTL => 'updateCarteForm')
+        )->when(array(
+                'GET' => array('carte' => self::intParam, 'carteAction' => 'delete'),
+                'SUDO' => array(User::MEMBER, User::ADMIN),
+            ),
+            array(self::CTL => 'deleteCarte')
+        )->when(array(
+                'GET' => array('inscription' => ''),
+            ),
+            array(self::VIEW => 'showNewUserForm')
+        )->when(array(
+                'POST' => array(
+                    'inscrire' => '',
+                    'username' => self::stringParam,
+                    'email' => self::stringParam,
+                    'password' => self::stringParam,
+                ),
+            ),
+            array(self::CTL => 'newUser')
+        )->when(array(
+                'POST' => array(
+                    'logon' => '',
+                    'username' => self::stringParam,
+                    'password' => self::stringParam,
+                ),
+            ),
+            array(self::CTL => 'logOnUser', self::VIEW => 'makeHomeView')
+        )->when(array(
+                'POST' => array('logoff' => ''),
+            ),
+            array(self::CTL => 'logOffUser', self::VIEW => 'makeHomeView')
+        )->otherwise(array(self::VIEW => 'pageNotFound'));
 
-	private $_view;
-	private $_controller;
-	private $_call;
+        try {
+            $this->callMethods();
+        } catch (\PDOException $e) {
+            $this->_view->showCriticalError($e->getMessage());
+        }
 
-	public function __construct() {
-		$this->_call = null;
-		$this->_view = new View($this);
-		$this->_controller = new Controller($this, $this->_view);
-	}
+        $this->_view->render();
+    }
 
-	/**
-		@see Router::when(array $path, array $call)
-		Le routage se fait grâce à la méthode privée when qui est inspiré du routage d'angularJS.
+    /*
+        $path: La route à vérifier. Idéalement, la route devrait se présenté sous-forme d'url.
+            Il s'agit d'une liste de couple (clé/valeur)
+                clé possible: POST/GET/(SUDO: cas à part)
+                les clé POST et GET ont pour valeur une représentation des tableaux $_GET et $_POST, que la requête HTTP actuel doit posseder pour valider cette route.
+        $path: une liste de Callable, qui vont impacter la page html, par le biais du controller, ou de la vue, si cette route est empruntée.
 
-		Le routeur à deux fonctions principales, qui se ressemble, mais reste très différente
-			Trouver la bonne méthode à appeler en fonction des paramètres de routage (POST, GET) 
-				et du type d'utilisateur (SUDO => "USER, MEMBER, ADMIN")
-			Effectuer une première validation de formulaire: "stringParam, intParam, floatParam, arrayParam" 
-				en fonction des clés des tableaux POST et GET
+        return: $this (Pour enchainer les appels à when)
 
-	*/
-	public function run() {
-		echo "<pre>";
-		var_export($_POST);
-		echo "</pre>";
-		$this->when(array(
-				"POST" => null,
-				"GET" => null
-			),
-			array(self::VIEW => "makeHomeView")
-		)->when(array(
-				"GET" => array("action" => "home")
-			),
-			array(self::VIEW => "makeHomeView")
-		)->when(array(
-				"GET" => array(
-					"action" => "cartes", 
-					"page" => self::intParam
-					/*
-						TODO: diminuer le nombre de cartes qui s'affichent sur une seule page pour ne pas surcharger le site
-					*/
-				)
-			),
-			array(self::CTL => "listeCartes")
-		)->when(array(
-				"GET" => array(
-					"action" => "mescartes", 
-					"page" => self::intParam
-					/*
-						TODO: diminuer le nombre de cartes qui s'affichent sur une seule page pour ne pas surcharger le site
-					*/
-				),
-				"SUDO" => array(User::MEMBER, User::ADMIN)
-			),
-			array(self::CTL => "listeMesCartes")
-		)->when(array(
-				"GET" => array(
-					"action" => "mescartes"
-				),
-				"SUDO" => array(User::MEMBER, User::ADMIN)
-			),
-			array(self::CTL => "listeMesCartes")
-		)->when(array(
-				"GET" => array("action" => "create"),
-				"SUDO" => array(User::ADMIN, User::MEMBER)
-			),
-			array(self::CTL => "creerCarteForm")
-		)->when(array(
-				"POST" => array(
-					"create" => "card",
-					"nom" => self::stringParam,
-					"categorie" => self::intParam,
-					"effet" => self::intParam,
-					"attribut" => self::intParam,
-					"types" => self::arrayParam,
-					"description" => self::stringParam,
-					"attaque" => self::stringParam,
-					"defense" => self::stringParam
-				),
-				"SUDO" => array(User::ADMIN, User::MEMBER)
-			),
-			array(self::CTL => "creerCarte")
-		)->when(array(
-				"GET" => array("carte" => self::intParam),
-				"POST" => array(
-					"update" => "card",
-					"nom" => self::stringParam,
-					"categorie" => self::intParam,
-					"effet" => self::intParam,
-					"attribut" => self::intParam,
-					"types" => self::arrayParam,
-					"description" => self::stringParam,
-					"attaque" => self::stringParam,
-					"defense" => self::stringParam
-				),
-				"SUDO" => array(User::ADMIN, User::MEMBER)
-			),
-			array(self::CTL => "updateCarte")
-		)->when(array(
-				"GET" => array("action" => "cartes")
-			),
-			array(self::CTL => "listeCartes")
-		)->when(array(
-				"GET" => array("carte" => self::intParam, "carteAction" => "more")
-			),
-			array(self::CTL => "vueCarte")
-		)->when(array(
-				"GET" => array("carte" => self::intParam, "carteAction" => "update"),
-				"SUDO" => array(User::MEMBER, User::ADMIN)
-			),
-			array(self::CTL => "updateCarteForm")
-		)->when(array(
-				"GET" => array("carte" => self::intParam, "carteAction" => "delete"),
-				"SUDO" => array(User::MEMBER, User::ADMIN)
-			),
-			array(self::CTL => "deleteCarte")
-		)->when(array(
-				"GET" => array("inscription" => "")
-			),
-			array(self::VIEW => "showNewUserForm")
-		)->when(array(
-				"POST" => array(
-					"inscrire" => "", 
-					"username" => self::stringParam, 
-					"email" => self::stringParam, 
-					"password" => self::stringParam
-				)
-			),
-			array(self::CTL => "newUser")
-		)->when(array(
-				"POST" => array(
-					"logon" => "", 
-					"username" => self::stringParam, 
-					"password" => self::stringParam
-				)
-			),
-			array(self::CTL => "logOnUser", self::VIEW => "makeHomeView")
-		)->when(array(
-				"POST" => array("logoff" => "")
-			),
-			array(self::CTL => "logOffUser", self::VIEW => "makeHomeView")
-		)->otherwise(array(self::VIEW => "pageNotFound"));
+    */
+    private function when(array $path, array $call)
+    {
+        if ($this->_call != null) {
+            return $this;
+        }
 
-		try{
-			$this->callMethods();
-		}
-		catch(\PDOException $e) {
-			$this->_view->showCriticalError($e->getMessage());
-		}
+        if ($this->resolve($path)) {
+            $isAuthorized = true;
 
-		$this->_view->render();
- 	}
+            if (array_key_exists('SUDO', $path)) {
+                $isAuthorized = $this->checkAuthorization($path['SUDO']);
+            }
 
+            if ($isAuthorized) {
+                $this->_call = $call;
+            }
+        }
 
- 	/*
-		$path: La route à vérifier. Idéalement, la route devrait se présenté sous-forme d'url.
-			Il s'agit d'une liste de couple (clé/valeur)
-				clé possible: POST/GET/(SUDO: cas à part)
-				les clé POST et GET ont pour valeur une représentation des tableaux $_GET et $_POST, que la requête HTTP actuel doit posseder pour valider cette route.
-		$path: une liste de Callable, qui vont impacter la page html, par le biais du controller, ou de la vue, si cette route est empruntée.
+        return $this;
+    }
 
-		return: $this (Pour enchainer les appels à when)
+    /*
+        Si aucune route n'a été trouvé, on définis un callable qui va impacter la vue, peu importe l'état de l'application (une page 404 par exemple)
+    */
+    private function otherwise(array $call)
+    {
+        if ($this->_call == null) {
+            $this->_call = $call;
+        }
+    }
 
- 	*/
- 	private function when(array $path, array $call) {
- 		if($this->_call != null)
- 			return $this;
+    /*
+        Valide ou Invalide la représentation schématique du tableau $_POST de la méthode when
 
- 		if($this->resolve($path)) {
- 			$isAuthorized = true;
+        return true ou false 
+    */
+    private function validatePost(array $array = null)
+    {
+        if ($array == null) {
+            return empty($_POST);
+        }
 
- 			if( array_key_exists("SUDO", $path) ){
-				$isAuthorized = $this->checkAuthorization($path["SUDO"]);
-			}
+        foreach ($array as $key => $value) {
+            if (isset($_POST[$key])) {
+                if ($_POST[$key] == $value || $value == self::stringParam) {
+                    continue;
+                }
 
-			if($isAuthorized)
- 				$this->_call = $call;
- 		}
- 		return $this;
- 	}
+                if ($value == self::intParam && filter_var($_POST[$key], FILTER_VALIDATE_INT) != false) {
+                    continue;
+                }
 
- 	/*
- 		Si aucune route n'a été trouvé, on définis un callable qui va impacter la vue, peu importe l'état de l'application (une page 404 par exemple)
- 	*/
- 	private function otherwise(array $call) {
- 		if($this->_call == null)
- 			$this->_call = $call;
- 	}
+                if ($value == self::arrayParam && is_array($_POST[$key])) {
+                    continue;
+                }
 
- 	/*
- 		Valide ou Invalide la représentation schématique du tableau $_POST de la méthode when
+                if ($value == self::floatParam && filter_var($_POST[$key], FILTER_VALIDATE_FLOAT) != false) {
+                    continue;
+                }
+            } else {
+                if ($value == self::arrayParam) {
+                    $_POST[$key] = array();
+                    continue;
+                }
+            }
 
- 		return true ou false 
- 	*/
- 	private function validatePost(array $array = null) {
- 		if($array == null) 
- 			return empty($_POST);
+            return false;
+        }
 
- 		foreach ($array as $key => $value) {
- 			if(isset($_POST[$key])) {
- 				if($_POST[$key] == $value || $value == self::stringParam)
- 					continue;
+        return true;
+    }
 
- 				if($value == self::intParam && filter_var($_POST[$key], FILTER_VALIDATE_INT) != false)
- 					continue;
+    /*
+        Valide ou Invalide la représentation schématique du tableau $_GET de la méthode when
 
- 				if($value == self::arrayParam && is_array($_POST[$key]))
- 					continue;
+        return true ou false 
+    */
+    private function validateGet(array $array = null)
+    {
+        if ($array == null) {
+            return empty($_GET);
+        }
 
- 				if($value == self::floatParam && filter_var($_POST[$key], FILTER_VALIDATE_FLOAT) != false)
- 					continue;
+        foreach ($array as $key => $value) {
+            if (isset($_GET[$key])) {
+                if ($_GET[$key] == $value || $value == self::stringParam) {
+                    continue;
+                }
 
- 			}
- 			else{
- 				if($value == self::arrayParam) {
- 					$_POST[$key] = array();
- 					continue;
- 				}
- 			}
- 			return false;
- 		}
- 		return true;
- 	}
+                if ($value == self::intParam && filter_var($_GET[$key], FILTER_VALIDATE_INT) != false) {
+                    continue;
+                }
 
- 	/*
- 		Valide ou Invalide la représentation schématique du tableau $_GET de la méthode when
+                if ($value == self::arrayParam && is_array($_POST[$key])) {
+                    continue;
+                }
 
- 		return true ou false 
- 	*/
- 	private function validateGet(array $array = null) {
- 		if($array == null)
- 			return empty($_GET);
+                if ($value == self::floatParam && filter_var($_GET[$key], FILTER_VALIDATE_FLOAT) != false) {
+                    continue;
+                }
+            } else {
+                if ($value == self::arrayParam) {
+                    $_GET[$key] = array();
+                    continue;
+                }
+            }
 
- 		foreach ($array as $key => $value) {
- 			if(isset($_GET[$key])) {
- 				if($_GET[$key] == $value || $value == self::stringParam)
- 					continue;
+            return false;
+        }
 
- 				if($value == self::intParam && filter_var($_GET[$key], FILTER_VALIDATE_INT) != false)
- 					continue;
+        return true;
+    }
 
- 				if($value == self::arrayParam && is_array($_POST[$key]))
- 					continue;
+    /*
+        Appels des méthodes qui vont impacter le rendu de la page html
+    */
+    private function callMethods()
+    {
+        if (array_key_exists(self::CTL, $this->_call)) {
+            call_user_method($this->_call[self::CTL], $this->_controller);
+        }
 
- 				if($value == self::floatParam && filter_var($_GET[$key], FILTER_VALIDATE_FLOAT) != false)
- 					continue;
- 			}
- 			else{
- 				if($value == self::arrayParam) {
- 					$_GET[$key] = array();
- 					continue;
- 				}
- 			}
- 			return false;
- 		}
- 		return true;
- 	}
+        if (array_key_exists(self::VIEW, $this->_call)) {
+            call_user_method($this->_call[self::VIEW], $this->_view);
+        }
 
- 	/*
- 		Appels des méthodes qui vont impacter le rendu de la page html
- 	*/
- 	private function callMethods() {
+        $this->logCall();
+    }
 
- 		if(array_key_exists(self::CTL, $this->_call)) {
-			call_user_method($this->_call[self::CTL], $this->_controller);
-		}
+    /*
+        Résoud une route.
+        @see Router::when(array $path, array $call);
 
-		if(array_key_exists(self::VIEW, $this->_call)) {
-			call_user_method($this->_call[self::VIEW], $this->_view);
-		}
+        return true ou false;
+    */
+    private function resolve(array $path)
+    {
+        $postRequested = false;
+        $post = false;
+        $getRequested = false;
+        $get = false;
 
-		$this->logCall();
- 	}
+        if (array_key_exists('POST', $path)) {
+            $postRequested = true;
+            $post = $this->validatePost($path['POST']);
+        }
 
- 	/*
- 		Résoud une route.
- 		@see Router::when(array $path, array $call);
+        if (array_key_exists('GET', $path)) {
+            $getRequested = true;
+            $get = $this->validateGet($path['GET']);
+        }
 
- 		return true ou false;
- 	*/
- 	private function resolve(array $path) {
- 		$postRequested = false;
- 		$post = false;
- 		$getRequested = false;
-		$get = false;
+        if ($get == $getRequested && $post == $postRequested) {
+            return true;
+        }
 
-		if( array_key_exists("POST", $path) ){
-			$postRequested = true;
-			$post = $this->validatePost($path["POST"]);
-		}
+        return false;
+    }
 
-		if( array_key_exists("GET", $path) ){
-			$getRequested = true;
-			$get = $this->validateGet($path["GET"]);
-		}
+    /*
+        Vérifie l'authorisation de l'utilisateur (connecté ou non) par rapport à la liste des types de membres authorisée d'une route
 
-		if($get == $getRequested && $post == $postRequested){
-			return true;
-		}
+        TODO: implémentation trop rapide -> trouver une solution pour éviter de recourir à une méthode de la vue (forbiddenAccess) en 'dur'
+    */
+    private function checkAuthorization($sudoers)
+    {
+        $authorized = $this->_controller->checkAuthorization($sudoers);
 
-		return false;
- 	}
+        if ($authorized) {
+            return true;
+        } else {
+            $this->_call = array(self::VIEW => 'forbiddenAccess');
 
- 	/*
- 		Vérifie l'authorisation de l'utilisateur (connecté ou non) par rapport à la liste des types de membres authorisée d'une route
+            return false;
+        }
+    }
 
- 		TODO: implémentation trop rapide -> trouver une solution pour éviter de recourir à une méthode de la vue (forbiddenAccess) en 'dur'
- 	*/
- 	private function checkAuthorization($sudoers) {
- 		$authorized = $this->_controller->checkAuthorization($sudoers);
+    //TODO: supprimer ou afficher à la place du script
+    private function logCall()
+    {
+        echo "<script type='text/javascript'>";
+        if (array_key_exists(self::CTL, $this->_call)) {
+            echo "console.log('controller: ".$this->_call[self::CTL]."');";
+        }
 
- 		if($authorized)
- 			return true;
- 		else {
- 			$this->_call = array(self::VIEW => "forbiddenAccess");
- 			return false;
- 		}
- 	}
-
-
- 	//TODO: supprimer ou afficher à la place du script
- 	private function logCall() {
- 		echo "<script type='text/javascript'>";
- 		if(array_key_exists(self::CTL, $this->_call)) {
-			echo "console.log('controller: " . $this->_call[self::CTL] . "');"; 
-		}
-
-		if(array_key_exists(self::VIEW, $this->_call)) {
-			echo "console.log('vue: " . $this->_call[self::VIEW] . "');"; 
-		}
- 		echo "</script>";
- 	}
+        if (array_key_exists(self::VIEW, $this->_call)) {
+            echo "console.log('vue: ".$this->_call[self::VIEW]."');";
+        }
+        echo '</script>';
+    }
 }

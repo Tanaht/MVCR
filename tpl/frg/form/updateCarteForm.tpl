@@ -1,4 +1,4 @@
-<form class="yu-block" method="post" action="index.php?carte={{carte.id}}" enctype="multipart/form-data">
+<form name="form" class="yu-block" method="post" action="index.php?carte={{carte.id}}" enctype="multipart/form-data">
 	<h1>Modifier une carte</h1>
 	<div class="yu-layout-column">
 		<div class="yu-input-container">

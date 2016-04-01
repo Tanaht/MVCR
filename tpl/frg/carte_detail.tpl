@@ -1,6 +1,6 @@
 <div class="yu-layou-column">
 	<div class="yu-xl-layout-row yu-xs-layout-column yu-block">
-		<img sizes="(max-width: 690px) 70vh, (min-width: 690px) 100vh" class="yu-center" src="{{ assets }}/cartes/{{ carte.id }}.jpg"
+		<img sizes="(max-width: 690px) 100vh, (min-width: 690px) 100vh" class="yu-center" src="{{ assets }}/cartes/{{ carte.id }}.jpg"
 			srcset="{{ assets }}/cartes/{{ carte.id }}_thumb.jpg 138w,
 					{{ assets }}/cartes/{{ carte.id }}.jpg 342w" 
 			width="342" height="492" alt="{{carte.nom | escape }}">
