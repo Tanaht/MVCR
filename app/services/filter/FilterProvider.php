@@ -18,7 +18,7 @@ class FilterProvider
             return self::$filters[$name];
         }
 
-        return;
+        return null;
     }
 
     public static function getFilters()

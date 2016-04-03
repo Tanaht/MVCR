@@ -19,6 +19,8 @@ class RouterV2 {
 		$this->request->setRouteName(Config::DEFAULT_ROUTE);
         $this->response = new Response();
         $this->response->setUser($this->request->user);
+        $this->response->addGlobal('router', Config::ROUTES);
+        $this->response->addGlobal('baseuri', Config::BASE_URI);
 	}
 	public function run() {
         //$this->debug();
@@ -35,13 +37,12 @@ class RouterV2 {
 
 
         call_user_func(Config::ROUTES[$this->request->getRouteName()]['controller'], $this->request, $this->response);
-
-
         $this->response->send($this->request);
+        //$this->debug();
     }
 
 
     private function debug() {
-    	var_dump($_SERVER["PATH_INFO"], $_GET, $_POST);
+    	var_dump($_SERVER["PATH_INFO"], $_SERVER['REQUEST_URI'], $_SERVER['SERVER_NAME'],$_GET, $_POST);
     }
 }

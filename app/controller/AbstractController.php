@@ -30,4 +30,8 @@ abstract class AbstractController
     public static function getUser() {
         return new User();
     }
+
+    public function getTitle($title) {
+        return "YUDb - " . $title;
+    }
 }

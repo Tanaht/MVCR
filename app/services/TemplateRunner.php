@@ -149,7 +149,7 @@ class TemplateRunner
     }
 
     //FEUILLE:
-    const WORD_REGEX = '[A-Za-z]+[A-Za-z0-9]*';
+    const WORD_REGEX = '(_|[A-Za-z])+[A-Za-z0-9]*';
 
     private function eatTplWord($word)
     {
@@ -334,7 +334,6 @@ class TemplateRunner
     private function call($variable, $variableCall)
     {
         if (is_object($variable)) {
-            //TODO: façon vraiment sale d'appeler une méthode ou une variable
             if (method_exists($variable, $variableCall)) {
                 $callable = array($variable, $variableCall);
 
@@ -349,9 +348,8 @@ class TemplateRunner
 
             return $variable->$variableCall;
         }
-
         if (is_array($variable)) {
-            if (!array_key_exists($variable, $variableCall)) {
+            if (!array_key_exists($variableCall, $variable)) {
                 $this->addError('CompileTemplate: key: '.$variableCall.' not found inside array');
 
                 return 'NULL';

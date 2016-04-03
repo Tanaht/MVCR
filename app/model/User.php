@@ -10,7 +10,7 @@ class User implements SecurityUser
 {
     private $connected;
     private $role;
-    private $utilisateur;
+    public $utilisateur;
 
     public function __construct() {
         $this->role = 'USER';
@@ -23,10 +23,10 @@ class User implements SecurityUser
 
     public function authenticate($user, $password)
     {
-        if (PasswordCompat::password_verify($user->password, $user['password'])) {
+        if (PasswordCompat::password_verify($password, $user->password)) {
             $this->connected = true;
-            $this->role = $this->utilisateur->sudo;
             $this->utilisateur = $user;
+            $this->role = $this->utilisateur->sudo;
             $this->utilisateur;
             return true;
         }
@@ -43,13 +43,13 @@ class User implements SecurityUser
     }
 
     public function getUsers($username) {
-        $bbd = DatabaseHelper::getBdd();
+        $bdd = DatabaseHelper::getBdd();
 
-        $bdd->query("SELECT id_utilisateur FROM Utilisateur WHERE username like '%". $username ."%'");
+        $bdd->query("SELECT id_utilisateur FROM utilisateurs WHERE username like '%$username%'");
 
         $users = array();
         foreach ($bdd->execute() as $row) {
-            $users[] = $row['id_utilisateur'];
+            $users[] = new Utilisateur($row['id_utilisateur']);
         }
         return $users;
     }

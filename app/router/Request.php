@@ -6,6 +6,7 @@ use app\view\Template;
 use app\view\TemplatesWrapper;
 use app\controller\AbstractController;
 use app\config\DatabaseHelper;
+use formBuilder\Form;
 
 
 class Request {
@@ -33,6 +34,7 @@ class Request {
 			$this->url = $_SERVER["PATH_INFO"];
 		
 		$this->routeName = "";
+        $this->user = AbstractController::getUser();
 		$this->reloadUser();
         $this->redirectPath = 'cartes';
 	}
@@ -61,26 +63,33 @@ class Request {
 	private function reloadUser() {
 		if(isset($_SESSION['user']))
 			$this->user = \unserialize($_SESSION['user']);
-		else {
-			$this->user = AbstractController::getUser();
-		}
+		else
+			return $this->user;
 	}
 
 	//On ne gère que GET et POST, on part du principe que OPTION, DELETE, PUT, HEAD, ne seront jamais envoyé.
 	public function handleResponse(Response $response) {
-		if($this->method == self::METHOD_POST) {
-			$response->responseRedirect($this->redirectPath);
-		}
+        $formLoginWrapper = $response->_w();
+        $form = new Form('formLogin', 'logon.tpl');
+        $form->add('_username', null, true);
+        $form->add('_password', null, true);
+
+        $form->handleRequest($this);
+
+
+        $_SESSION['user'] = serialize($this->user);
+        if($this->method == self::METHOD_POST)
+            $response->responseRedirect($this->redirectPath);
 
 		if($this->method == self::METHOD_GET) {
 			$wrapper = $response->_w();
 			if(!$this->user->connected()) {
-				$wrapper->addTemplate(new Template('frg/form/logon.tpl'));
-				$response->view()->inject('formLogin', $wrapper);
+                $formLoginWrapper->addTemplate($form->getFormFragment());
+                $response->view()->inflate('formLogin', $formLoginWrapper);
 			}
 			else {
-				$wrapper->addTemplate(new Template('frg/form/logoff.tpl'));
-				$response->view()->inject('formLogin', $wrapper);
+                $formLoginWrapper->addTemplate(new Template('frg/form/logoff.tpl'));
+				$response->view()->inject('formLogin', $formLoginWrapper);
 			}
 		}
 	}

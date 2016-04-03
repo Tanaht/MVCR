@@ -5,7 +5,7 @@
             "app\\" : "app/",
             "urisolver\\" : "app/services/urisolver",
             "exceptions\\" : "app/exceptions",
-            "formBuilder\\" : "app/formBuilder"
+            "formBuilder\\" : "app/services/formBuilder"
         }
     }
 }

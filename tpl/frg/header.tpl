@@ -3,7 +3,5 @@
 	<span class="yu-arianne"></span>
 </div>
 <div class="yu-right-header">
-	{{ user.getRole }}
-	{{ user.connected | showBoolean }}
 	{{ formLogin }}
 </div>

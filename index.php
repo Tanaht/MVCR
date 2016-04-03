@@ -12,6 +12,7 @@ use app\services\filter\CurrencyFilter;
 use app\services\filter\ArianneFilter;
 use app\services\filter\InputFilter;
 use app\services\filter\HideFilter;
+use app\services\filter\PathFilter;
 use app\services\filter\ShowFilter;
 use app\services\filter\SelectedKeyFilter;
 use app\services\filter\EscapeFilter;
@@ -30,6 +31,7 @@ $filters[] = new EscapeFilter();
 $filters[] = new IsEmptyFilter();
 $filters[] = new ToListFilter();
 $filters[] = new ShowBooleanFilter();
+$filters[] = new PathFilter();
 
 foreach ($filters as $key => $value) {
     FilterProvider::addFilter($value->getName(), $value);

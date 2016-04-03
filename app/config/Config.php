@@ -21,7 +21,7 @@ class Config
 
     const DEFAULT_ROUTE = "pagenotfound";
     const DEFAULT_TEMPLATE = "squelette.tpl";
-
+	const BASE_URI = "/projet-eci62-2016";
 
     const ROUTES = array(
     	'index' => array(

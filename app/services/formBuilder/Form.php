@@ -3,47 +3,53 @@
 namespace formBuilder;
 
 use app\router\Request;
+use app\view\Fragment;
 
 class Form {
 	private $name;
 	private $inputs;
+    private $formFragment;
+    private $injectionDataForm;
 
-    public function __construct($name)
+    public function __construct($name, $formPath)
     {
         $this->name = $name;
+        $this->formFragment = new Fragment('frg/form/' . $formPath);
         $this->inputs = array();
+
+        $this->injectionDataForm = array(
+            'name' => $name,
+            'inputs' => array()
+        );
     }
 
-    public function getName()
-    {
-        return $this->name;
+    public function add($name, $value=null, $required = false) {
+        $this->inputs[$name] = new Input($name);
+        $this->injectionDataForm['inputs'][$name] = array();
+        $this->injectionDataForm['inputs'][$name]['name'] = $name;
+        $this->injectionDataForm['inputs'][$name]['name'] = $name;
+        $this->injectionDataForm['inputs'][$name]['value'] = '';
+        $this->injectionDataForm['inputs'][$name]['required'] = '';
+        if($value != null) {
+            $this->inputs[$name]->setValue($value);
+            $this->injectionDataForm['inputs'][$name]['value'] = $value;
+        }
+
+        if($required) {
+            $this->inputs[$name]->required();
+            $this->injectionDataForm['inputs'][$name]['required'] = 'required';
+        }
     }
-
-    public function add($type, $name, $values = null) {
-        return $this->inputs[$name] = new Input($type, $name, $values);
-    }
-
-
-    /*public function handleRequest(Request $request) {
-		if(!$request->user->connected() && $this->form->isFormLogin()) {
-			$users = $request->getUsers($request->form->login());
-
-			foreach ($users as $user) {
-				if($request->user->authenticate($user, $request->form->password()))
-					break;
-			}
-		}
-	}*/
 
     public function get($name) {
-        if(array_key_exists($name, $this->inputs))
-            return $this->inputs[$name]->getInputValue;
-
-        return null;
+        if(!isset($this->inputs[$name]))
+            return null;
+        return $this->inputs[$name]->getValue();
     }
 
-    public function isFormLogin() {
-        return array_key_exists('_password', $this->inputs) && array_key_exists('_username', $this->inputs);
+    public function getFormFragment() {
+        $this->formFragment->inject('form', $this->injectionDataForm);
+        return $this->formFragment;
     }
 
     public function isValid() {
@@ -51,16 +57,33 @@ class Form {
             if(!$input->isValid())
                 return false;
         }
+
         return true;
     }
 
+    public function isFormLogin() {
+        return $this->get('_password') != null && $this->get('_username') != null;
+    }
+
+
+    /*
+     * le formulaire va prendre en charge la requete si le type de requête est POST,
+     * les valeurs du formulaire vont être mis à jour.
+    */
     public function handleRequest(Request $request) {
         if($request->getMethod() != Request::METHOD_POST)
             return;
-        
+
+        $this->populatePOSTArgs();
         if(!$request->user->connected() && $this->isFormLogin()) {
-            foreach ($request->user->getUsers($this->get('_username')) as $user) {
-                if ($request->user->authenticate($user, $request->get('_password')))
+
+            if(!$this->isValid()) {
+                $request->redirectTo($request->getUrl());//TODO: Translate url into KeyMap
+                return;
+            }
+
+            foreach ($request->user->getUsers($this->get('_username')) as $utilisateur) {
+                if ($request->user->authenticate($utilisateur, $this->get('_password')))
                     break;
             }
 
@@ -69,6 +92,14 @@ class Form {
             }
             else {
                 $request->redirectTo('login');
+            }
+        }
+    }
+
+    private function populatePOSTArgs() {
+        foreach ($this->inputs as $input) {
+            if(isset($_POST[$input->getName()])) {
+                $input->setValue($_POST[$input->getName()]);
             }
         }
     }

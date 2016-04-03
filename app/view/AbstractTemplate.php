@@ -15,14 +15,7 @@ abstract class AbstractTemplate {
 	protected $hooks;
 
 	private $_globals;
-	//TODO: Debug function to suppress
-	/*public function getNeeded() {
-		return $this->searchedVars;
-	}
 
-	public function getHooks() {
-		return $this->hooks;
-	}*/
 	public function __construct($templatePath = Config::DEFAULT_TEMPLATE, TemplateRunner $runner = null) {
 		if($runner != null)
 			$this->runner = $runner;
@@ -104,10 +97,15 @@ abstract class AbstractTemplate {
 	//Valide un template en fonction de ses hooks et des variables recherché.
 	public function isValid() {
 		foreach ($this->searchedVars as $searchedVar) {
-			if(!array_key_exists($searchedVar, $this->hooks))
-				return false;
-		}
-		return true;
+            //si les variables globales n'ont pas encore été propagé dans le template, ont les échapes
+            if(array_key_exists($searchedVar, $this->_globals))
+                continue;
+
+            if (!array_key_exists($searchedVar, $this->hooks))
+                return false;
+
+        }
+        return true;
 	}
 
 	public function forceRender() {
