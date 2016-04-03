@@ -1,8 +1,11 @@
 {
     "autoload": {
         "psr-4": {
-            "Mvcr\\": "./",
-            "app\\" : "app/"
+            "Mvcr\\" : "./",
+            "app\\" : "app/",
+            "urisolver\\" : "app/services/urisolver",
+            "exceptions\\" : "app/exceptions",
+            "formBuilder\\" : "app/formBuilder"
         }
     }
 }

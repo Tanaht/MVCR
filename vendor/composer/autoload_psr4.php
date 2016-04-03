@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'urisolver\\' => array($baseDir . '/app/services/urisolver'),
+    'exceptions\\' => array($baseDir . '/app/exceptions'),
     'app\\' => array($baseDir . '/app'),
     'Mvcr\\' => array($baseDir . '/'),
 );

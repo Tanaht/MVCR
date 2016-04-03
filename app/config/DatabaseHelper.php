@@ -1,8 +1,6 @@
 <?php
 
-namespace app\model;
-
-use app\config\Config;
+namespace app\config;
 
 class DatabaseHelper
 {

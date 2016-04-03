@@ -8,7 +8,7 @@ use app\model\User;
 
 //Ce Router s'inspire de la technologie de routage de AngularJS
 //Devenu inutilisable avec la V2 car les paramètres sont passé par url
-class Router extends AbstractRouter
+class Router
 {
     const stringParam = '##';
     const intParam = '#int#';
@@ -18,6 +18,18 @@ class Router extends AbstractRouter
     const VIEW = 'view';
     const CTL = 'controller';
 
+    protected $_view;
+    protected $_controller;
+    protected $_call;
+    
+
+    public function __construct()
+    {
+        $this->_call = null;
+        $this->_view = new View($this);
+        $this->_controller = new Controller($this, $this->_view);
+    }
+    
     /**
      
      */

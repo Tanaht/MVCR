@@ -2,6 +2,8 @@
 
 namespace app\model;
 
+use app\config\DatabaseHelper;
+
 class Attribut
 {
     public $nom;

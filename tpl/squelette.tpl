@@ -17,8 +17,8 @@
 			<form method="GET" action="index.php">
 				<ul class="yu-list">
 					<li class="yu-list-item"><button class="btn btn-list" name="action" value="home">Home</button></li>
-					{{ '<li class="yu-list-item"><button class="btn btn-list" name="action" value="mescartes">Mes Cartes</button></li>' | hideFor : 'USER'}}
-					{{ '<li class="yu-list-item"><button class="btn btn-list" name="action" value="create">Créer une carte</button></li>' | hideFor : 'USER'}}
+					{{'<li class="yu-list-item"><button class="btn btn-list" name="action" value="mescartes">Mes Cartes</button></li>'}}
+					{{'<li class="yu-list-item"><button class="btn btn-list" name="action" value="create">Créer une carte</button></li>'}}
 					<li class="yu-list-item"><button class="btn btn-list" name="action" value="cartes">Cartes</button></li>
 				</ul>
 			</form>
@@ -33,8 +33,6 @@
 	<div class="yu-footer">
 		{{ footer }}
 	</div>
-	<script src="js/validatorMessages.js"></script>
-	<script src="js/validateDocument.js"></script>
 	<script src="js/listShowDetail.js"></script>
 </body>
 </html>

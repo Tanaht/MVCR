@@ -2,48 +2,63 @@
 
 namespace app\model;
 
+use app\config\DatabaseHelper;
 use app\services\PasswordCompat;
+use app\router\SecurityUser;
 
-class User
+class User implements SecurityUser
 {
-    //status:
-    const LOGON = 'LOGON';
-    const LOGOFF = 'LOGOFF';
+    private $connected;
+    private $role;
+    private $utilisateur;
 
-    //sudo(rights):
-    const ADMIN = 'ADMIN';
-    const MEMBER = 'MEMBER';
-    const USER = 'USER';
+    public function __construct() {
+        $this->role = 'USER';
+        $this->connected = false;
+    }
 
-    private $_id;
+    public function connected() {
+        return $this->connected;
+    }
 
-    public $_status;
-    public $username;
-    public $email;
-    public $sudo;
-
-    private $_registerPasswd;
-    private $_tmpPASSWD;
-
-    public function __construct()
+    public function authenticate($user, $password)
     {
-        session_start();//On met le session start ici en attendant une place plus logique...(peut-être dans index.php)
-
-        $this->_status = self::LOGON;
-        $this->sudo = self::USER;
-
-        if (!isset($_SESSION['username'])) {
-            $_SESSION['sudo'] = $this->sudo;
-
-            return;
+        if (PasswordCompat::password_verify($user->password, $user['password'])) {
+            $this->connected = true;
+            $this->role = $this->utilisateur->sudo;
+            $this->utilisateur = $user;
+            $this->utilisateur;
+            return true;
         }
 
-        $this->_status = self::LOGOFF;
-        $this->sudo = $_SESSION['sudo'];
-        $this->username = $_SESSION['username'];
-        $this->email = $_SESSION['email'];
-        $this->_id = $_SESSION['id'];
+        return false;
     }
+
+    public function eraseCriticInformations() {
+        $this->utilisateur->password = "";
+    }
+
+    public function getRole() {
+        return $this->role;
+    }
+
+    public function getUsers($username) {
+        $bbd = DatabaseHelper::getBdd();
+
+        $bdd->query("SELECT id_utilisateur FROM Utilisateur WHERE username like '%". $username ."%'");
+
+        $users = array();
+        foreach ($bdd->execute() as $row) {
+            $users[] = $row['id_utilisateur'];
+        }
+        return $users;
+    }
+
+    public function logout() {
+        $this->connected = false;
+        $this->role = 'USER';
+    }
+
 
     /*
         $stmt = $dbh->prepare("INSERT INTO REGISTRY (name, value) VALUES (:name, :value)");
@@ -64,63 +79,6 @@ class User
         $bdd->bindParam(':email', $email);
 
         $bdd->execute(false);
-    }
-
-    public function connect($user, $passwd)
-    {
-        if ($this->_status == self::LOGOFF && $this->username == $user) {
-            return true;
-        }
-
-        $this->_tmpPASSWD = $passwd;
-
-        $bdd = DatabaseHelper::getBdd();
-        $bdd->query('SELECT id_utilisateur, username, password FROM utilisateurs WHERE username = "'.$user.'"');
-        $bdd->forEachRow(array($this, 'verifyUser'));
-
-        $this->_tmpPASSWD = '';
-
-        if ($this->_status == self::LOGOFF) {
-            $user = new Utilisateur($this->_id);
-
-            $this->username = $user->username;
-            $this->email = $user->email;
-            $this->sudo = $user->sudo;
-
-            $_SESSION['username'] = $this->username;
-            $_SESSION['email'] = $this->email;
-            $_SESSION['sudo'] = $this->sudo;
-            $_SESSION['id'] = $this->_id;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public function verifyUser(&$user)
-    {
-        if ($this->_status == self::LOGOFF) {
-            return;
-        }
-
-        if (PasswordCompat::password_verify($this->_tmpPASSWD, $user['password'])) {
-            $this->_status = self::LOGOFF;
-            $this->_id = $user['id_utilisateur'];
-        }
-    }
-
-    public function disconnect()
-    {
-        session_destroy();
-        $this->_status = self::LOGON;
-        $this->sudo = self::USER;
-        $_SESSION['sudo'] = $this->sudo;
-    }
-
-    public function getId()
-    {
-        return $this->_id;
     }
 }
 

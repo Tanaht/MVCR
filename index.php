@@ -17,6 +17,7 @@ use app\services\filter\SelectedKeyFilter;
 use app\services\filter\EscapeFilter;
 use app\services\filter\IsEmptyFilter;
 use app\services\filter\ToListFilter;
+use app\services\filter\ShowBooleanFilter;
 
 //Register Filters
 $filters[] = new CurrencyFilter();
@@ -28,6 +29,7 @@ $filters[] = new SelectedKeyFilter();
 $filters[] = new EscapeFilter();
 $filters[] = new IsEmptyFilter();
 $filters[] = new ToListFilter();
+$filters[] = new ShowBooleanFilter();
 
 foreach ($filters as $key => $value) {
     FilterProvider::addFilter($value->getName(), $value);

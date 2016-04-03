@@ -13,16 +13,16 @@ class HideFilter extends Filter
 
     public function filter($before, array $args = null, $globals)
     {
-        if (in_array($globals['user']->sudo, $args)) {
+        if (in_array($globals['user']->getRole(), $args)) {
             return '';
         }
 
-        if ($globals['user']->_status == User::LOGON) {
+        if (!$globals['user']->connected()) {
             return $before;
         }
 
         foreach ($args as $arg) {
-            if ($globals['user']->getId() == $arg) {
+            if ($globals['user']->utilisateur->id == $arg) {
                 return '';
             }
         }
