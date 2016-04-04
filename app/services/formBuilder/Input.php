@@ -40,7 +40,6 @@ class Input
     public function isValid()
     {
         if ($this->isRequired && !isset($this->value)) {
-            echo $this->getName() . " NOT SET";
             return false;
         }
 
