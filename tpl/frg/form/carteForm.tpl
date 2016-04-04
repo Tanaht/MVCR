@@ -1,42 +1,42 @@
-<form class="yu-block" method="post" action="index.php" enctype="multipart/form-data">
+<form nom="{{ form.name }}" class="yu-block" method="post" enctype="multipart/form-data">
 	<h1>Créer une carte</h1>
 	<div class="yu-layout-column">
 		<div class="yu-input-container">
-			<label for="nom">Nom</label>
-			<input type="text" id="nom" name="nom" required />
+			<label for="{{ form.inputs.nom.name }}">Nom</label>
+			<input type="text" id="{{ form.inputs.nom.name }}" name="{{ form.inputs.nom.name }}" {{ form.inputs.nom.required }} {{ form.inputs.nom.value }}/>
 		</div>
 		<div class="yu-input-container">
-			<label for="attaque">Attaque</label>
-			<input type="text" id="attaque" name="attaque"/>
+			<label for="{{ form.inputs.attaque.name }}">Attaque</label>
+			<input type="text" id="{{ form.inputs.attaque.name }}" name="{{ form.inputs.attaque.name }}" {{ form.inputs.attaque.required }} {{ form.inputs.attaque.value }}/>
 		</div>
 		<div class="yu-input-container">
-			<label for="defense">Défense</label>
-			<input type="text" id="defense" name="defense"/>
+			<label for="{{ form.inputs.defense.name }}">Défense</label>
+			<input type="text" id="{{ form.inputs.defense.name }}" name="{{ form.inputs.defense.name }}" {{ form.inputs.defense.required }} {{ form.inputs.defense.value }}/>
 		</div>
 		<div class="yu-input-container">
-			<label for="image">Image</label>
-			<input type="file" id="image" name="image" accept="image/jpeg" required />
+			<label for="{{ form.inputs.image.name }}">Nom</label>
+			<input accept="image/jpeg" type="file" id="{{ form.inputs.image.name }}" name="{{ form.inputs.image.name }}" {{ form.inputs.image.required }} />
 		</div>
 		<div class="yu-input-container">
-			<label for="niveau">Niveau/Rang</label>
-			{{niveaux | input : 'select' : 'niveau'}}
+			<label for="{{ form.inputs.niveau.name }}">Niveau/Rang</label>
+			{{niveaux | input : 'select' : form.inputs.niveau.name}}
 		</div>
 		<div class="yu-input-container">
 			<fieldset>
 				<legend>Catégorie</legend>
-				{{categories | input : 'radio' : 'categorie'}}
+				{{categories | input : 'radio' : form.inputs.categorie.name : 'required'}}
 			</fieldset>		
 		</div>
 		<div class="yu-input-container">
 			<fieldset>
 				<legend>Effet</legend>
-				{{effets | input : 'radio' : 'effet'}}
+				{{effets | input : 'radio' : form.inputs.effet.name : 'required'}}
 			</fieldset>					
 		</div>
 		<div class="yu-input-container">
 			<fieldset>
 				<legend>Attribut</legend>
-				{{attributs | input : 'radio' : 'attribut' : 'required'}}
+				{{attributs | input : 'radio' : form.inputs.attribut.name : 'required'}}
 			</fieldset>
 		</div>
 		<div class="yu-input-container">
@@ -46,9 +46,9 @@
 			</fieldset>
 		</div>
 		<div class="yu-input-container">
-			<label for="description">Description</label>
-			<textarea name="description" id="description"></textarea>
+			<label for="{{ form.inputs.description.name }}">Description</label>
+			<textarea name="{{ form.inputs.description.name }}" id="{{ form.inputs.description.name }}">{{ form.inputs.description.value }}</textarea>
 		</div>
-		<button name="create" class="btn" value="card">Créer la carte</button> 
+		<a href="{{ router.ajouterCarte.path | path : '' }}"><button class="btn">Créer la carte</button></a>
 	</div>
 </form>

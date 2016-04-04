@@ -11,9 +11,8 @@
 	<div class="yu-content">
 		<div class="yu-page-container">
 			<div class="yu-page">
-				<div class="yu-layout-column">
-					<h1 class="yu-title yu-warn">Exception:</h1>
 					<div class="yu-block">
+						<h1 class="yu-title yu-warn">Exception:</h1>
 						<h3>Message:</h3>
 						<p>{{ message }}</p>	
 					</div>

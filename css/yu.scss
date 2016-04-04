@@ -5,8 +5,9 @@ $backgroundLight: #E5E5E5;
 $color-text: #000000;
 //La couleur la plus courante pour indiquer un contenu
 $primary: #AE622A;
+
 //La couleur secondaire pour indiquer un contenu
-$secondary: #AE622A;
+$secondary: #7a6335;
 
 //Accentuations sur les éléments avec lesquels l'utilisateur peut intéragir
 $accent: #38BA1E;
@@ -19,7 +20,6 @@ $warn: #C81B1B;
 //deux types de graisse.
 $bold: 800;
 $lightBold: 600;
-
 
 
 //CSS module alert
@@ -41,7 +41,7 @@ $lightBold: 600;
 }
 
 
-button.btn {
+.btn {
 	background-color: $accent;
 	border: none;
 	padding:7px;
@@ -77,9 +77,18 @@ button.btn {
 	&:hover {
 		background-color: $accentLight;
 	}
+
+    a{
+      color: $color-text;
+
+      &:hover {
+        color: $color-text;
+        text-decoration: none;
+      }
+    }
 }
 
-button.btn-list {
+.btn-list {
 	width: 100%;
 	margin: 0px 0px 5px 0px;
 }
@@ -198,12 +207,14 @@ h1, h2, h3, h4, p, span, em {
 a {
 	color: $accent;
 	text-decoration: none;
+
+	&:hover {
+		color: $accentLight;
+		text-decoration: none;
+	}
 }
 
-a:hover {
-	color: $accentLight;
-	text-decoration: none;
-}
+
 .yu-header {
 	padding: 5px 5px 5px 5px;
 	background-color: $primary;

@@ -2,29 +2,60 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="baccd2cc-235b-456c-b15f-62ddff305114" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/services/formBuilder/FormBuilder.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/templateLanguages.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controller/Controller.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php-cs-fixer.phar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sftp-config.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/cartes/1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/cartes/1_thumb.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/cartes/32.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/cartes/32_thumb.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Antoine.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Antoine.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/projet-eci62-2016.iml" afterPath="$PROJECT_DIR$/.idea/projet-eci62-2016.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/Config.php" afterPath="$PROJECT_DIR$/app/config/Config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/AbstractController.php" afterPath="$PROJECT_DIR$/app/controller/AbstractController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/CarteController.php" afterPath="$PROJECT_DIR$/app/controller/CarteController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/DefaultController.php" afterPath="$PROJECT_DIR$/app/controller/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/exceptions/FilterInvalidException.php" afterPath="$PROJECT_DIR$/app/exceptions/FilterInvalidException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/exceptions/TemplateInvalidException.php" afterPath="$PROJECT_DIR$/app/exceptions/TemplateInvalidException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/Carte.php" afterPath="$PROJECT_DIR$/app/model/Carte.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/User.php" afterPath="$PROJECT_DIR$/app/model/User.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/Request.php" afterPath="$PROJECT_DIR$/app/router/Request.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/Router.php" afterPath="$PROJECT_DIR$/app/router/Router.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/RouterV2.php" afterPath="$PROJECT_DIR$/app/router/RouterV2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/SecurityUser.php" afterPath="$PROJECT_DIR$/app/router/SecurityUser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/AssetsManager.php" afterPath="$PROJECT_DIR$/app/services/AssetsManager.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/TemplateRunner.php" afterPath="$PROJECT_DIR$/app/services/TemplateRunner.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/Filter.php" afterPath="$PROJECT_DIR$/app/services/filter/Filter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/CurrencyFilter.php" afterPath="$PROJECT_DIR$/app/services/filter/CurrencyFilter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/FilterProvider.php" afterPath="$PROJECT_DIR$/app/services/filter/FilterProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/PathFilter.php" afterPath="$PROJECT_DIR$/app/services/filter/PathFilter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/ShowBooleanFilter.php" afterPath="$PROJECT_DIR$/app/services/filter/ShowBooleanFilter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/formBuilder/Form.php" afterPath="$PROJECT_DIR$/app/services/formBuilder/Form.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/formBuilder/Input.php" afterPath="$PROJECT_DIR$/app/services/formBuilder/Input.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/urisolver/UriParser.php" afterPath="$PROJECT_DIR$/app/services/urisolver/UriParser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/urisolver/UriSolver.php" afterPath="$PROJECT_DIR$/app/services/urisolver/UriSolver.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/tests/TemplaterTest.php" afterPath="$PROJECT_DIR$/app/tests/TemplaterTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/tests/uriSolverTest.php" afterPath="$PROJECT_DIR$/app/tests/uriSolverTest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/AbstractTemplate.php" afterPath="$PROJECT_DIR$/app/view/AbstractTemplate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/Fragment.php" afterPath="$PROJECT_DIR$/app/view/Fragment.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/Response.php" afterPath="$PROJECT_DIR$/app/view/Response.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/Template.php" afterPath="$PROJECT_DIR$/app/view/Template.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/TemplatesWrapper.php" afterPath="$PROJECT_DIR$/app/view/TemplatesWrapper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/yu.css" afterPath="$PROJECT_DIR$/css/yu.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/yu.css.map" afterPath="$PROJECT_DIR$/css/yu.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/yu.scss" afterPath="$PROJECT_DIR$/css/yu.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/exceptions/exception.tpl" afterPath="$PROJECT_DIR$/tpl/exceptions/exception.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/carte_detail.tpl" afterPath="$PROJECT_DIR$/tpl/frg/carte_detail.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/carte_list_item.tpl" afterPath="$PROJECT_DIR$/tpl/frg/carte_list_item.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/carteForm.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/carteForm.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/inscription.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/inscription.tpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/logoff.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/logoff.tpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/logon.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/logon.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/header.tpl" afterPath="$PROJECT_DIR$/tpl/frg/header.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/updateCarteForm.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/updateCarteForm.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/listeCartes.tpl" afterPath="$PROJECT_DIR$/tpl/frg/listeCartes.tpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/squelette.tpl" afterPath="$PROJECT_DIR$/tpl/squelette.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" />
     </list>
     <ignored path="projet-eci62-2016.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,41 +108,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="squelette.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tpl/squelette.tpl">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="-412">
+              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+              <folding>
+                <element signature="e#63#87#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exception.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tpl/exceptions/exception.tpl">
+      <file leaf-file-name="AssetsManager.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/AssetsManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractTemplate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/AbstractTemplate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1003">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RouterV2.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/router/RouterV2.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+            <state relative-caret-position="-175">
+              <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -120,40 +133,18 @@
       <file leaf-file-name="Request.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/router/Request.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="66" column="31" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
+            <state relative-caret-position="267">
+              <caret line="98" column="40" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Response.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/Response.php">
+      <file leaf-file-name="Form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-              <folding>
-                <element signature="e#28#56#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TemplateInvalidException.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/exceptions/TemplateInvalidException.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+            <state relative-caret-position="1734">
+              <caret line="130" column="12" selection-start-line="130" selection-start-column="12" selection-end-line="133" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -162,18 +153,70 @@
       <file leaf-file-name="Config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/Config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+            <state relative-caret-position="437">
+              <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PathFilter.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/services/filter/PathFilter.php">
+      <file leaf-file-name="RouterV2.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/router/RouterV2.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+            <state relative-caret-position="153">
+              <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="exception.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/exceptions/exception.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Response.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/Response.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-308">
+              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CarteController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controller/CarteController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+              <folding>
+                <marker date="1459796404466" expanded="true" signature="1062:1140" placeholder="SELECT id_ca... categories" />
+                <marker date="1459796404466" expanded="true" signature="1205:1275" placeholder="SELECT id_ef... effets" />
+                <marker date="1459796404466" expanded="true" signature="1336:1412" placeholder="SELECT id_at... attributs" />
+                <marker date="1459796404466" expanded="true" signature="1476:1544" placeholder="SELECT id_ty... types" />
+                <marker date="1459796404466" expanded="true" signature="5049:5127" placeholder="SELECT id_ca... categories" />
+                <marker date="1459796404466" expanded="true" signature="5192:5262" placeholder="SELECT id_ef... effets" />
+                <marker date="1459796404466" expanded="true" signature="5323:5399" placeholder="SELECT id_at... attributs" />
+                <marker date="1459796404466" expanded="true" signature="5463:5531" placeholder="SELECT id_ty... types" />
+                <marker date="1459796404466" expanded="true" signature="8603:8630" placeholder="SELECT id_ca... cartes" />
+                <marker date="1459796404466" expanded="true" signature="9640:9689" placeholder="SELECT id_ca... cartes" />
+                <marker date="1459796404466" expanded="true" signature="10702:10746" placeholder="SELECT id_ca... cartes" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Input.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Input.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="641">
+              <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -190,26 +233,41 @@
         <option value="$PROJECT_DIR$/app/services/formBuilder/FormBuilder.php" />
         <option value="$PROJECT_DIR$/app/controller/AbstractController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/tpl/frg/form/logon.tpl" />
-        <option value="$PROJECT_DIR$/app/services/formBuilder/Input.php" />
-        <option value="$PROJECT_DIR$/app/controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/app/services/formBuilder/Form.php" />
-        <option value="$PROJECT_DIR$/app/services/TemplateRunner.php" />
-        <option value="$PROJECT_DIR$/app/router/Request.php" />
-        <option value="$PROJECT_DIR$/tpl/frg/form/logoff.tpl" />
-        <option value="$PROJECT_DIR$/app/model/User.php" />
         <option value="$PROJECT_DIR$/tpl/frg/header.tpl" />
         <option value="$PROJECT_DIR$/app/services/filter/FilterProvider.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/app/services/filter/Filter.php" />
         <option value="$PROJECT_DIR$/app/exceptions/FilterInvalidException.php" />
         <option value="$PROJECT_DIR$/app/view/AbstractTemplate.php" />
+        <option value="$PROJECT_DIR$/tpl/frg/form/logoff.tpl" />
+        <option value="$PROJECT_DIR$/tpl/frg/error/401.tpl" />
+        <option value="$PROJECT_DIR$/app/controller/Controller.php" />
+        <option value="$PROJECT_DIR$/tpl/frg/listeCartes.tpl" />
+        <option value="$PROJECT_DIR$/tpl/frg/carte_list_item.tpl" />
+        <option value="$PROJECT_DIR$/tpl/frg/form/logon.tpl" />
+        <option value="$PROJECT_DIR$/app/model/User.php" />
+        <option value="$PROJECT_DIR$/tpl/frg/form/inscription.tpl" />
+        <option value="$PROJECT_DIR$/app/tests/uriSolverTest.php" />
+        <option value="$PROJECT_DIR$/app/services/filter/PathFilter.php" />
+        <option value="$PROJECT_DIR$/app/services/urisolver/UriSolver.php" />
+        <option value="$PROJECT_DIR$/css/yu.scss" />
+        <option value="$PROJECT_DIR$/tpl/exceptions/exception.tpl" />
+        <option value="$PROJECT_DIR$/tpl/frg/carte_detail.tpl" />
+        <option value="$PROJECT_DIR$/app/services/TemplateRunner.php" />
+        <option value="$PROJECT_DIR$/tpl/frg/form/carteForm.tpl" />
+        <option value="$PROJECT_DIR$/tpl/frg/form/updateCarteForm.tpl" />
+        <option value="$PROJECT_DIR$/app/config/DatabaseHelper.php" />
+        <option value="$PROJECT_DIR$/app/model/Carte.php" />
+        <option value="$PROJECT_DIR$/tpl/squelette.tpl" />
+        <option value="$PROJECT_DIR$/app/controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/tpl/frg/apropos.tpl" />
         <option value="$PROJECT_DIR$/app/config/Config.php" />
         <option value="$PROJECT_DIR$/app/router/RouterV2.php" />
+        <option value="$PROJECT_DIR$/app/services/formBuilder/Input.php" />
+        <option value="$PROJECT_DIR$/app/services/formBuilder/Form.php" />
         <option value="$PROJECT_DIR$/app/view/Response.php" />
-        <option value="$PROJECT_DIR$/tpl/exceptions/exception.tpl" />
-        <option value="$PROJECT_DIR$/tpl/squelette.tpl" />
-        <option value="$PROJECT_DIR$/app/services/filter/PathFilter.php" />
+        <option value="$PROJECT_DIR$/app/router/Request.php" />
+        <option value="$PROJECT_DIR$/app/controller/CarteController.php" />
       </list>
     </option>
   </component>
@@ -275,6 +333,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -303,65 +362,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="upload" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cartes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="tpl" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpl" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frg" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpl" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frg" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="form" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -469,65 +470,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="router" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="projet-eci62-2016" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="exceptions" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -580,7 +523,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -638,12 +580,13 @@
       <updated>1459630134865</updated>
       <workItem from="1459630136631" duration="4036000" />
       <workItem from="1459675920256" duration="5824000" />
-      <workItem from="1459685858848" duration="8629000" />
+      <workItem from="1459685858848" duration="34147000" />
+      <workItem from="1459792598563" duration="3066000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18489000" />
+    <option name="totallyTimeSpent" value="47073000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -658,23 +601,23 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2196162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23618636" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26172706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23618636" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15618336" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2654388" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -693,242 +636,9 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="27" column="60" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
-          <folding>
-            <element signature="e#31#54#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/TemplateRunner.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5967">
-          <caret line="352" column="62" selection-start-line="352" selection-start-column="62" selection-end-line="352" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Input.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1459689625314" expanded="true" signature="1038:1109" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1038:1110" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1038:1111" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1707:1795" placeholder="INSERT INTO utilisateurs... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/router/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Response.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding>
-            <element signature="e#28#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding>
-            <element signature="e#34#57#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/frg/form/logon.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/AbstractController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-          <folding>
-            <element signature="e#31#54#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/router/SecurityUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="44" column="28" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="28" />
-          <folding>
-            <marker date="1459689625314" expanded="true" signature="1038:1109" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1038:1110" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1038:1111" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1707:1795" placeholder="INSERT INTO utilisateurs... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/router/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="71" column="39" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Response.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
-          <folding>
-            <element signature="e#28#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/services/formBuilder/FormBuilder.php" />
-    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Input.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="49" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1459544529257" expanded="true" signature="3058:3136" placeholder="SELECT id_ca... categories" />
-            <marker date="1459544529257" expanded="true" signature="3201:3271" placeholder="SELECT id_ef... effets" />
-            <marker date="1459544529257" expanded="true" signature="3332:3408" placeholder="SELECT id_at... attributs" />
-            <marker date="1459544529257" expanded="true" signature="3472:3540" placeholder="SELECT id_ty... types" />
-            <marker date="1459544529257" expanded="true" signature="5832:5859" placeholder="SELECT id_ca... cartes" />
-            <marker date="1459544529257" expanded="true" signature="6238:6287" placeholder="SELECT id_ca... cartes" />
-            <marker date="1459544529257" expanded="true" signature="8283:8361" placeholder="SELECT id_ca... categories" />
-            <marker date="1459544529257" expanded="true" signature="8426:8496" placeholder="SELECT id_ef... effets" />
-            <marker date="1459544529257" expanded="true" signature="8557:8633" placeholder="SELECT id_at... attributs" />
-            <marker date="1459544529257" expanded="true" signature="8768:8919" placeholder="SELECT id_ty... types" />
-            <marker date="1459544529257" expanded="true" signature="8768:9081" placeholder="SELECT id_ty... " />
-            <marker date="1459544529257" expanded="true" signature="8855:8904" placeholder="SELECT id_ty... carte_types" />
-            <marker date="1459544529257" expanded="true" signature="8926:9081" placeholder="SELECT id_ty... types" />
-            <marker date="1459544529257" expanded="true" signature="9017:9066" placeholder="SELECT id_ty... carte_types" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/router/SecurityUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-          <folding>
-            <marker date="1459544529257" expanded="true" signature="3058:3136" placeholder="SELECT id_ca... categories" />
-            <marker date="1459544529257" expanded="true" signature="3201:3271" placeholder="SELECT id_ef... effets" />
-            <marker date="1459544529257" expanded="true" signature="3332:3408" placeholder="SELECT id_at... attributs" />
-            <marker date="1459544529257" expanded="true" signature="3472:3540" placeholder="SELECT id_ty... types" />
-            <marker date="1459544529257" expanded="true" signature="5832:5859" placeholder="SELECT id_ca... cartes" />
-            <marker date="1459544529257" expanded="true" signature="6238:6287" placeholder="SELECT id_ca... cartes" />
-            <marker date="1459544529257" expanded="true" signature="8283:8361" placeholder="SELECT id_ca... categories" />
-            <marker date="1459544529257" expanded="true" signature="8426:8496" placeholder="SELECT id_ef... effets" />
-            <marker date="1459544529257" expanded="true" signature="8557:8633" placeholder="SELECT id_at... attributs" />
-            <marker date="1459544529257" expanded="true" signature="8768:8919" placeholder="SELECT id_ty... types" />
-            <marker date="1459544529257" expanded="true" signature="8768:9081" placeholder="SELECT id_ty... " />
-            <marker date="1459544529257" expanded="true" signature="8855:8904" placeholder="SELECT id_ty... carte_types" />
-            <marker date="1459544529257" expanded="true" signature="8926:9081" placeholder="SELECT id_ty... types" />
-            <marker date="1459544529257" expanded="true" signature="9017:9066" placeholder="SELECT id_ty... carte_types" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/FormBuilder.php" />
-    <entry file="file://$PROJECT_DIR$/app/controller/AbstractController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/frg/form/logon.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/frg/form/carteForm.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/AbstractController.php" />
+    <entry file="file://$PROJECT_DIR$/composer.json" />
     <entry file="uml://DATABASE/d1bd967f-e0c4-4be8-b3b3-f75b62c2db5a">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -945,207 +655,165 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="0.9322314049586777" x="397.54787234042556" y="352.5" />
+          <settings layout="Hierarchic Group" zoom="0.9322314049586777" x="398.0" y="353.0" />
           <SelectedNodes />
           <Categories>
-            <Category>Key columns</Category>
             <Category>Columns</Category>
+            <Category>Key columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Input.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
-          <folding>
-            <element signature="e#34#57#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/TemplateRunner.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="346" column="13" selection-start-line="346" selection-start-column="13" selection-end-line="346" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/router/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="355" column="6" selection-start-line="355" selection-start-column="6" selection-end-line="355" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="93" column="46" selection-start-line="93" selection-start-column="46" selection-end-line="93" selection-end-column="46" />
-          <folding>
-            <element signature="e#31#54#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/frg/form/logoff.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-760">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-          <folding>
-            <marker date="1459689625314" expanded="true" signature="1038:1109" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1038:1110" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1038:1111" placeholder="SELECT id_ut... Utilisateur" />
-            <marker date="1459689625314" expanded="true" signature="1707:1795" placeholder="INSERT INTO utilisateurs... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/filter/FilterProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/filter/IsEmptyFilter.php">
+    <entry file="file://$PROJECT_DIR$/app/services/filter/FilterProvider.php" />
+    <entry file="file://$PROJECT_DIR$/app/services/filter/IsEmptyFilter.php" />
+    <entry file="file://$PROJECT_DIR$/app/services/filter/Filter.php" />
+    <entry file="file://$PROJECT_DIR$/app/exceptions/FilterInvalidException.php" />
+    <entry file="file://$PROJECT_DIR$/app/view/Template.php" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/header.tpl" />
+    <entry file="file://$PROJECT_DIR$/app/exceptions/TemplateInvalidException.php" />
+    <entry file="file://$PROJECT_DIR$/app/view/AbstractTemplate.php" />
+    <entry file="file://$PROJECT_DIR$/css/yu.css.map" />
+    <entry file="file://$PROJECT_DIR$/app/tests/TemplaterTest.php" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/error/alert.tpl" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/error/404.tpl" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/error/401.tpl" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/listeCartes.tpl" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/form/logoff.tpl" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/form/logon.tpl" />
+    <entry file="file://$PROJECT_DIR$/app/model/User.php" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/form/inscription.tpl" />
+    <entry file="file://$PROJECT_DIR$/app/services/urisolver/UriParser.php" />
+    <entry file="file://$PROJECT_DIR$/app/tests/uriSolverTest.php" />
+    <entry file="file://$PROJECT_DIR$/app/services/filter/PathFilter.php" />
+    <entry file="file://$PROJECT_DIR$/app/services/urisolver/UriSolver.php" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/carte_list_item.tpl" />
+    <entry file="file://$PROJECT_DIR$/css/yu.scss" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/carte_detail.tpl" />
+    <entry file="file://$PROJECT_DIR$/app/controller/Controller.php" />
+    <entry file="file://$PROJECT_DIR$/app/view/TemplatesWrapper.php" />
+    <entry file="file://$PROJECT_DIR$/app/services/TemplateRunner.php" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/form/carteForm.tpl" />
+    <entry file="file://$PROJECT_DIR$/app/config/DatabaseHelper.php" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/form/updateCarteForm.tpl" />
+    <entry file="file://$PROJECT_DIR$/app/controller/DefaultController.php" />
+    <entry file="file://$PROJECT_DIR$/tpl/frg/apropos.tpl" />
+    <entry file="file://$PROJECT_DIR$/app/model/Carte.php" />
+    <entry file="file://$PROJECT_DIR$/app/view/View.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/filter/Filter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/exceptions/FilterInvalidException.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/frg/header.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/exceptions/TemplateInvalidException.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/router/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="66" column="31" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/AbstractTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1003">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/Config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        <state relative-caret-position="437">
+          <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/router/Router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1054">
+          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/squelette.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-412">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="e#63#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Input.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/formBuilder/Form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1734">
+          <caret line="130" column="12" selection-start-line="130" selection-start-column="12" selection-end-line="133" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/router/RouterV2.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Response.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding>
-            <element signature="e#28#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/squelette.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+        <state relative-caret-position="153">
+          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/exceptions/exception.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="46" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/filter/PathFilter.php">
+    <entry file="file://$PROJECT_DIR$/app/view/Response.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+        <state relative-caret-position="-308">
+          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/router/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="98" column="40" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/AssetsManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/CarteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <marker date="1459796404466" expanded="true" signature="1062:1140" placeholder="SELECT id_ca... categories" />
+            <marker date="1459796404466" expanded="true" signature="1205:1275" placeholder="SELECT id_ef... effets" />
+            <marker date="1459796404466" expanded="true" signature="1336:1412" placeholder="SELECT id_at... attributs" />
+            <marker date="1459796404466" expanded="true" signature="1476:1544" placeholder="SELECT id_ty... types" />
+            <marker date="1459796404466" expanded="true" signature="5049:5127" placeholder="SELECT id_ca... categories" />
+            <marker date="1459796404466" expanded="true" signature="5192:5262" placeholder="SELECT id_ef... effets" />
+            <marker date="1459796404466" expanded="true" signature="5323:5399" placeholder="SELECT id_at... attributs" />
+            <marker date="1459796404466" expanded="true" signature="5463:5531" placeholder="SELECT id_ty... types" />
+            <marker date="1459796404466" expanded="true" signature="8603:8630" placeholder="SELECT id_ca... cartes" />
+            <marker date="1459796404466" expanded="true" signature="9640:9689" placeholder="SELECT id_ca... cartes" />
+            <marker date="1459796404466" expanded="true" signature="10702:10746" placeholder="SELECT id_ca... cartes" />
+          </folding>
         </state>
       </provider>
     </entry>

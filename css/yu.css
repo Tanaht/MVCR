@@ -7,11 +7,11 @@
     box-shadow: 5px 5px 15px 5px rgba(200, 27, 27, 0.1);
     border-radius: 5px; }
   .yu-alert.yu-info {
-    border: 1px solid #AE622A;
-    box-shadow: 5px 5px 15px 5px rgba(174, 98, 42, 0.1);
+    border: 1px solid #7a6335;
+    box-shadow: 5px 5px 15px 5px rgba(122, 99, 53, 0.1);
     border-radius: 5px; }
 
-button.btn {
+.btn {
   background-color: #38BA1E;
   border: none;
   padding: 7px;
@@ -19,22 +19,27 @@ button.btn {
   border-radius: 5%;
   cursor: pointer;
   overflow: hidden; }
-  button.btn.btn-primary {
+  .btn.btn-primary {
     background-color: rgba(174, 98, 42, 0.7); }
-    button.btn.btn-primary:hover {
+    .btn.btn-primary:hover {
       background-color: rgba(174, 98, 42, 0.5); }
-  button.btn.btn-secondary {
-    background-color: rgba(174, 98, 42, 0.7); }
-    button.btn.btn-secondary:hover {
-      background-color: rgba(174, 98, 42, 0.5); }
-  button.btn.btn-warn {
+  .btn.btn-secondary {
+    background-color: rgba(122, 99, 53, 0.7); }
+    .btn.btn-secondary:hover {
+      background-color: rgba(122, 99, 53, 0.5); }
+  .btn.btn-warn {
     background-color: rgba(200, 27, 27, 0.7); }
-    button.btn.btn-warn:hover {
+    .btn.btn-warn:hover {
       background-color: rgba(200, 27, 27, 0.5); }
-  button.btn:hover {
+  .btn:hover {
     background-color: #48F226; }
+  .btn a {
+    color: #000000; }
+    .btn a:hover {
+      color: #000000;
+      text-decoration: none; }
 
-button.btn-list {
+.btn-list {
   width: 100%;
   margin: 0px 0px 5px 0px; }
 
@@ -63,7 +68,7 @@ h1.yu-align-justify, h2.yu-align-justify, h3.yu-align-justify, h4.yu-align-justi
 h1.yu-warn, h2.yu-warn, h3.yu-warn, h4.yu-warn, p.yu-warn, span.yu-warn, em.yu-warn {
   color: #C81B1B; }
 h1.yu-info, h2.yu-info, h3.yu-info, h4.yu-info, p.yu-info, span.yu-info, em.yu-info {
-  color: #AE622A; }
+  color: #7a6335; }
 
 .yu-align-right {
   margin-left: auto;
@@ -114,10 +119,9 @@ h1.yu-info, h2.yu-info, h3.yu-info, h4.yu-info, p.yu-info, span.yu-info, em.yu-i
 a {
   color: #38BA1E;
   text-decoration: none; }
-
-a:hover {
-  color: #48F226;
-  text-decoration: none; }
+  a:hover {
+    color: #48F226;
+    text-decoration: none; }
 
 .yu-header {
   padding: 5px 5px 5px 5px;

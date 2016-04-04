@@ -4,8 +4,6 @@ namespace Mvcr;
 
 require_once './vendor/autoload.php';
 
-use app\router\AbstractRouter;
-use app\router\Router;
 use app\router\RouterV2;
 use app\services\filter\FilterProvider;
 use app\services\filter\CurrencyFilter;
@@ -36,7 +34,6 @@ $filters[] = new PathFilter();
 foreach ($filters as $key => $value) {
     FilterProvider::addFilter($value->getName(), $value);
 }
-
 
 $router = new RouterV2();
 $router->run();

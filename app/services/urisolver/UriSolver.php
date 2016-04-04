@@ -2,59 +2,74 @@
 
 namespace urisolver;
 
-class UriSolver {
+class UriSolver
+{
+    private $_uriParsed;//URL
+    private $_recognizeRoute;//ROUTE
+    private $_recognizeRouteParams;
 
-	
-	private $_uriParsed;//URL
-	private $_recognizeRoute;//ROUTE
-	private $_recognizeRouteParams;
+    public function __construct($uri)
+    {
+        $this->_uriParsed = UriParser::parse($uri);
+    }
 
-	public function __construct($uri) {
-		$this->_uriParsed = UriParser::parse($uri);
-	}
+    public function matche($uriRoute)
+    {
+        $this->_recognizeRouteParams = array();
+        $uriRouteParsed = UriParser::parse($uriRoute);
+        if (!self::matcheSize($uriRouteParsed)) {
+            return false;
+        }
 
-	public function matche($uriRoute) {
-		$this->_recognizeRouteParams = array();
+        for ($i = 0; $i < count($uriRouteParsed); ++$i) {
+            if (!self::matchePiece($this->_uriParsed[$i], $uriRouteParsed[$i])) {
+                return false;
+            }
+        }
 
-		$uriRouteParsed = UriParser::parse($uriRoute);
+        return true;
+    }
 
-		if(!self::matcheSize($uriRouteParsed))
-			return false;
+    public function getMatchedRouteUri()
+    {
+        return $this->_recognizeRoute;
+    }
 
-		for($i = 0 ; $i < count($uriRouteParsed) ; $i++) {
-			if(!self::matchePiece($this->_uriParsed[$i], $uriRouteParsed[$i]))
-				return false;
-		}
+    public function getMatchedRouteParams()
+    {
+        return $this->_recognizeRouteParams;
+    }
 
-		$this->_recognizeRoute = $uriRoute;
-		return true;
-	}
+    private function matchePiece($urlPieceContainer, $urlRoutePieceContainer)
+    {
+        if ($urlRoutePieceContainer['type'] != UriParser::variableParam) {
+            if ($urlPieceContainer['piece'] == $urlRoutePieceContainer['piece']) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
-	public function getMatchedRouteUri() {
-		return $this->_recognizeRoute;
-	}
+        if ($urlRoutePieceContainer['variable']['type'] == $urlPieceContainer['type']) {
+            $this->_recognizeRouteParams[$urlRoutePieceContainer['variable']['name']] = $urlPieceContainer['piece'];
 
-	public function getMatchedRouteParams() {
-		return $this->_recognizeRouteParams;
-	}
+            return true;
+        }
 
-	private function matchePiece($urlPieceContainer, $urlRoutePieceContainer) {
-		if($urlRoutePieceContainer['type'] != UriParser::variableParam)
-			if($urlPieceContainer['piece'] == $urlRoutePieceContainer['piece'])
-				return true;
-			else
-				return false;
+        return false;
+    }
 
+    private function matcheSize($uriRouteParsed)
+    {
+        return count($uriRouteParsed) == count($this->_uriParsed);
+    }
 
-		if($urlRoutePieceContainer['variable']['type'] == $urlPieceContainer['type']) {
-			$this->_recognizeRouteParams[$urlRoutePieceContainer['variable']['name']] = $urlPieceContainer['piece'];
-			return true;
-		}
-
-		return false;
-	}
-
-	private function matcheSize($uriRouteParsed) {
-		return count($uriRouteParsed) == count($this->_uriParsed);
-	}
+    public function getVar($route)
+    {
+        /*$explodedRoute = explode("/", $this->_recognizeRoute);
+        for($i = 0 ; $i < count($explodedRoute) ; $i++) {
+            if($explodedRoute[$i] == $)
+        }
+        var_dump($this->_recognizeRouteParams);*/
+    }
 }

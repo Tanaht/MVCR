@@ -8,10 +8,10 @@
 		</div>
 		<p class="yu-align-justify">{{ carte.description  | escape }}</p>
 	</div>
-	<form method="GET" action="index.php" class="yu-layout-column">
-		<input type="hidden" name="carte" value="{{ carte.id }}"/>
-		<button name="carteAction" class="btn btn-secondary" value="more">Détail</button>	
-		{{ '<button name="carteAction" class="btn" value="update">Modifier</button>' | hideFor : 'USER' | showFor : 'ADMIN' : carte.utilisateur.id}}	
-		{{ '<button name="carteAction" class="btn btn-warn" value="delete">Supprimer</button>' | hideFor : 'USER' | showFor : 'ADMIN' : carte.utilisateur.id}}	
-	</form>
+	<div class="yu-layout-column">
+		<input type="hidden" name="carte"/>
+		<a href="{{ router.carte.path | path : carte.id }}"><button class="btn btn-secondary">Détail</button></a>
+        <a href="{{ router.modifierCarte.path | path : carte.id }}">{{ '<button class="btn">Modifier</button>' | hideFor : 'USER' | showFor : 'ADMIN' : carte.utilisateur.id}}</a>
+        <a href="{{ router.supprimerCarte.path | path : carte.id }}">{{ '<button class="btn btn-warn">Supprimer</button>' | hideFor : 'USER' | showFor : 'ADMIN' : carte.utilisateur.id}}</a>
+	</div>
 </li>

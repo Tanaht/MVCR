@@ -3,7 +3,5 @@
 		<span class="yu-title yu-align-right">{{user.utilisateur.username}}</span>
 		<span class="yu-subtext">{{user.utilisateur.email}}</span>
 	</div>
-	<form method="post">
-		<button class="btn" name="logoff">Déconnexion</button>
-	</form>
+	<a href="{{ router.logout.path  | path : '' }}"><button class="btn">Déconnexion</button></a>
 </div>

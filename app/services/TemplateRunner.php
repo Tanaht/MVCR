@@ -15,8 +15,8 @@ use app\services\filter\FilterProvider;
 */
 class TemplateRunner
 {
-    const RUN_MODE = "RUN_MODE";
-    const SEARCH_MODE = "SEARCH_MODE";
+    const RUN_MODE = 'RUN_MODE';
+    const SEARCH_MODE = 'SEARCH_MODE';
     private $workmode;
     private $hooksFound;
 
@@ -87,15 +87,17 @@ class TemplateRunner
         return array('data' => $this->getTplExpression($explodeRegex[0]), 'filters' => $this->getTplFilters($regex));
     }
 
-    public function addGlobals($globals) {
+    public function addGlobals($globals)
+    {
         foreach ($globals as $key => $value) {
             $this->addGlobalVar($key, $value);
         }
     }
     private function addGlobalVar($key, $value)
     {
-        if(!isset($this->_globalVars[$key]))
+        if (!isset($this->_globalVars[$key])) {
             $this->_globalVars[$key] = $value;
+        }
     }
 
     private function keyExist($key)
@@ -113,9 +115,10 @@ class TemplateRunner
             return $filterGlobalVars[$key];
         }
 
-        if($this->workmode == self::SEARCH_MODE) {
+        if ($this->workmode == self::SEARCH_MODE) {
             $this->addToHooks($key);
-            return "000";
+
+            return '000';
         }
 
         if (!$this->keyExist($key)) {
@@ -167,8 +170,9 @@ class TemplateRunner
 
         $variableContainer = $this->getValue($this->eatTplWord($array_var[0]), $filterGlobalVars);
 
-        if($this->workmode == self::SEARCH_MODE)
-            return "000";
+        if ($this->workmode == self::SEARCH_MODE) {
+            return '000';
+        }
 
         if (count($array_var) == 1) {
             return $variableContainer;
@@ -237,26 +241,22 @@ class TemplateRunner
         return $this->run($path);
     }
 
-    private function addToHooks($hook) {
-        if(!in_array($hook, $this->hooksFound))
+    private function addToHooks($hook)
+    {
+        if (!in_array($hook, $this->hooksFound)) {
             $this->hooksFound[] = $hook;
+        }
     }
 
     //Raccourcis pour la recherche des variables nécéssaire à ce template.
-    public function searchVars($path) {
+    public function searchVars($path)
+    {
         return $this->run($path, array(), self::SEARCH_MODE);
     }
 
     /**
-        récupère le template et l'interprète.
-        Deux méthode de fonctionnement: RUN_MODE ou SEARCH_MODE
-        
-        RUN_MODE: Génère le template en fonction des variables de template disponibles
-        Affiche un message d'erreur à la place du template si des variables ou des filtres de template ne sont pas définies
-
-        SEARCH_MODE: Recherche toutes les variables de templates nécéssaires à ce template.
-        Cela ne recherche que les variables de templates à définir manuellement (exclus les variables présentes dans le scope global et dans le scope des filtres).
-    */
+     Cela ne recherche que les variables de templates à définir manuellement (exclus les variables présentes dans le scope global et dans le scope des filtres).
+     */
     public function run($path, array $templateVars = array(), $workmode = self::RUN_MODE)
     {
         $this->workmode = $workmode;
@@ -277,8 +277,9 @@ class TemplateRunner
 
         $this->_templateVars = $templateVars;
         $this->interpretRegex();
-        if($this->workmode == self::SEARCH_MODE) 
+        if ($this->workmode == self::SEARCH_MODE) {
             return $this->hooksFound;
+        }
 
         $this->runFilters();
         $this->compile();

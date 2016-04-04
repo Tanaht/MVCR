@@ -90,6 +90,9 @@ class Carte
         $bdd->prepare('INSERT INTO carte_types(id_carte, id_type) VALUES(:id_carte, :id_type)');
         $bdd->bindParam(':id_carte', $id_carte);
 
+        if ($types == null) {
+            return $id_carte;
+        }
         foreach ($types as $key => $value) {
             $bdd->bindParam(':id_type', $value);
             if (!$bdd->execute(false)) {
@@ -114,14 +117,14 @@ class Carte
             .' description=:description'
             .' WHERE id_carte='.$this->id);
 
-        $bdd->bindParam(':nom', $nom, \PDO::PARAM_STR);
-        $bdd->bindParam(':niveau', $niveau, \PDO::PARAM_INT);
-        $bdd->bindParam(':attaque', $attaque, \PDO::PARAM_STR);
-        $bdd->bindParam(':defense', $defense, \PDO::PARAM_STR);
-        $bdd->bindParam(':categorie', $categorie, \PDO::PARAM_INT);
-        $bdd->bindParam(':effet', $effet, \PDO::PARAM_INT);
-        $bdd->bindParam(':attribut', $attribut, \PDO::PARAM_INT);
-        $bdd->bindParam(':description', $description, \PDO::PARAM_STR);
+        $bdd->bindParam(':nom', $nom);
+        $bdd->bindParam(':niveau', $niveau);
+        $bdd->bindParam(':attaque', $attaque);
+        $bdd->bindParam(':defense', $defense);
+        $bdd->bindParam(':categorie', $categorie);
+        $bdd->bindParam(':effet', $effet);
+        $bdd->bindParam(':attribut', $attribut);
+        $bdd->bindParam(':description', $description);
 
         if (!$bdd->execute(false)) {
             return false;
@@ -136,8 +139,11 @@ class Carte
         $bdd->prepare('INSERT INTO carte_types(id_carte, id_type) VALUES(:id_carte, :id_type)');
         $bdd->bindParam(':id_carte', $this->id);
 
-        foreach ($types as $key => $value) {
-            $bdd->bindParam(':id_type', $value);
+        foreach ($types as $type) {
+            if ($type instanceof Type) {
+                $type = $type->id;
+            }
+            $bdd->bindParam(':id_type', $type);
             if (!$bdd->execute(false)) {
                 return false;
             }

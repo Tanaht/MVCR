@@ -2,15 +2,16 @@
 
 namespace formBuilder;
 
-class Input {
-
-	private $name;
-	private $value;
+class Input
+{
+    private $name;
+    private $value;
     private $isRequired;
-	public function __construct($name) {
+    public function __construct($name)
+    {
         $this->name = $name;
         $this->isRequired = false;
-	}
+    }
 
     public function getValue()
     {
@@ -19,7 +20,11 @@ class Input {
 
     public function setValue($value)
     {
-        $this->value = trim($value);
+        if (is_array($value)) {
+            $this->value = $value;
+        } else {
+            $this->value = trim($value);
+        }
     }
 
     public function getName()
@@ -27,17 +32,18 @@ class Input {
         return $this->name;
     }
 
-    public function required() {
+    public function required()
+    {
         $this->isRequired = true;
     }
 
-    public function isValid() {
-        if($this->isRequired && $this->value == null)
+    public function isValid()
+    {
+        if ($this->isRequired && !isset($this->value)) {
+            echo $this->getName() . " NOT SET";
             return false;
+        }
+
         return true;
     }
-
-
-
-    
 }

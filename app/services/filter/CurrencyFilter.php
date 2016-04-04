@@ -11,20 +11,21 @@ class CurrencyFilter extends Filter
 
     public function filter($before, array $args = null, $globals)
     {
-    	$devise = '€';
-    	if(count($args) != 0) {
-    		$devise = $args[0];
-    	}
+        $devise = '€';
+        if (count($args) != 0) {
+            $devise = $args[0];
+        }
 
-    	if($devise == '€')
-    		$before .= ' ' . $devise;
+        if ($devise == '€') {
+            $before .= ' '.$devise;
+        }
 
-    	if($devise == '$') 
-        	 $before = $devise . ' ' .$before;
+        if ($devise == '$') {
+            $before = $devise.' '.$before;
+        }
 
         return $before;
     }
-
 
     public function getFilterGlobalVars()
     {

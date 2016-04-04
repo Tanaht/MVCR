@@ -2,8 +2,6 @@
 
 namespace app\services\filter;
 
-use app\model\User;
-
 class ShowBooleanFilter extends Filter
 {
     public function __construct()

@@ -5,12 +5,10 @@
 					{{ assets }}/cartes/{{ carte.id }}.jpg 342w" 
 			width="342" height="492" alt="{{carte.nom | escape }}">
 		<div class="yu-layout-column yu-padding yu-medium">
-			<form method="GET" action="index.php" class="yu-layout-row yu-align-right">
-				<input type="hidden" name="carte" value="{{ carte.id }}"/>
-				<button name="carteAction" class="btn btn-secondary" value="more">Détail</button>	
-				{{ '<button name="carteAction" class="btn" value="update">Modifier</button>' | hideFor : 'USER' | showFor : 'ADMIN' : carte.utilisateur.id}}	
-				{{ '<button name="carteAction" class="btn btn-warn" value="delete">Supprimer</button>' | hideFor : 'USER' | showFor : 'ADMIN' : carte.utilisateur.id}}	
-			</form>
+			<div class="yu-layout-row yu-align-right">
+				<a href="{{ router.modifierCarte.path | path : carte.id }}">{{ '<button class="btn">Modifier</button>' | hideFor : 'USER' | showFor : 'ADMIN' : carte.utilisateur.id}}</a>
+				<a href="{{ router.supprimerCarte.path | path : carte.id }}">{{ '<button class="btn btn-warn">Supprimer</button>' | hideFor : 'USER' | showFor : 'ADMIN' : carte.utilisateur.id}}</a>
+			</div>
 			<h1 class="yu-title">{{carte.nom | escape }}</h1>
 			<span>Créateur: {{ carte.utilisateur.username | escape }} (<a href="mailto:{{ carte.utilisateur.email }}">{{ carte.utilisateur.email }}</a>)</span>
 			<span>Le {{ carte.dateCreation }}</span>

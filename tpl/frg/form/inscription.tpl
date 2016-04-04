@@ -1,9 +1,13 @@
-<form method="post" action="index.php">
-	<label for="username">Nom d'utilisateur:</label>
-	<input id="username" type="text" name="username" placeholder="username" required/>
-	<label for="email">Adresse Email:</label>
-	<input id="email" type="email" name="email" placeholder="email" required/>
-	<label for="password">Mot de passe:</label>
-	<input id="password" type="password" name="password" placeholder="password" required/>
-	<button class="btn" name="inscrire">Valider</button>
-</form>
+<div class="yu-block">
+    <form method="post" class="yu-layout-column">
+        <label for="{{ form.inputs.login.name }}">Nom d'utilisateur:</label>
+        <input id="{{ form.inputs.login.name }}" type="text" name="{{ form.inputs.login.name }}" placeholder="{{ form.inputs.login.name }}" {{ form.inputs.login.required }} value="{{ form.inputs.login.value }}"/>
+        <span class="yu-warn">{{ form.errors.login}}</span>
+        <label for="{{ form.inputs.mail.name }}">Adresse Email:</label>
+        <input id="{{ form.inputs.mail.name }}" type="text" name="{{ form.inputs.mail.name }}" placeholder="{{ form.inputs.mail.name }}" {{ form.inputs.mail.required }} value="{{ form.inputs.mail.value }}"/>
+        <span class="yu-warn">{{ form.errors.mail}}</span>
+        <label for="{{ form.inputs.password.name }}">Mot de passe:</label>
+        <input id="{{ form.inputs.password.name }}" type="password" name="{{ form.inputs.password.name }}" placeholder="{{ form.inputs.password.name }}" {{ form.inputs.password.required }}/>
+        <button class="btn">Valider</button>
+    </form>
+</div>

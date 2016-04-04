@@ -21,7 +21,6 @@ class Router
     protected $_view;
     protected $_controller;
     protected $_call;
-    
 
     public function __construct()
     {
@@ -29,7 +28,7 @@ class Router
         $this->_view = new View($this);
         $this->_controller = new Controller($this, $this->_view);
     }
-    
+
     /**
      
      */

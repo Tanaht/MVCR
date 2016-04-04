@@ -8,8 +8,9 @@ class FilterProvider
 
     public static function addFilter($name, Filter $filter)
     {
-        if (!array_key_exists($name, self::$filters))
+        if (!array_key_exists($name, self::$filters)) {
             self::$filters[$name] = $filter;
+        }
     }
 
     public static function getFilter($name)
@@ -18,7 +19,7 @@ class FilterProvider
             return self::$filters[$name];
         }
 
-        return null;
+        return;
     }
 
     public static function getFilters()

@@ -15,15 +15,18 @@
 	<div class="yu-content">
 		<div class="yu-menu">
 			<ul class="yu-list">
-				<li class="yu-list-item"><a class="btn btn-list" href="{{ router.index.path | path : ''}}">Home</a></li>
-				<li class="yu-list-item"><a class="btn btn-list"  href="{{ router.mescartes.path | path : ''}}">Mes Cartes</a></li>
-				<li class="yu-list-item"><a class="btn btn-list" href="{{ router.ajouterCarte.path | path : ''}}">Créer une carte</a></li>
-				<li class="yu-list-item"><a class="btn btn-list" href="{{ router.cartes.path | path : ''}}">Cartes</a></li>
-			</ul>
+				<li class="yu-list-item"><a class="" href="{{ router.home.path | path : ''}}"><button class="btn btn-list">Home</button></a></li>
+				<li class="yu-list-item"><a class=""  href="{{ router.mescartes.path | path : ''}}">{{'<button class="btn btn-list">Mes cartes</button>' | hideFor : 'USER'}}</a></li>
+				<li class="yu-list-item"><a class="" href="{{ router.ajouterCarte.path | path : ''}}">{{'<button class="btn btn-list">Créer une carte</button>' | hideFor : 'USER'}}</li>
+				<li class="yu-list-item"><a class="" href="{{ router.cartes.path | path : ''}}"><button class="btn btn-list">Les Cartes</button></a></li>
+                <li class="yu-list-item"><a class="" href="{{ router.apropos.path | path : ''}}"><button class="btn btn-list">A Propos</button></a></li>
+            </ul>
 		</div>
 		<div class="yu-page-container">
 			<div class="yu-page">
-				{{ content }}
+				<div class="yu-wrapper">
+					{{ content }}
+				</div>
 			</div>
 		</div>
 	</div>

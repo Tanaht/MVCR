@@ -12,12 +12,14 @@ class User implements SecurityUser
     private $role;
     public $utilisateur;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->role = 'USER';
         $this->connected = false;
     }
 
-    public function connected() {
+    public function connected()
+    {
         return $this->connected;
     }
 
@@ -28,43 +30,47 @@ class User implements SecurityUser
             $this->utilisateur = $user;
             $this->role = $this->utilisateur->sudo;
             $this->utilisateur;
+
             return true;
         }
 
         return false;
     }
 
-    public function eraseCriticInformations() {
-        $this->utilisateur->password = "";
+    public function eraseCriticInformations()
+    {
+        $this->utilisateur->password = '';
     }
 
-    public function getRole() {
+    public function getRole()
+    {
         return $this->role;
     }
 
-    public function getUsers($username) {
+    public function getUsers($username)
+    {
         $bdd = DatabaseHelper::getBdd();
 
-        $bdd->query("SELECT id_utilisateur FROM utilisateurs WHERE username like '%$username%'");
+        $bdd->query("SELECT id_utilisateur FROM utilisateurs WHERE username like '".trim($username)."'");
 
         $users = array();
         foreach ($bdd->execute() as $row) {
             $users[] = new Utilisateur($row['id_utilisateur']);
         }
+
         return $users;
     }
 
-    public function logout() {
+    public function logout()
+    {
+        session_destroy();
         $this->connected = false;
         $this->role = 'USER';
+        $this->utilisateur = null;
     }
 
-
-    /*
-        $stmt = $dbh->prepare("INSERT INTO REGISTRY (name, value) VALUES (:name, :value)");
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':value', $value);
-    */
+    /**
+     */
     public function register($user, $passwd, $mail)
     {
         $bdd = DatabaseHelper::getBdd();
@@ -81,9 +87,3 @@ class User implements SecurityUser
         $bdd->execute(false);
     }
 }
-
-/*
-$hash = PasswordCompat::password_hash("toto", PASSWORD_BCRYPT);
-PasswordCompat::password_verify("toto", $hash);
-
-*/
