@@ -1,62 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="baccd2cc-235b-456c-b15f-62ddff305114" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/templateLanguages.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controller/Controller.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/php-cs-fixer.phar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sftp-config.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/cartes/1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/cartes/1_thumb.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/cartes/32.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/upload/cartes/32_thumb.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Antoine.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Antoine.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/projet-eci62-2016.iml" afterPath="$PROJECT_DIR$/.idea/projet-eci62-2016.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/Config.php" afterPath="$PROJECT_DIR$/app/config/Config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/AbstractController.php" afterPath="$PROJECT_DIR$/app/controller/AbstractController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/CarteController.php" afterPath="$PROJECT_DIR$/app/controller/CarteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/DefaultController.php" afterPath="$PROJECT_DIR$/app/controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/exceptions/FilterInvalidException.php" afterPath="$PROJECT_DIR$/app/exceptions/FilterInvalidException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/exceptions/TemplateInvalidException.php" afterPath="$PROJECT_DIR$/app/exceptions/TemplateInvalidException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/Carte.php" afterPath="$PROJECT_DIR$/app/model/Carte.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/User.php" afterPath="$PROJECT_DIR$/app/model/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/Request.php" afterPath="$PROJECT_DIR$/app/router/Request.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/Router.php" afterPath="$PROJECT_DIR$/app/router/Router.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/RouterV2.php" afterPath="$PROJECT_DIR$/app/router/RouterV2.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/SecurityUser.php" afterPath="$PROJECT_DIR$/app/router/SecurityUser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/AssetsManager.php" afterPath="$PROJECT_DIR$/app/services/AssetsManager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/TemplateRunner.php" afterPath="$PROJECT_DIR$/app/services/TemplateRunner.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/CurrencyFilter.php" afterPath="$PROJECT_DIR$/app/services/filter/CurrencyFilter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/FilterProvider.php" afterPath="$PROJECT_DIR$/app/services/filter/FilterProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/PathFilter.php" afterPath="$PROJECT_DIR$/app/services/filter/PathFilter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/filter/ShowBooleanFilter.php" afterPath="$PROJECT_DIR$/app/services/filter/ShowBooleanFilter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/formBuilder/Form.php" afterPath="$PROJECT_DIR$/app/services/formBuilder/Form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/formBuilder/Input.php" afterPath="$PROJECT_DIR$/app/services/formBuilder/Input.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/urisolver/UriParser.php" afterPath="$PROJECT_DIR$/app/services/urisolver/UriParser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/urisolver/UriSolver.php" afterPath="$PROJECT_DIR$/app/services/urisolver/UriSolver.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/tests/TemplaterTest.php" afterPath="$PROJECT_DIR$/app/tests/TemplaterTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/tests/uriSolverTest.php" afterPath="$PROJECT_DIR$/app/tests/uriSolverTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/AbstractTemplate.php" afterPath="$PROJECT_DIR$/app/view/AbstractTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/Fragment.php" afterPath="$PROJECT_DIR$/app/view/Fragment.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/Response.php" afterPath="$PROJECT_DIR$/app/view/Response.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/Template.php" afterPath="$PROJECT_DIR$/app/view/Template.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/TemplatesWrapper.php" afterPath="$PROJECT_DIR$/app/view/TemplatesWrapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/yu.css" afterPath="$PROJECT_DIR$/css/yu.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/yu.css.map" afterPath="$PROJECT_DIR$/css/yu.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/yu.scss" afterPath="$PROJECT_DIR$/css/yu.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/exceptions/exception.tpl" afterPath="$PROJECT_DIR$/tpl/exceptions/exception.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/carte_detail.tpl" afterPath="$PROJECT_DIR$/tpl/frg/carte_detail.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/carte_list_item.tpl" afterPath="$PROJECT_DIR$/tpl/frg/carte_list_item.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/carteForm.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/carteForm.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/inscription.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/inscription.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/logoff.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/logoff.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/logon.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/logon.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/form/updateCarteForm.tpl" afterPath="$PROJECT_DIR$/tpl/frg/form/updateCarteForm.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/frg/listeCartes.tpl" afterPath="$PROJECT_DIR$/tpl/frg/listeCartes.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/squelette.tpl" afterPath="$PROJECT_DIR$/tpl/squelette.tpl" />
-    </list>
+    <list default="true" id="baccd2cc-235b-456c-b15f-62ddff305114" name="Default" comment="" />
     <ignored path="projet-eci62-2016.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -193,8 +138,8 @@
       <file leaf-file-name="CarteController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controller/CarteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state relative-caret-position="164">
+              <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
               <folding>
                 <marker date="1459796404466" expanded="true" signature="1062:1140" placeholder="SELECT id_ca... categories" />
                 <marker date="1459796404466" expanded="true" signature="1205:1275" placeholder="SELECT id_ef... effets" />
@@ -581,12 +526,12 @@
       <workItem from="1459630136631" duration="4036000" />
       <workItem from="1459675920256" duration="5824000" />
       <workItem from="1459685858848" duration="34147000" />
-      <workItem from="1459792598563" duration="3066000" />
+      <workItem from="1459792598563" duration="3299000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47073000" />
+    <option name="totallyTimeSpent" value="47306000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -799,8 +744,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/CarteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state relative-caret-position="164">
+          <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
           <folding>
             <marker date="1459796404466" expanded="true" signature="1062:1140" placeholder="SELECT id_ca... categories" />
             <marker date="1459796404466" expanded="true" signature="1205:1275" placeholder="SELECT id_ef... effets" />
