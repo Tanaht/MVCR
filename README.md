@@ -19,3 +19,10 @@ c'est a dire le script qui permet d'envoyer des paramètres par l'url.
 C'est le coeur du routeur c'est ce service qui prend en paramètre une url et une route et qui retourne true si l'url correspond à la route
 
 -app/controller/CarteController.php ligne 103 --> récupèration d'un paramètre passer dans l'url. (la route correspondante se trouve à la ligne 53 de Config.php.            
+
+
+# Comment mettre en prod:
+- Importer 21302782_dev.sql dans mysql
+- Mettre à jour les informations de connexion à la base de données dans app/config/Config.php
+- Lancé le navigateur
+- (login: Anonymous, passwd: 1234)
